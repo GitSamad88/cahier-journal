@@ -12,16 +12,16 @@ import urllib.request
 import shutil
 import time
 
-st.set_page_config(page_icon=r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
                    page_title="Page D'acceuil")
 
 
 
 
 #add_logo(req_img.content,height=80)
-add_logo(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
 
-st.image(r'C:/Users/hp/PycharmProjects/Streamlitt_App/Multipages_App/app-images/Moudakira_Banner_626x210.png')
+st.image('app-images/Moudakira_Banner_626x210.png')
 
 # Inject google ads and analytics
 GA_ID = "google_analytics"
@@ -71,12 +71,9 @@ def inject_ga():
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
 
-
 inject_ga()
 
-# link = "Made by [TAOUFIQ ABDESSAMAD](https://www.linkedin.com/in/abdessamad-taoufiq-082013209)"
-# st.sidebar.write(" ")
-# st.sidebar.markdown(link,unsafe_allow_html=True)
+
 
 st.title("Moudakira.ma: Cahier De Leçons Journaliers ")
 st.write("Bienvenue, "
@@ -97,12 +94,12 @@ col1.write("1. ***Création Facile de Cahiers Journal :*** "
 
 
 
-#col2.image(add_img("1s4_MBmKmY8KLgByiDpEdBe98CeiI6oTK"),output_format="png")
-col2.image(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\journal_presentation_d2.png")
+
+col2.image("app-images\journal_presentation_d2.png")
 
 col3, col4 = st.columns([0.6,0.4])
-#col3.image(add_img("15T3pBagTfJuQIbNc1cWXf_t-lP19kJAP"),output_format="png")
-col3.image(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\emplois_presen_d3.png")
+
+col3.image("app-images\emplois_presen_d3.png")
 col4.write("2. ***Comment ça marche? :*** "
            "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
            "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "

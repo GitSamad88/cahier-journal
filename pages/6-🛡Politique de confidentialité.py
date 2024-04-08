@@ -3,10 +3,10 @@ import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 
 # page configue
-st.set_page_config(page_icon=r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
     page_title="Politique De Confidentialité")
 
-add_logo(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
 
 
 

@@ -20,14 +20,12 @@ import warnings
 import json
 warnings.filterwarnings("ignore")
 
-#pd.set_option.storage_options = {'User-Agent': 'Mozilla/5.0'}
-
 
 # page configue
-st.set_page_config(page_icon=r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
     page_title="Cahier Journal")
 
-add_logo(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
 
 
 GA_ID = "google_analytics"
@@ -107,20 +105,18 @@ def fr_manuel_level(manuel, level):
         mes_app2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1YpCjGEsGTgcEsd2GycBu_p9WT7SuIkRvuSj7DgwLGPY/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_App_2aep")
         mes_app3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1HpLYUHC9hm234KismLpPjS7WjmjenLSOPO1dN2ppLs4/gviz/tq?tqx=out:csv&sheet=repartition_annuelle_fr_mes_apprentissage_3aep")
         mes_app4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1hAzdEag4ldicksVnWwLtxykKjZGHveInt2wjdc7AROU/gviz/tq?tqx=out:csv&sheet=repartiton_FR_Mes_apprentissage_4AEP")
-        #mes_app4["Dictèe"] = mes_app4["Orth / Dictée"]
-        #mes_app4.rename(columns={"Orth / Dictée": "Orthographe"}, inplace=True)
+
         mes_app5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1AZS1Mbv8ht1eAH-bsXrpoAyxzEcg4OFZb6bJzp5yRmo/gviz/tq?tqx=out:csv&sheet=annuelle_repa_mes_app_5aep")
         mes_app6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1MbQy6JjTmIuNV_ZF3FA76Xq9xj1f4oq_SUo5viADrQw/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_app_6aep")
         Mes_app_manuel = [mes_app1, mes_app2, mes_app3, mes_app4, mes_app5, mes_app6]
         fr_manuels_dict["Mes apprentissages"]=Mes_app_manuel
-        #print(fr_manuels_dict)
+ 
 
 
     if manuel=="Espace de l'école":
         #"""-----Espace de l'ècole-----"""
         espace1 = espace3 = espace4 = espace5 = espace6 = pd.DataFrame()
         espace2 = pd.read_csv(docs_link+"1E2tZWzNNdS81H2ljxUzsugxeI2G9AQJx0QdQfv8ipjg"+linkc+"Repa_Fr_Espace_De_Lecole_2aep")
-        #espace2 = pd.read_csv("https://drive.google.com/uc?id=1mLoFqgkgxCrvW_TtaF2bZCnRu6x3OCOR")#,storage_options = {'User-Agent': 'Mozilla/5.0'})
         Espace = [espace1,espace2,espace3,espace4,espace5,espace6]
         fr_manuels_dict["Espace de l'école"]=Espace
 
@@ -128,7 +124,6 @@ def fr_manuel_level(manuel, level):
     if manuel=="L'école de mots":
         #"""-----L'école de mots-----"""
         ecole1= ecole2= ecole3 =  ecole5 = ecole6 = pd.DataFrame()
-        #ecole4 = pd.read_csv("https://drive.google.com/uc?id=1G-BJkULB-66jxpgcW52yLtRhVZ2OvVam")
         ecole4 = pd.read_csv(docs_link+"1XEHukH1KTxTAOf-SAQjSS39UorL-3FIe1MhlLFLysT4"+linkc+"Repa_Fr_Lecole_de_mots_4aep")
         Ecole_de_mots = [ecole1,ecole2,ecole3,ecole4,ecole5,ecole6]
         fr_manuels_dict["L'école de mots"]=Ecole_de_mots
@@ -145,9 +140,7 @@ def fr_manuel_level(manuel, level):
     if manuel =="Nouvel espace":
         #"""-----Nouvel Espace-----"""
         nouvel_espace1 = nouvel_espace3 = nouvel_espace5 = nouvel_espace6 = pd.DataFrame()
-        #nouvel_espace2= pd.read_csv("https://drive.google.com/uc?export=download&id=1WP7BNiGITEPdGutqXqhO-Sq0bRXOm_Qh")
         nouvel_espace2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1n9j1BlRkIVxjGB_74TNfJLTQEGaIrCl1jyuhxq9Dbs8"+linkc+"Repa_Fr_Nouvel_Espace_2aep")
-        #nouvel_espace4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1Gqgmg4nt_gXKAPHaNj8Klu1AJAWdPeCz")
         nouvel_espace4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1EYLaBN3rHkCRgx5HpNRoeQ8RAFabj8-a1ougO-Cu_u4"+linkc+"Repa_Fr_Nouvel_Espace_4aep")
         Nouvel_espace = [nouvel_espace1,nouvel_espace2,nouvel_espace3,nouvel_espace4,nouvel_espace5,nouvel_espace6]
         fr_manuels_dict["Nouvel espace"]=Nouvel_espace
@@ -156,7 +149,6 @@ def fr_manuel_level(manuel, level):
     if manuel == "Parcours français":
         #"""----Parcours Français----"""
         parcours1 = parcours2 = parcours3 = parcours4 = parcours5 =pd.DataFrame()
-        #parcours6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1CKVaMOTZVTN0A3COtXy313pMaozvHU3n")
         parcours6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1ESEZCpX_IuKVNG3gLJ1IEc1jWlBn-xdpUPirpx4vLHY"+linkc+"Repa_Fr_Parcours_6aep")
         Parcours = [parcours1, parcours2, parcours3,parcours4,parcours5,parcours6]
         fr_manuels_dict["Parcours français"]=Parcours
@@ -220,22 +212,17 @@ def maths_manuel_level(manuel, level):
     if manuel == "الجيد":
         jayed1 = jayed3 = jayed5 = pd.DataFrame()
         jayed2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1boAFep-ooci_LQyQ4X3RkX2pjmjbNJM6dpvLgMz8Nyw"+linkc+"Repa_Maths_Jayed_2aep")
-        #jayed2 = pd.read_csv("https://drive.google.com/uc?export=download&id=1GmCzdcYcm2RlNckrHOEfGhtuddSPPzle")
         jayed4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1kk4n_1DyGk_aQOKT2xmhNSSjKVMuYj5tcM387qDVt8o"+linkc+"Repa_Maths_Jayed_4aep")
-        #jayed4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1_boyz8lB5BaPbT0s3hiTAfrsrvWCmJFT")
         jayed6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1Jqt50GIXwP3HQZAUnD3wIq0UGexVrfJaETe8O0y2oRE"+linkc+"Repa_Maths_Jayed_6aep")
-        #jayed6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1mObs-UCy9nOfto7-eczyvPcDbAP7zASF")
         Jayed= [jayed1, jayed2, jayed3, jayed4, jayed5, jayed6]
         Maths_manuels["الجيد"] = Jayed
 
     #"""----Fadaa-----"""
     if manuel == "الفضاء":
         fada1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1fUZRGEnZXn8WNQ0557sQAvcC3ejCzXlUAQVUZ2UHhQQ"+linkc+"Repa_Maths_Fada2_1aep")
-        #fada1 = pd.read_csv("https://drive.google.com/uc?export=download&id=1nTvwWpk1Hn5DPV2gJV6W6sXXgYTNibw6")
         fada4 = fada5 = fada6 = pd.DataFrame()
         fada2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1kNDJfembuOL47-xtL7_tLM_OMk5mDyJlndD5s9v1JQw"+linkc+"Repa_Maths_Fada2_2aep")
         fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1zM_tG0zlfV3So3CFOsO2Aaqk4Ca6g_UX093gTZrfotM"+linkc+"Repa_Maths_Fada2_3aep")
-        #fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/16Tpk0FjPLs6jpbAjVa4DWC7L4VYxfruldvujbpWoJsc/gviz/tq?tqx=out:csv&sheet=Repa__3aep_Maths_Fada2")
         Fadaa = [fada1, fada2, fada3, fada4, fada5, fada6]
         Maths_manuels["الفضاء"] = Fadaa
 
@@ -250,7 +237,6 @@ def maths_manuel_level(manuel, level):
     #"""-----Jadid-----"""
     if manuel =="الجديد":
         jadid1 = jadid2 = jadid3 = jadid4 = jadid5 = pd.DataFrame()
-        #jadid6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1CDFy3sbl8Y5tkoaUoV3FK51-ApvGqDXu")
         jadid6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1AQnPGRV3EvfiS6JPggjxb2d-bAxkoSoSLEkIw1kiSkk"+linkc+"Repa_Maths_Jadid_6aep")
         Jadid = [jadid1, jadid2, jadid3,jadid4, jadid5,jadid6]
         Maths_manuels["الجديد"]=Jadid
@@ -258,9 +244,7 @@ def maths_manuel_level(manuel, level):
     #"""----Marjii----"""
     if manuel == "المرجع":
         marjii1 = marjii4 = marjii5 = marjii6 = pd.DataFrame()
-        #marjii2 = pd.read_csv("https://drive.google.com/uc?export=download&id=1BS7EbN67g8x_cRiXFz3mPVo6tw2N1kJG")
         marjii2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1PeWXWqVwMHF7MNmTudRo68-5ihoEMkN1gUTkYHfbNa0"+linkc+"Repa_Maths_Marji3_2aep")
-        #marjii3 = pd.read_csv("https://drive.google.com/uc?export=download&id=1uqWAiTsxuKidpDM7kfXK3_v4xQJQ0Ptw")
         marjii3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1XAQ9UfrHB8X0HwJ6CpxXMVWbszUyYRj2f8VpjWf-q9w"+linkc+"Repa_Maths_Marji3_3aep")
         Marjii = [marjii1,marjii2,marjii3,marjii4,marjii5,marjii6]
         Maths_manuels["المرجع"] = Marjii
@@ -302,13 +286,10 @@ def EvSc_manuel_level(level, manuel):
 
     #"""----Fadaa----"""
     if manuel == "الفضاء":
-        #drive_path="https://drive.google.com/uc?export=download&id="
         es_fadaa1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1jCKg31ZFO3ONJsGA9hPDGbkxsMvyRCNLLUasRbtfCRo"+linkc+"Repa_EvSc_Fadaa_1aep")
         es_fadaa1["Séance"] = [json.loads(es_fadaa1["Séance"][i]) for i in range(len(es_fadaa1["Séance"]))]
 
         es_fadaa2 = es_fadaa3 =es_fadaa5= pd.DataFrame()
-        pd.DataFrame()
-        #es_fadaa4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1In96DfzKRp6gctolLJhFuMNQWew2KwIB")
         es_fadaa4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1QM8kJ1YBexKcdPWAPBWg8Jz7H8u4RPehvfco6zMfqCU"+linkc+"Repa_EvSc_Fadaa_4aep")
         es_fadaa4["Séance"] = [json.loads(es_fadaa4["Séance"][i]) for i in range(len(es_fadaa4["Séance"]))]
 
@@ -325,7 +306,6 @@ def EvSc_manuel_level(level, manuel):
 
         manhal3=pd.read_csv("https://docs.google.com/spreadsheets/d/1tPN6uHeAEci7tizdQ_FXxzmzMCVO_5G_Y_ZBkojODc8"+linkc+"Repa_EvSc_Manhal_3aep")
         manhal3 = manhal3[["U", "S", "Eveil Scientifique", "Séance"]].dropna(axis=0)
-        #manhal3.rename(columns={"Séance": "Sèance"}, inplace=True)
         manhal3["Séance"] = [json.loads(manhal3["Séance"][i]) for i in range(len(manhal3["Séance"]))]
 
         manhal5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1Ecdj4XNidyM7cykdN3SgGOBfcWslTQd1zUxwAnxVsqU"+linkc+"Repa_EvSc_Manhal_5aep")
@@ -419,7 +399,6 @@ def EvSc_manuel_level(level, manuel):
 def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()
-    #emplois=pd.read_csv(r"C:\Users\hp\Downloads\emplois_3_4_(2).csv")
     emplois=st.session_state["emplois"]
     emplois.dropna(inplace=True)
     emplois.index = range(emplois.shape[0])
@@ -561,7 +540,6 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         sheet["B9"] = "CITATION: "
 
         # remarque
-        # sheet.merge_cells('B9:E9')
         sheet["F9"] = "REMARQUES: "
 
         sheet.merge_cells('B6:H6')
@@ -569,8 +547,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
-
-        sheet["F2"] = f'Date:'#{str_date}'
+        sheet["F2"] = f'Date:
 
         #----------------in and out time---------------------
 
@@ -603,7 +580,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
 
 
-                # Discipline
+        # Discipline
         sheet["D4"] = "Discipline"
 
         # Classe
@@ -622,8 +599,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         # Frensh
         def fr_peda_class(niveau):
             my_class =fr_class[niveau]
-            # my_class.drop(columns=["Unnamed: 0"],inplace=True)
-            #my_class.index
+
             if type(my_class) == pd.core.frame.DataFrame:
                 fr_Unite_Repa = my_class[my_class["U"] == 1 + list(Unites.values()).index(unite)]
                 fr_Week_Repa = fr_Unite_Repa[fr_Unite_Repa["S"] == 1 + int(i[0] / 6)]
@@ -662,37 +638,29 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
                 # FR
                 fr_repa = fr_peda_class(niveau)
-                print("fr_repa:",fr_repa)
                 if course in fr_repa.columns:
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
-                #else: courses_elements.append("              ")
 
                 # Maths
                 math_repa = Maths_peda_class(niveau)
-                #print(math_repa["Maths"])
                 if course in math_repa.columns:
-                    #print(math_repa.columns[:4])
-                    #print(f'this is {course} course')
+                    
                     emplois_jour_Maths = emplois_week_Maths[emplois_week_Maths["Jour"] == 1 + len(weeks_days) % 6]
-                    #print(int(list(emplois_jour_Maths["Séance"])[0]))
                     seance = 6 if emplois_jour_Maths.empty else int(list(emplois_jour_Maths["Séance"])[0])
-                    #seance = str(seance)
 
                     for s in list(math_repa["Séance"]):
-                        #print("s: ",s)
 
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             print("indices: ",indices)
                             courses_elements.append(math_repa["Maths"][indices[0]])
-                            #print(math_repa["Maths"][indices[0]])
 
                 # Eveil Scientifique:
                 es_repa = EvSc_peda_class(niveau)
                 if course in es_repa.columns:
                     emplois_jour_EvSc = emplois_week_EvSc[emplois_week_EvSc["Jour"] == 1 + len(weeks_days) % 6]
-                    seance = 6 if emplois_jour_EvSc.empty else int(emplois_jour_EvSc["Séance"])# ["Sèance"] was named "Séance" with "é"
-                    for s in list(es_repa["Séance"]):# ["Sèance"] was named "Séance" with "é"
+                    seance = 6 if emplois_jour_EvSc.empty else int(emplois_jour_EvSc["Séance"])
+                    for s in list(es_repa["Séance"]):
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
@@ -737,7 +705,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
             # break
 
         else:
-            # try:
+        
             sheet["C5"] = classes[1]
             courses(1, "D5")
             periode_seance(1, "E5", "G5")
@@ -747,14 +715,10 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
             courses(0, "D7")
             periode_seance(0, "E7", "G7")
             course_element(0, "F7")
-            # except:
-            # print("error!")
-            # break
+
 
         # Théme
-        # title = peda_class(classes[niveau])["U. D / Thème"][1]
-        # print("Théme:",title)
-        # sheet["F3"] = f'Théme:  {title}'
+   
 
         # Durée
         sheet["E4"] = "Durée"
@@ -770,15 +734,12 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
         # Smaine
         sheet["F8"] = f'Semaine:{1 + int(i[0] / 6)}'
-        # print("Day: ", 1 + len(weeks_days) % 6)
         # Jour
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
 
-        print("----------------------------")
 
-    # wb.save(f'Cahier_Journalier_U{1+list(Unites.values()).index(unite)} niveaux {C1}-{C2}.xlsx')
     wb.save(buffer)
     return buffer
 

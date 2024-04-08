@@ -9,10 +9,10 @@ import pathlib
 import shutil
 
 # page configue
-st.set_page_config(page_icon=r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
     page_title="Emplois Du Temps")
 
-add_logo(r"C:\Users\hp\PycharmProjects\Streamlitt_App\Multipages_App\app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
 
 
 # google ads and analytics
@@ -164,13 +164,12 @@ if (creat_or_import == "Créer un nouveau emplois"):
                 jours.append(jour)
                 niveaux.append(niveau)
 
-    enregistrer=form.form_submit_button("Enregistrez")  # , on_click=emplois_df(emplois=emplois))
+    enregistrer=form.form_submit_button("Enregistrez") 
     if enregistrer:
         try:
             emplois_df(emplois=emplois)
             st.success("votre emplois a été bien enregistré!")
         except Exception as ex:
-            #st.write(ex)
             st.warning("Il faut au moins sélectionner une matière avec sa durée "
                       "et le numèro de sa séance!")
 
@@ -182,7 +181,6 @@ elif creat_or_import == "Importer votre emplois":
         'Les colonnes de votre fichier doivent être "Niveau", "Jour", "Matière", "Séance" et "Durée"')
 
     if st.button("Cliquez pour voir un exemple! "):
-        # You have change this:
         example = pd.read_csv(
             "https://docs.google.com/spreadsheets/d/17Od8aGyqZPRXSyIIMLDklIhOLg1vApSrj5DXjs31nnI/gviz/tq?tqx=out:csv&sheet=emplois_3_4_LV")
         st.info("Emplois du temps de 3aep et 4aep:")

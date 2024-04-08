@@ -152,7 +152,7 @@ login()
 
 
 # Custom Footer and Hide right Menu
-Hid_Menu = """
+hid_menu = """
 <style>
 #MainMenu {
    visibility : hidden;}
@@ -183,4 +183,4 @@ footer = """
 """
 
 st.markdown(footer, unsafe_allow_html=True)
-st.markdown(Hid_Menu, unsafe_allow_html=True)
+st.markdown(hid_menu, unsafe_allow_html=True)

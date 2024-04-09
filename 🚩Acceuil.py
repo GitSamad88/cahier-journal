@@ -11,14 +11,14 @@ import urllib.request
 import shutil
 import time
 
-st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
                    page_title="Page D'acceuil")
 
 
 
 
 #add_logo(req_img.content,height=80)
-add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
 st.image('app-images/Moudakira_Banner_626x210.png')
 
@@ -94,11 +94,11 @@ col1.write("1. ***Création Facile de Cahiers Journal :*** "
 
 
 
-col2.image("app-images\journal_presentation_d2.png")
+col2.image("app-images/journal_presentation_d2.PNG")
 
 col3, col4 = st.columns([0.6,0.4])
 
-col3.image("app-images\emplois_presen_d3.png")
+col3.image("app-images/emplois_presen_d3.PNG")
 col4.write("2. ***Comment ça marche? :*** "
            "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
            "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "

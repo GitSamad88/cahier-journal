@@ -22,10 +22,10 @@ warnings.filterwarnings("ignore")
 
 
 # page configue
-st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
     page_title="Cahier Journal")
 
-add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
 
 GA_ID = "google_analytics"

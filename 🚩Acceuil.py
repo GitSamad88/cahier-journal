@@ -6,7 +6,6 @@ import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
 from bs4 import BeautifulSoup
-from st_pages import Page, add_page_title, show_pages
 import pathlib
 import urllib.request
 import shutil

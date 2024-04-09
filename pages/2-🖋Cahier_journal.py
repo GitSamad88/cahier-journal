@@ -760,7 +760,8 @@ LOGGED_IN = __login__obj.build_login_ui()
 
 # """"----------------Streamlit App-----------------"""
 
-
+if LOGGED_IN == True:
+    
     st.title("Le Cahier Journalier Du Professeur De Cycle Primaire ")
     st.empty()
 

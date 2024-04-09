@@ -1,4 +1,4 @@
-    import time
+import time
 import streamlit as st
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit.components.v1 as components

@@ -757,10 +757,6 @@ __login__obj = __login__(credentials=json_auth_,
                     lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 LOGGED_IN = __login__obj.build_login_ui()
 
-if LOGGED_IN == True:
-    welcome = st.success("Bienvenue!")
-    time.sleep(5)
-    welcome.empty()
     # """"----------------Streamlit App-----------------"""
 
     # JS code to modify te decoration on top

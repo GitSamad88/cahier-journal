@@ -65,7 +65,9 @@ def inject_ga():
         new_soup = BeautifulSoup(index_path.read_text(), features="html.parser")
 
 
-inject_ga()
+#inject_ga()
+
+
 buffer = BytesIO()
 
 

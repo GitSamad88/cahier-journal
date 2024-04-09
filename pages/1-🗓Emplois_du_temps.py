@@ -9,10 +9,10 @@ import pathlib
 import shutil
 
 # page configue
-st.set_page_config(page_icon="app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
     page_title="Emplois Du Temps")
 
-add_logo("app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
 
 # google ads and analytics

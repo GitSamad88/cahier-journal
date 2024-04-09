@@ -1,4 +1,4 @@
-import time
+    import time
 import streamlit as st
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit.components.v1 as components
@@ -74,7 +74,7 @@ def inject_ga():
         html = html.replace(ga_script, "")
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
-inject_ga()
+#inject_ga()
 
 
 docs_link = "https://docs.google.com/spreadsheets/d/"
@@ -200,7 +200,6 @@ def maths_manuel_level(manuel, level):
     Maths_manuels={}
     #"""------- Moufid -------"""
     if manuel=="المفيد":
-        #moufid1 = pd.read_csv("https://drive.google.com/uc?export=download&id=1xZYU1fmeIlcsICUw_ePz7nU_sSEYJwra")
         moufid1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1SeiSfWsp7HKiDjPhtWBk_MRPffjsrHhgBIrS99-S9gs"+linkc+"Repa_Maths_Moufid_1aep")
         moufid2 = moufid3  = moufid6 =  pd.DataFrame()
         moufid4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1RWOJDkvdpPyNrM9s6iuP6vq-uWnjD4-grJOJAIViTKM"+linkc+"Repa_Maths_Moufid_4aep")
@@ -547,7 +546,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
-        sheet["F2"] = f'Date:
+        sheet["F2"] = f'Date:'
 
         #----------------in and out time---------------------
 

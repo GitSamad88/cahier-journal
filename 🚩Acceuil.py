@@ -143,8 +143,6 @@ def login():
 
     LOGGED_IN = __login__obj.build_login_ui()
 
-    if LOGGED_IN == True:
-        st.success("Bienvenue!")
 
 st.subheader("S'enregister")
 login()

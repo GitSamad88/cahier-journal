@@ -743,9 +743,11 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     return buffer
 
 # """---------------------LOGIN----------------------------"""
+title_placeholder = st.empty()
 
 cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
 json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
+title_placeholder.subheader("S'enregistrer")
 
 __login__obj = __login__(credentials=json_auth_,
                     smtp_username = 'moudakira.ma@gmail.com',
@@ -761,7 +763,7 @@ LOGGED_IN = __login__obj.build_login_ui()
 # """"----------------Streamlit App-----------------"""
 
 if LOGGED_IN == True:
-    
+    title_placeholder.empty()
     st.title("Le Cahier Journalier Du Professeur De Cycle Primaire ")
     st.empty()
 

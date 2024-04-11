@@ -17,7 +17,7 @@ st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
 
 
 
-#add_logo(req_img.content,height=80)
+#add a logo
 add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
 st.image('app-images/Moudakira_Banner_626x210.png')
@@ -73,7 +73,8 @@ def inject_ga():
 #inject_ga()
 
 
-
+# write title, subheaders and paragraphes
+# add video and images 
 st.title("Moudakira.ma: Cahier De Leçons Journaliers ")
 st.write("Bienvenue, "
          "Moudakira.ma est une application novatrice conçue spécialement pour simplifier la vie des enseignants du "
@@ -122,29 +123,32 @@ col6.markdown(embed_video,unsafe_allow_html=True)
 
 
 st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
-           "comment notre application peut transformer"
-           "la façon dont les enseignants du cycle primaire gèrent leurs cahiers de journal,"
+           "comment notre application peut transformer "
+           "la façon dont les enseignants du cycle primaire gèrent leurs cahiers de journal, "
            "libérant ainsi du temps précieux pour se concentrer sur"
            "l'enseignement et l'épanouissement de leurs élèves.")
 
-
+# Add login form
 def login():
-    cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
-    json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
+  title_placeholder = st.empty()
+  title_placeholder.subheader("S'enregistrer")
 
-    __login__obj = __login__(credentials=json_auth_,
-                 smtp_username='moudakira.ma@gmail.com',
-                 smtp_password='oamw onhc lmjk kpex',
-                 company_name="Moudakira.ma",
-                 width=200, height=300,
-                 logout_button_name='Sortir', hide_menu_bool=False,
-                 hide_footer_bool=False,
-                 lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
+  cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
+  json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
 
-    LOGGED_IN = __login__obj.build_login_ui()
+  __login__obj = __login__(credentials=json_auth_,
+               smtp_username='moudakira.ma@gmail.com',
+               smtp_password='oamw onhc lmjk kpex',
+               company_name="Moudakira.ma",
+               width=200, height=300,
+               logout_button_name='Sortir', hide_menu_bool=False,
+               hide_footer_bool=False,
+               lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
+  LOGGED_IN = __login__obj.build_login_ui()
+  if LOGGED_IN:
+    title_placeholder.empty()
 
-st.subheader("S'enregister")
 login()
 
 

@@ -919,7 +919,7 @@ if LOGGED_IN == True:
             period = form.selectbox("sélectionnez la sèance", ["Matinée", "Après midi"])
 
             # Select Unit, all U if user payed else U1
-            @st.cache_resource(show_spinner=False)
+            # @st.cache_resource(show_spinner=False)
             def worksheet(credentials):
 
                 scope = ["https://www.googleapis.com/auth/spreadsheets",

@@ -929,12 +929,11 @@ if LOGGED_IN == True:
                 sheet = client.open("mydb").sheet1
                 return sheet
 
-            secrets_auth = st.secrets["google_sheets_api_credentials"]
-            secrets_auth = secrets_auth
+
             sheet = worksheet(credentials=secrets_auth)
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
-            codes = [code for code in codes if code != '']
+            codes = list(filter(lambda x: x != '', codes))
 
             code=form.text_input("Si vous voulez choisir d'autre unité, entrez votre code ici :",
                                  placeholder="Entrez votre code")

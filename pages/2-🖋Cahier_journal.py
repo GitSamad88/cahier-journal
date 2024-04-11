@@ -80,7 +80,7 @@ def inject_ga():
 docs_link = "https://docs.google.com/spreadsheets/d/"
 linkc = "/gviz/tq?tqx=out:csv&sheet="
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def fr_manuel_level(manuel, level):
 
     #'''-----------------------------------------------------  Frensh   --------------------------------------------------'''
@@ -179,7 +179,7 @@ def fr_manuel_level(manuel, level):
         print("Remarque: le niveau doit être entre 1 et 6!")
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def maths_manuel_level(manuel, level):
     #'''------------------------------------        Maths         -------------------------------------'''
 
@@ -267,7 +267,7 @@ def maths_manuel_level(manuel, level):
         print("Remarque: le niveau doit être entre 1 et 6!")
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def EvSc_manuel_level(level, manuel):
     #"""------------------------------------------------     Eveil Scientifque      ---------------------------------------------"""
     #"""retrive EvSc repartition by level and manuel name """
@@ -394,7 +394,7 @@ def EvSc_manuel_level(level, manuel):
         print("Remarque: le niveau doit être entre 1 et 6!")
 
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
-@st.cache_resource
+@st.cache_resource((show_spinner=False)
 def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()

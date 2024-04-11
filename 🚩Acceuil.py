@@ -128,22 +128,26 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
            "libérant ainsi du temps précieux pour se concentrer sur"
            "l'enseignement et l'épanouissement de leurs élèves.")
 
-# Add login form
+# Add  a login form
 def login():
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
 
-  cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
-  json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
+  secrets_auth = st.secrets["google_sheets_api_credentials"]
+  secrets_auth = secrets_auth
+  smtp_gmail_ = st.secrets.smtp_gmail
+  smtp_password_ = st.secrets.smtp_password
+  
+  
+  __login__obj = __login__(credentials=secrets_auth,
+                      smtp_username = smtp_gmail_,
+                      smtp_password = smtp_password_,
+                      company_name = "Tesla",
+                      width = 200, height = 300,
+                      logout_button_name = 'Sortir', hide_menu_bool = False,
+                      hide_footer_bool = False,
+                      lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
-  __login__obj = __login__(credentials=json_auth_,
-               smtp_username='moudakira.ma@gmail.com',
-               smtp_password='oamw onhc lmjk kpex',
-               company_name="Moudakira.ma",
-               width=200, height=300,
-               logout_button_name='Sortir', hide_menu_bool=False,
-               hide_footer_bool=False,
-               lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
   LOGGED_IN = __login__obj.build_login_ui()
   if LOGGED_IN:

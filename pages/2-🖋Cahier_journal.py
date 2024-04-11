@@ -744,19 +744,22 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
 # """---------------------LOGIN----------------------------"""
 title_placeholder = st.empty()
-
-cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
-json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
 title_placeholder.subheader("S'enregistrer")
 
-__login__obj = __login__(credentials=json_auth_,
-                    smtp_username = 'moudakira.ma@gmail.com',
-                    smtp_password = 'oamw onhc lmjk kpex',
-                    company_name = "Moudakira.ma",
+secrets_auth = st.secrets["google_sheets_api_credentials"]
+secrets_auth = secrets_auth
+smtp_gmail_ = st.secrets.smtp_gmail
+smtp_password_ = st.secrets.smtp_password
+
+
+__login__obj = __login__(credentials=secrets_auth,
+                    smtp_username = smtp_gmail_,
+                    smtp_password = smtp_password_,
+                    company_name = "Tesla",
                     width = 200, height = 300,
                     logout_button_name = 'Sortir', hide_menu_bool = False,
                     hide_footer_bool = False,
-                    lottie_url = "https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json")
+                    lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
 LOGGED_IN = __login__obj.build_login_ui()
 
@@ -926,8 +929,9 @@ if LOGGED_IN == True:
                 sheet = client.open("mydb").sheet1
                 return sheet
 
-
-            sheet = worksheet(credentials=json_auth_)
+            secrets_auth = st.secrets["google_sheets_api_credentials"]
+            secrets_auth = secrets_auth
+            sheet = worksheet(credentials=secrets_auth)
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']

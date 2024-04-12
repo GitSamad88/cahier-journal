@@ -436,7 +436,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         "Amazigh_Day": [dt.date(2024, 1, 14)],
         "Middle_V": np.arange(dt.date(2024, 1, 22), dt.date(2023, 1, 29)),
         "V1S2": np.arange(dt.date(2024, 3, 11), dt.date(2024, 3, 17)),
-        "Aid_Fiter": np.arange(dt.date(2024, 4, 7), dt.date(2024, 4, 12)),
+        "Aid_Fiter": np.arange(dt.date(2024, 4, 7), dt.date(2024, 4, 14)),
         "V2S2": np.arange(dt.date(2024, 4, 29), dt.date(2024, 5, 5)),
         "Aid_Adha": [dt.date(2024, 6, 14), dt.date(2024, 6, 15), dt.date(2024, 6, 17)]
     })

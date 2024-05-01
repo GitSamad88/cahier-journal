@@ -14,7 +14,7 @@ add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 st.title("Politique de confidentialité")
 #<h1>Politique de confidentialité</h1>
 st.image("data_privacy.jpg")
-        #width=700)#,use_column_width=True)
+#width=700)#,use_column_width=True)
 privacy_policy_html="""
 <p>Dernière mise à jour : 4 Avril 2024</p>
 <p>Cette politique de confidentialité décrit nos politiques et procédures concernant la collecte, l'utilisation et la divulgation de vos informations lorsque vous utilisez le service et vous informe de vos droits en matière de confidentialité et de la manière dont la loi vous protège.</p>

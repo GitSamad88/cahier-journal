@@ -17,7 +17,7 @@ custom_html = """
 <style>
     .banner {
         width: 100%;
-        height: 100px;
+        height: 100%;
         overflow: hidden;
     }
     .banner img {

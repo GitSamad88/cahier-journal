@@ -4,29 +4,11 @@ from streamlit_extras.app_logo import add_logo
 
 # page configue
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
-    page_title="Politique De Confidentialité 123")
+    page_title="Politique De Confidentialité")
 
 add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
+#"https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg" alt="Banner Image">
 
-
-
-custom_html = """
-<div class="banner">
-    <img src="https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg" alt="Banner Image">
-</div>
-<style>
-    .banner {
-        width: 200%;
-        height: 200%;
-        overflow: hidden;
-    }
-    .banner img {
-        width: 100%;
-        height: 200%;
-        object-fit: cover;
-    }
-</style>
-"""
 # Display the custom HTML
 #components.html(custom_html)
 st.title("Politique de confidentialité")

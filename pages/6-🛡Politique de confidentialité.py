@@ -17,11 +17,12 @@ custom_html = """
 <style>
     .banner {
         width: 100%;
-        height: 200%;
+        height: 100%;
         overflow: hidden;
     }
     .banner img {
         width: 100%;
+        height: 200%;
         object-fit: cover;
     }
 </style>

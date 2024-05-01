@@ -28,11 +28,11 @@ custom_html = """
 </style>
 """
 # Display the custom HTML
-components.html(custom_html)
+#components.html(custom_html)
 st.title("Politique de confidentialité")
 #<h1>Politique de confidentialité</h1>
-#st.image("https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg",
- #        width=700)
+st.image("https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg",
+        width=700,use_column_width=False)
 privacy_policy_html="""
 <p>Dernière mise à jour : 4 Avril 2024</p>
 <p>Cette politique de confidentialité décrit nos politiques et procédures concernant la collecte, l'utilisation et la divulgation de vos informations lorsque vous utilisez le service et vous informe de vos droits en matière de confidentialité et de la manière dont la loi vous protège.</p>

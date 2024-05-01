@@ -20,7 +20,7 @@ st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
 #add a logo
 add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
-st.image('app-images/Moudakira_Banner_626x210.png')
+st.image('app-images/banner-moudakira-orange.png.png')
 
 # Inject google ads and analytics
 GA_ID = "google_analytics"

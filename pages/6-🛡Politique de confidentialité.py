@@ -13,7 +13,7 @@ add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 #components.html(custom_html)
 st.title("Politique de confidentialité")
 #<h1>Politique de confidentialité</h1>
-st.image("data_privacy.jpg")
+st.image("app_images/data_privacy.jpg")
 #width=700)#,use_column_width=True)
 privacy_policy_html="""
 <p>Dernière mise à jour : 4 Avril 2024</p>

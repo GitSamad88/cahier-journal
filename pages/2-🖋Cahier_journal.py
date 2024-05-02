@@ -1,5 +1,6 @@
 import time
 import streamlit as st
+from streamlit_modal import Modal
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo

@@ -197,18 +197,11 @@ elif creat_or_import == "Importer votre emplois":
         if all(item in list(emplois.columns) for item in ["Jour", "Matière", "Séance", "Durée", "Niveau"]):
             emplois.dropna(inplace=True)
             emplois.index = range(emplois.shape[0])
-            #emplois["Séance"]=emplois["Séance"].astype("int")
-            #emplois["Durée"]=emplois["Durée"].astype("int")
-
-            #st.table(emplois)
             st.success("votre emplois a été bien importé!")
-            # print(emplois)
         else:
             #warnings
             st.warning("Attention:Les colonnes de votre fichier doivent "
                        "être :  Jour, Matière, Séance, Durée et Niveau!")
-            st.warning(f"Vous avez importé un fichier avec les colonnes:"
-                       f"{list(emplois.columns)}")
 
 else:
     st.warning("svp, choisissez une option!")

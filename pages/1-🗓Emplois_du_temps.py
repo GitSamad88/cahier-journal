@@ -165,7 +165,7 @@ if (creat_or_import == "Créer un nouveau emplois"):
                 seances.append(int(seance) if seance!=0 else np.nan)
                 jours.append(jour)
                 niveaux.append(niveau)
-
+    emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
     enregistrer=form.form_submit_button("Enregistrez") 
     if enregistrer:
         try:
@@ -197,17 +197,17 @@ elif creat_or_import == "Importer votre emplois":
         if all(item in list(emplois.columns) for item in ["Jour", "Matière", "Séance", "Durée", "Niveau"]):
             emplois.dropna(inplace=True)
             emplois.index = range(emplois.shape[0])
+            emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
             st.success("votre emplois a été bien importé!")
         else:
             #warnings
-            st.warning("Attention:Les colonnes de votre fichier doivent "
+            st.warning("Attention! Les colonnes de votre fichier doivent "
                        "être :  Jour, Matière, Séance, Durée et Niveau!")
 
 else:
     st.warning("svp, choisissez une option!")
     # creat_or_import == None:
 
-emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
 
 st.table(emplois)
 st.session_state["emplois"] = emplois

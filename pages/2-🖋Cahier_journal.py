@@ -986,20 +986,23 @@ if LOGGED_IN == True:
                     emplois.index = range(emplois.shape[0])
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
-                    with st.spinner("La création de votre journal est en cours..."):
-                        journal = U_W_D(
-                          fr_manuel1=french_manual_name1[0],
-                          fr_manuel2=french_manual_name2[0],
-                          math_manuel1=maths_manual_name1[0],
-                          math_manuel2=maths_manual_name2[0],
-                          es_manuel1=act_sc_manual_name1[0],
-                          es_manuel2=act_sc_manual_name2[0],
-                          C1=level1[0],
-                          C2=level2[0],
-                          séance_de_lundi=period,
-                          u=unit[0],
-                          )
-                    st.success("Votre journal est a été crèer avec succès! ")
+                    modal_title = "Veuillez patientez!"
+                    modal = Modal(key="modal001",title=modal_title)
+                    with modal.container():
+                        with st.spinner("La création de votre journal est en cours..."):
+                            journal = U_W_D(
+                              fr_manuel1=french_manual_name1[0],
+                              fr_manuel2=french_manual_name2[0],
+                              math_manuel1=maths_manual_name1[0],
+                              math_manuel2=maths_manual_name2[0],
+                              es_manuel1=act_sc_manual_name1[0],
+                              es_manuel2=act_sc_manual_name2[0],
+                              C1=level1[0],
+                              C2=level2[0],
+                              séance_de_lundi=period,
+                              u=unit[0],
+                              )
+                        st.success("Votre journal est a été crèer avec succès! ")
                     download = st.download_button(
                        label="Téléchargez votre cahier journal",
                        data=journal,

@@ -139,7 +139,7 @@ if (creat_or_import == "Créer un nouveau emplois"):
         form.header(f"Emplois Du Niveau: {niveau if niveau != None else ''}")
         for jour in range(1, 7):
             form.info(f"Jour : {jour}")
-            for i in range(1, 5):
+            for i in range(1, 7):
                 form.markdown(f"<h3 style='text-align: center;font-size: 12px;'> Matière : {i}</h1>",
                               unsafe_allow_html=True)
                 col1, col2,col3 = form.columns(3)

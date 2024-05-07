@@ -108,26 +108,26 @@ if (creat_or_import == "Créer un nouveau emplois"):
     jours, matieres, dures, niveaux,seances = [],[],[],[],[]
 
     level1_courses = ["",'Maths', 'Eveil Scientifique', 'Act. Orales', 'Oral ', 'Lecture','Act. rituelle',
-                      'Graphisme/ Ecriture/ Copie', 'Comptine/ Chant', 'Projet de classe','D.C.V']
+                      'Graphisme/ Ecriture/ Copie', 'Comptine/ Chant', 'Projet de classe','D.C.V','Amazigh & A.V.S']
 
-    level2_courses= ['Maths', 'Eveil Scientifique','Act. orales', 'Exercices écrits','Act. rituelle'
+    level2_courses= ["",'Maths', 'Eveil Scientifique','Act. orales', 'Exercices écrits','Act. rituelle'
                      'Projet de classe','Lecture', 'Ecriture',
-                     'Poésie', 'Lecture/ Ecriture','Copie/ Dictée','D.C.V']
-    level3_courses = ['Maths', 'Eveil Scientifique','Act. Orales', 'Lecture','Exercices écrits',
+                     'Poésie', 'Lecture/ Ecriture','Copie/ Dictée','D.C.V','Amazigh & A.V.S']
+    level3_courses = ["",'Maths', 'Eveil Scientifique','Act. Orales', 'Lecture','Exercices écrits',
                       "Prod. de l'écrit", 'Ecriture / Copie', 'Dictée','Act. rituelle',
-                      'Projet de classe','Poésie','D.C.V']
+                      'Projet de classe','Poésie','D.C.V','Amazigh & A.V.S']
 
-    level4_courses = ['Maths', 'Eveil Scientifique', 'Act.Orales', 'Grammaire', 'Conjugaison', 'Poésie',
+    level4_courses = ["",'Maths', 'Eveil Scientifique', 'Act.Orales', 'Grammaire', 'Conjugaison', 'Poésie',
                       'Ecriture / Copie','Lecture', 'Prod.  de l’écrit','Act. rituelle',
-                      'Projet de classe','Orth / Dictée','D.C.V']
+                      'Projet de classe','Orth / Dictée','D.C.V','Amazigh & A.V.S']
 
-    level5_courses = ['Maths', 'Eveil Scientifique','Act. Orales', 'Lecture diction','Act. rituelle',
+    level5_courses = ["",'Maths', 'Eveil Scientifique','Act. Orales', 'Lecture diction','Act. rituelle',
                          'Orthographe', 'Lexique', 'Poésie', 'Lecture','Conjugaison', 'Projet de classe',
-                          'Prod. de l’écrit','Grammaire',"Pro. de l'écrit/ Lecture diction",'D.C.V']
+                          'Prod. de l’écrit','Grammaire',"Pro. de l'écrit/ Lecture diction",'D.C.V','Amazigh & A.V.S']
 
-    level6_courses = ['Maths', 'Eveil Scientifique', 'Act. Orales', 'Conjugaison','Lexique',
+    level6_courses = ["",'Maths', 'Eveil Scientifique', 'Act. Orales', 'Conjugaison','Lexique',
                        'Projet de classe', 'Grammaire', 'Lecture','Act. rituelle',
-                      "Pro. de l'écrit/ Lecture diction", 'Orthographe','D.C.V']
+                      "Pro. de l'écrit/ Lecture diction", 'Orthographe','D.C.V','Amazigh & A.V.S']
 
     for n, m in enumerate(["premier", "deuxième"]):
         niveau = form.selectbox("Sélectionnez le niveau", range(1, 7),

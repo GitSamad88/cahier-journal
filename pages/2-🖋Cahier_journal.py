@@ -522,6 +522,10 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         for cell in sheet["B5:G5"] + sheet["B7:G7"]:
             for v in cell:
                 v.font = font
+                
+        for cell in sheet["B5:C5"] + sheet["B7:C7"]:
+            for c in cell:
+                c.alignment = Alignment(horizontal="center",vertical="center",wrapText=True)
 
         sheet.column_dimensions["F"].width = 80
 
@@ -533,7 +537,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         sheet.row_dimensions[7].height = 130
 
         for row in [5, 7, 9]:
-            sheet.row_dimensions[row].height = 100
+            sheet.row_dimensions[row].height = 120
 
         # citation
         sheet.merge_cells('B9:E9')
@@ -665,8 +669,8 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
                 # Activite rituelle , Amazigh & A.V.S: 
-                if course in ["Act. rituelle","Amazigh & A.V.S"]:
-                    courses_elements.append(" ")
+                if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V"]:
+                    courses_elements.append(".....................................")
 
 
             if "U. D / Thème" in fr_peda_class(niveau).columns:
@@ -688,7 +692,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
 
-                    sheet[period_cell] = '"\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[period_cell] = '\n'.join(jour_emploi["Durée"].to_list())
                     sheet[seance_cell] = '\n'.join(jour_emploi["Séance"].to_list())
 
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
@@ -920,7 +924,7 @@ if LOGGED_IN == True:
                                                    else [None],
                                                    key="evsc2", max_selections=1)
             # Select Period
-            period = form.selectbox("sélectionnez la sèance", ["Matinée", "Après midi"])
+            period = form.selectbox("sélectionnez la séance de Lundi", ["Matinée", "Après midi"])
 
             # Select Unit, all U if user payed else U1
             # @st.cache_resource(show_spinner=False)
@@ -951,19 +955,19 @@ if LOGGED_IN == True:
             unit = form.multiselect("sélectionnez l'unitè", ["U1", "U2", "U3", "U4", "U5", "U6"] if code in codes else ["U1"],
                                     max_selections=1, default=["U1"])
             # select enter time on the morning
-            inmor_t = form.time_input("Sélectionnez l'heure d'entrée le matin", dt.time(hour=9, minute=0),
+            inmor_t = form.time_input("Sélectionnez l'heure de l'entrée au matin", dt.time(hour=9, minute=0),
                                     key="inmor_t",step=dt.timedelta(minutes=5))
             inmor_t = dt.timedelta(hours=inmor_t.hour, minutes=inmor_t.minute)
             # select the out time on the morning
-            outmor_t = form.time_input("sélectionnez l'heure de sortie le matin", dt.time(hour=13, minute=30),
+            outmor_t = form.time_input("sélectionnez l'heure de la sortie au matin", dt.time(hour=13, minute=30),
                                      key="outmor_t",step=dt.timedelta(minutes=5))
             outmor_t = dt.timedelta(hours=outmor_t.hour,minutes=outmor_t.minute)
             # select the in time on the evening
-            ineven_t = form.time_input("Sélectionnez l'heure d'entrée le soir", dt.time(hour=13, minute=40),
+            ineven_t = form.time_input("Sélectionnez l'heure de l'entrée au soir", dt.time(hour=13, minute=40),
                                      key="ineven_t",step=dt.timedelta(minutes=5))
             ineven_t = dt.timedelta(hours=ineven_t.hour, minutes=ineven_t.minute)
             # select the out time on the evening
-            outeven_t =  form.time_input("Sélectionnez l'heure de sortie le soir", dt.time(hour=18, minute=30),
+            outeven_t =  form.time_input("Sélectionnez l'heure de la sortie au soir", dt.time(hour=18, minute=30),
                                        key="outeven_t",step=dt.timedelta(minutes=5))
             outeven_t = dt.timedelta(hours=outeven_t.hour, minutes=outeven_t.minute)
             # select the recreation time
@@ -990,7 +994,7 @@ if LOGGED_IN == True:
                     emplois.index = range(emplois.shape[0])
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
-                    modal_title = "Veuillez patientez!"
+                    modal_title = "Veuillez patienter!"
                     modal = Modal(key="modal001",title=modal_title)
                     with modal.container():
                         with st.spinner("La création de votre journal est en cours..."):

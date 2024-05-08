@@ -480,7 +480,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
     #"""------Sheet Format preparation------"""
     align = Alignment(horizontal="center",
-                      vertical="center",
+                      vertical="top",
                       wrapText=True)
 
     thin = Side(border_style="thin", color="4617F1")
@@ -664,6 +664,9 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
+                # Activite rituelle , Amazigh & A.V.S: 
+                if course in ["Act. rituelle","Amazigh & A.V.S"]:
+                    courses_elements.append(" ")
 
 
             if "U. D / Thème" in fr_peda_class(niveau).columns:
@@ -991,6 +994,7 @@ if LOGGED_IN == True:
                     modal = Modal(key="modal001",title=modal_title)
                     with modal.container():
                         with st.spinner("La création de votre journal est en cours..."):
+                            
                             journal = U_W_D(
                               fr_manuel1=french_manual_name1[0],
                               fr_manuel2=french_manual_name2[0],
@@ -1003,20 +1007,20 @@ if LOGGED_IN == True:
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                        st.success("Votre journal est a été crèer avec succès! ")
-                    download = st.download_button(
-                       label="Téléchargez votre cahier journal",
-                       data=journal,
-                       key="workbook.xlsx",
-                       file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
-                        )
+                            st.success("Votre journal est a été crèer avec succès! ")
+                            download = st.download_button(
+                             label="Téléchargez votre cahier journal",
+                             data=journal,
+                             key="workbook.xlsx",
+                             file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
+                                 )
                 else:
                     st.warning("Veuillez importez ou créer votre emplois d'abord!")
             #else:
             #    form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
             #                 "le moment. Veuillez choisir de(s) autre(s)! ")
             else:
-                form.warning("Veuillez sélectionner toutes les options!")
+                st.warning("Veuillez sélectionner toutes les options!")
 
 #else:
     #form.warning("Sélectionnez les niveaux!")

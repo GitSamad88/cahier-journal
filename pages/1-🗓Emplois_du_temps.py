@@ -102,7 +102,7 @@ creat_or_import = form.selectbox("choisissez une option: ", ["Créer un nouveau 
                                  # max_selections=1,
                                  index=None, key="crorimpo",
                                  placeholder="Choisissez une option")  # default="Crèer un nouveau emplois")
-form.form_submit_button("Confirmez votre choix")
+confirmation = form.form_submit_button("Confirmez votre choix")
 if (creat_or_import == "Créer un nouveau emplois"):
 
     jours, matieres, dures, niveaux,seances = [],[],[],[],[]
@@ -204,7 +204,7 @@ elif creat_or_import == "Importer votre emplois":
             st.warning("Attention! Les colonnes de votre fichier doivent "
                        "être :  Jour, Matière, Séance, Durée et Niveau!")
 
-elif creat_or_import == None:
+elif (creat_or_import == None and confirmation == True) :
     st.warning("svp, choisissez une option!")
     # creat_or_import == None:
 

@@ -118,7 +118,7 @@ if (creat_or_import == "Créer un nouveau emplois"):
                       'Projet de classe','Poésie','D.C.V','Amazigh & A.V.S']
 
     level4_courses = ["",'Maths', 'Eveil Scientifique', 'Act.Orales', 'Grammaire', 'Conjugaison', 'Poésie',
-                      'Ecriture / Copie','Lecture', 'Prod. de l’écrit','Act. rituelle',
+                      'Ecriture / Copie','Lecture', "Prod. de l’écrit",'Act. rituelle',
                       'Projet de classe','Orth / Dictée','D.C.V','Amazigh & A.V.S']
 
     level5_courses = ["",'Maths', 'Eveil Scientifique','Act. Orales', 'Lecture diction','Act. rituelle',

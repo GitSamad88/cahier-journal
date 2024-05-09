@@ -1019,12 +1019,10 @@ if LOGGED_IN == True:
                              file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
                                  )
                 else:
-                    modal_title = "Veuillez importez ou créer votre emplois d'abord!"
+                    modal_title = "Pas d'emplois!"
                     modal = Modal(key="modal002",title=modal_title)
-                    #with modal.container():
-                        #st.write(
-                    
-                    #st.warning("Veuillez importez ou créer votre emplois d'abord!")
+                    with modal.container():
+                        st.warning("Veuillez importez ou créer votre emplois d'abord!")
                      
             #else:
             #    form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "

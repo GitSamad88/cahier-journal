@@ -1018,15 +1018,15 @@ if LOGGED_IN == True:
                              key="workbook.xlsx",
                              file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
                                  )
-                else:
-                    modal_title = "Pas d'emplois!"
-                    modal = Modal(key="modal002",title=modal_title)
-                    with modal.container():
-                        st.warning("Veuillez importez ou créer votre emplois d'abord!")
+                #else:
+                #   modal_title = "Pas d'emplois!"
+                #   modal = Modal(key="modal002",title=modal_title)
+                #   with modal.container():
+                #        st.warning("Veuillez importez ou créer votre emplois d'abord!")
                      
-            #else:
-            #    form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
-            #                 "le moment. Veuillez choisir de(s) autre(s)! ")
+            else:
+                form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
+                             "le moment. Veuillez choisir de(s) autre(s)! ")
             #else:
             if all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")

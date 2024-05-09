@@ -1023,7 +1023,7 @@ if LOGGED_IN == True:
                     modal_title = "Pas d'emplois!"
                     modal = Modal(key="modal002",title=modal_title,padding = 10, max_width = 400)
                     with modal.container():
-                        st.warning("Veuillez importez ou créer votre emplois d'abord!")
+                        st.warning("Veuillez d'abord importer ou créer votre emplois!")
                      
                 #else:
                 #    st.warning("Veuillez importez ou créer votre emplois d'abord!")

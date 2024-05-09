@@ -1021,7 +1021,7 @@ if LOGGED_IN == True:
                 else:
                     
                     modal_title = "Pas d'emplois!"
-                    modal = Modal(key="modal002",title=modal_title)
+                    modal = Modal(key="modal002",title=modal_title,padding = 10, max_width = 400)
                     with modal.container():
                         st.warning("Veuillez importez ou créer votre emplois d'abord!")
                      

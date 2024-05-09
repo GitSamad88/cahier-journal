@@ -106,7 +106,6 @@ def fr_manuel_level(manuel, level):
         mes_app2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1YpCjGEsGTgcEsd2GycBu_p9WT7SuIkRvuSj7DgwLGPY/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_App_2aep")
         mes_app3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1HpLYUHC9hm234KismLpPjS7WjmjenLSOPO1dN2ppLs4/gviz/tq?tqx=out:csv&sheet=repartition_annuelle_fr_mes_apprentissage_3aep")
         mes_app4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1i0cQ8rw-H_-HZ8HYrDa2tmM20lXlcU9bkYByD-MUN_I/gviz/tq?tqx=out:csv&sheet=repartiton_FR_Mes_apprentissage_4AEP")
-
         mes_app5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1AZS1Mbv8ht1eAH-bsXrpoAyxzEcg4OFZb6bJzp5yRmo/gviz/tq?tqx=out:csv&sheet=annuelle_repa_mes_app_5aep")
         mes_app6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1MbQy6JjTmIuNV_ZF3FA76Xq9xj1f4oq_SUo5viADrQw/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_app_6aep")
         Mes_app_manuel = [mes_app1, mes_app2, mes_app3, mes_app4, mes_app5, mes_app6]

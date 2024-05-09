@@ -178,8 +178,8 @@ if (creat_or_import == "Créer un nouveau emplois"):
 
 elif creat_or_import == "Importer votre emplois":
     # """warnings: you have to add instructions!"""
-    st.warning(
-        'Remarque: Votre fichier doit  être en format CSV.'
+    st.info(
+        'Remarque: Votre fichier doit  être en format CSV. '
         'Les colonnes de votre fichier doivent être "Niveau", "Jour", "Matière", "Séance" et "Durée"')
 
     if st.button("Cliquez pour voir un exemple! "):

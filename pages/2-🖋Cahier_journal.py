@@ -670,7 +670,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
                 # Activite rituelle , Amazigh & A.V.S: 
                 if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V"]:
-                    courses_elements.append(".....................................")
+                    courses_elements.append("   ")
 
 
             if "U. D / Thème" in fr_peda_class(niveau).columns:

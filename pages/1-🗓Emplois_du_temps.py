@@ -204,7 +204,7 @@ elif creat_or_import == "Importer votre emplois":
             st.warning("Attention! Les colonnes de votre fichier doivent "
                        "être :  Jour, Matière, Séance, Durée et Niveau!")
 
-else:
+elif creat_or_import == None:
     st.warning("svp, choisissez une option!")
     # creat_or_import == None:
 

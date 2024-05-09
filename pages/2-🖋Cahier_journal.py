@@ -1024,11 +1024,11 @@ if LOGGED_IN == True:
                 #   with modal.container():
                 #        st.warning("Veuillez importez ou créer votre emplois d'abord!")
                      
-            else:
+                else:
                 form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
                              "le moment. Veuillez choisir de(s) autre(s)! ")
             #else:
-            if all(len(val) == 0 for val in options) and (enregistre == False):
+            elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
 
 #else:

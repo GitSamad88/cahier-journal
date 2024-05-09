@@ -1025,8 +1025,10 @@ if LOGGED_IN == True:
                 #        st.warning("Veuillez importez ou créer votre emplois d'abord!")
                      
                 else:
-                form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
-                             "le moment. Veuillez choisir de(s) autre(s)! ")
+                    st.warning("Veuillez importez ou créer votre emplois d'abord!")
+                    
+                #form.warning("Le(s) manuel(s) sélectionné(s) est\sont indisponible(s) pour "
+                #            "le moment. Veuillez choisir de(s) autre(s)! ")
             #else:
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")

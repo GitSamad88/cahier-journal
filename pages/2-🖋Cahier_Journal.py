@@ -556,11 +556,11 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         sheet.column_dimensions["B"].width = 12
         for lettre in ["C", "E", "G", "H"]:
             sheet.column_dimensions[lettre].width = 8
-        sheet.row_dimensions[5].height = 130
-        sheet.row_dimensions[7].height = 130
+        sheet.row_dimensions[5].height = 100
+        sheet.row_dimensions[7].height = 100
 
         for row in [5, 7, 9]:
-            sheet.row_dimensions[row].height = 120
+            sheet.row_dimensions[row].height = 100
 
         # citation
         sheet.merge_cells('B9:E9')

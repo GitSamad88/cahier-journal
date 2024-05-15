@@ -3,10 +3,10 @@ from streamlit_extras.app_logo import add_logo
 import streamlit.components.v1 as components
 # page configue
 # page configue
-st.set_page_config(page_icon = r"app-images\Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon = r"app-images/Moudkira_dark_v_100_100.png",
                    page_title = "Comment ça marche?")
 
-add_logo(r"app-images\Moudkira_dark_v_100_100.png",height=80)
+add_logo(r"app-images/Moudkira_dark_v_100_100.png",height=80)
 
 st.title("Comment ça marche?")
 st.image(r"app-images\question.jpg")#,width=500)#,use_column_width="auto")

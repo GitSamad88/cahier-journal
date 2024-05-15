@@ -9,7 +9,7 @@ st.set_page_config(page_icon = r"app-images/Moudkira_dark_v_100_100.png",
 add_logo(r"app-images/Moudkira_dark_v_100_100.png",height=80)
 
 st.title("Comment ça marche?")
-st.image(r"app-images\question.jpg")#,width=500)#,use_column_width="auto")
+st.image("app-images\question.jpg")#,width=500)#,use_column_width="auto")
 
 
 st.subheader("Comment créer un emplois de temps? ")

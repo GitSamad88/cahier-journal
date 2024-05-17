@@ -808,7 +808,7 @@ if LOGGED_IN == True:
 
     # JS code to modify te decoration on top
 
-    st.title("Le Cahier Journalier Du Professeur De Cycle Primaire ")
+    st.title("Le Cahier des Leçons Journaliéres ")
     st.empty()
 
 
@@ -1044,7 +1044,7 @@ if LOGGED_IN == True:
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                            st.success("Votre journal est a été crèer avec succès! ")
+                            st.success("Votre cahier journal est a été crèer avec succès! ")
                             download = st.download_button(
                                label="Téléchargez votre cahier journal",
                                data=journal,

@@ -41,7 +41,7 @@ st.write("La vidéo ci-dessus va vous illustrer tous ces étapes. ")
 st.video("https://www.youtube.com/watch?v=PY7iry6sG3g")
 
 
-st.subheader("comment créer un cahier de leçons journaliers?")
+st.subheader("comment créer un cahier des leçons journalières?")
 st.write("Après avoir créé votre emploi du temps sur Moudakira.ma, vous pouvez compléter"
          " votre organisation pédagogique en générant votre cahier journal. Voici les étapes à suivre :")
 

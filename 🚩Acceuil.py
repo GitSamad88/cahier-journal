@@ -75,18 +75,18 @@ def inject_ga():
 
 # write title, subheaders and paragraphes
 # add video and images 
-st.title("Moudakira.ma: Cahier De Leçons Journaliers ")
+st.title("Moudakira.ma: Cahier des Leçons Journalières ")
 st.write("Bienvenue, "
          "Moudakira.ma est une application novatrice conçue spécialement pour simplifier la vie des enseignants du "
          "cycle primaire. "
-         "Notre application vise à transformer l'expérience de la tenue de journal en une tâche simple, intuitive et "
+         "Notre application vise à transformer l'expérience de la tenue de cahier journal en une tâche simple, intuitive et "
          "efficace, "
          " offrant ainsi aux enseignants plus de temps pour se concentrer sur l'essentiel : l'éducation de leurs élèves")
 
 col1, col2 = st.columns([0.4, 0.6])
 col1.header("Fonctionnalités Clés :")
 
-col1.write("1. ***Création Facile de Cahiers Journal :*** "
+col1.write("1. ***Création Facile de Cahier Journal :*** "
            "Avec Moudakira.ma, la création de cahier journal n'a jamais été aussi simple. "
            "Les enseignants peuvent enregister les matières, les durées, les éléments du cours, les nombres du séances,"
            "dans 5 minutes avec simples cliques."
@@ -105,7 +105,7 @@ col4.write("2. ***Comment ça marche? :*** "
            "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "
            "groupes, les manuels utilisés, "
            "l'unité et les horaires, vous enregistrez votre sélectionnes."
-           "Enfin vous télécharger votre cahier journal en format Excel.")
+           "Enfin, vous télécharger votre cahier journal en format Excel.")
 
 
 col5,col6 =st.columns([0.4,0.6])

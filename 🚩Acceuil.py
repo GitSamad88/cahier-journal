@@ -139,6 +139,7 @@ def login():
   title_placeholder.subheader("S'enregistrer")
 
   secrets_auth = st.secrets["google_sheets_api_credentials"]
+  global secrets_auth
   secrets_auth = secrets_auth
   smtp_gmail_ = st.secrets.smtp_gmail
   smtp_password_ = st.secrets.smtp_password
@@ -176,7 +177,7 @@ def worksheet(credentials):
     db = client.open("mydb").worksheets()[1]
     return db
 
-comm_db = worksheet(credentials=json_auth_)
+comm_db = worksheet(credentials=secrets_auth)
 comments = pd.DataFrame(comm_db.get_values(), columns=comm_db.get_values()[0]).drop(index=0)
 
 

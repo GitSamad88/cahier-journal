@@ -1,15 +1,20 @@
 import requests
 import streamlit as st
 import pandas as pd
-from PIL import Image
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
+import re
+import secrets
+from datetime import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
 import pathlib
 import urllib.request
 import shutil
 import time
+import warnings
 
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
                    page_title="Page D'acceuil")
@@ -154,6 +159,71 @@ def login():
     title_placeholder.empty()
 
 login()
+
+
+
+
+
+
+# Add a comment section
+@st.cache_resource(show_spinner=False)
+def worksheet(credentials):
+
+    scope = ["https://www.googleapis.com/auth/spreadsheets",
+             "https://www.googleapis.com/auth/drive"]
+    Worksheet = ServiceAccountCredentials.from_json_keyfile_dict(credentials, scope)
+    client = gspread.authorize(Worksheet)
+    db = client.open("mydb").worksheets()[1]
+    return db
+
+comm_db = worksheet(credentials=json_auth_)
+comments = pd.DataFrame(comm_db.get_values(), columns=comm_db.get_values()[0]).drop(index=0)
+
+
+COMMENT_TEMPLATE_MD = """{} - {}
+> {}"""
+
+
+def space(num_lines=1):
+    """Adds empty lines to the Streamlit app."""
+    for _ in range(num_lines):
+        st.write("")
+
+# Comments part
+
+with st.expander("💬 Les avis"):
+
+    # Show comments
+
+    st.write("**Avis:**")
+
+    for index, entry in enumerate(comments.itertuples()):
+        st.markdown(COMMENT_TEMPLATE_MD.format(entry.name, entry.date, entry.comment))
+
+        is_last = index == len(comments) - 1
+        is_new = "just_posted" in st.session_state and is_last
+        if is_new:
+            st.success("☝️ Ton avis a été posté avec succès!")
+
+    space(2)
+
+    # Insert comment
+
+    st.write("**Ajoutez votre avis:**")
+    form = st.form("commentaire")
+    name = form.text_input("Nom")
+    comment = form.text_area("Commentaire")
+    submit = form.form_submit_button("Ajoutez un commentaire")
+
+    if submit:
+        date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        comm_db.append_row([name, comment,str(date)])
+        if "just_posted" not in st.session_state:
+            st.session_state["just_posted"] = True
+        st.experimental_rerun()
+
+
+
 
 
 # Custom Footer and Hide right Menu

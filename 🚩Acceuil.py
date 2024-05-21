@@ -137,10 +137,8 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
 def login():
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
-
-  secrets_auth = st.secrets["google_sheets_api_credentials"]
   global secrets_auth
-  secrets_auth = secrets_auth
+  secrets_auth = st.secrets["google_sheets_api_credentials"]
   smtp_gmail_ = st.secrets.smtp_gmail
   smtp_password_ = st.secrets.smtp_password
   

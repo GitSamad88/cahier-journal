@@ -137,7 +137,6 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
 def login():
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
-  global secrets_auth
   secrets_auth = st.secrets["google_sheets_api_credentials"]
   smtp_gmail_ = st.secrets.smtp_gmail
   smtp_password_ = st.secrets.smtp_password
@@ -175,7 +174,7 @@ def worksheet(credentials):
     db = client.open("mydb").worksheets()[1]
     return db
 
-comm_db = worksheet(credentials=secrets_auth)
+comm_db = worksheet(credentials=st.secrets["google_sheets_api_credentials"])
 comments = pd.DataFrame(comm_db.get_values(), columns=comm_db.get_values()[0]).drop(index=0)
 
 

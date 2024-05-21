@@ -5,7 +5,7 @@ numpy==1.26.0
 pathlib==1.0.1
 bs4==0.0.1
 streamlit_signin_auth_ui
-streamlit_star_rating
+st_star_rating
 streamlit_extras
 beautifulsoup4==4.12.2
 openpyxl==3.1.2

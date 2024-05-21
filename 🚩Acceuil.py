@@ -165,7 +165,7 @@ login()
 
 # Add a comment section
 @st.cache_resource(show_spinner=False)
-def worksheet(credentials):
+def worksheet(_credentials):
 
     scope = ["https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive"]
@@ -174,7 +174,7 @@ def worksheet(credentials):
     db = client.open("mydb").worksheets()[1]
     return db
 
-comm_db = worksheet(credentials=st.secrets["google_sheets_api_credentials"])
+comm_db = worksheet(_credentials=st.secrets["google_sheets_api_credentials"])
 comments = pd.DataFrame(comm_db.get_values(), columns=comm_db.get_values()[0]).drop(index=0)
 
 

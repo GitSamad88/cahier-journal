@@ -146,7 +146,7 @@ def login():
   __login__obj = __login__(credentials=secrets_auth,
                       smtp_username = smtp_gmail_,
                       smtp_password = smtp_password_,
-                      company_name = "Tesla",
+                      company_name = "Teslato",
                       width = 200, height = 300,
                       logout_button_name = 'Sortir', hide_menu_bool = False,
                       hide_footer_bool = False,
@@ -197,7 +197,7 @@ with st.expander("💬 Les avis"):
     st.write("**Avis:**")
 
     for index, entry in enumerate(comments.itertuples()):
-        st.markdown(COMMENT_TEMPLATE_MD.format(entry.name, entry.date, entry.comment))
+        st.markdown(COMMENT_TEMPLATE_MD.format( f''':red[{entry.name}]''', f''':green[{entry.date}]''', entry.comment))
 
         is_last = index == len(comments) - 1
         is_new = "just_posted" in st.session_state and is_last

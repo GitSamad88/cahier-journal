@@ -218,7 +218,7 @@ with st.expander("💬 Les avis",expanded=True):
     name = form.text_input("Nom")
     comment = form.text_area("Commentaire")
     star = st_rating.st_star_rating(label="svp evaluez votre experience", maxValue=5, defaultValue=4, key="rating" )
-    stars = form.write(star)
+    #stars = form.write(star)
     submit = form.form_submit_button("Ajoutez un commentaire")
 
     if submit:

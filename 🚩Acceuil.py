@@ -4,6 +4,8 @@ import pandas as pd
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
+import streamlit_star_rating as st_rating
+
 import re
 import secrets
 from datetime import datetime
@@ -180,7 +182,9 @@ comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0])
 
 
 COMMENT_TEMPLATE_MD = """{} - {}
-> {}"""
+> {}
+>> {}
+"""
 
 
 def space(num_lines=1):
@@ -190,14 +194,15 @@ def space(num_lines=1):
 
 # Comments part
 
-with st.expander("💬 Les avis"):
+with st.expander("💬 Les avis",expanded=True):
 
     # Show comments
 
     st.write("**Avis:**")
 
     for index, entry in enumerate(comments.itertuples()):
-        st.markdown(COMMENT_TEMPLATE_MD.format( f''':red[{entry.name}]''', f''':green[{entry.date}]''', entry.comment))
+        st.markdown(COMMENT_TEMPLATE_MD.format( f''':red[{entry.name}]''', f''':green[{entry.date}]''', entry.comment,
+                                               f''':violet[{entry.review}]'''))
 
         is_last = index == len(comments) - 1
         is_new = "just_posted" in st.session_state and is_last
@@ -212,11 +217,13 @@ with st.expander("💬 Les avis"):
     form = st.form("commentaire")
     name = form.text_input("Nom")
     comment = form.text_area("Commentaire")
+    star = st_rating.st_star_rating(label="Please rate you experience", maxValue=5, defaultValue=4, key="rating" )
+    stars = form.write(star)
     submit = form.form_submit_button("Ajoutez un commentaire")
 
     if submit:
         date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        comm_db.append_row([name, comment,str(date)])
+        comm_db.append_row([name, comment, f'{star} 🌟',str(date)])
         if "just_posted" not in st.session_state:
             st.session_state["just_posted"] = True
         st.experimental_rerun()

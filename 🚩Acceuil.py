@@ -138,6 +138,7 @@ def login():
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
   secrets_auth = st.secrets["google_sheets_api_credentials"]
+  secrets_auth = secrets_auth
   smtp_gmail_ = st.secrets.smtp_gmail
   smtp_password_ = st.secrets.smtp_password
   
@@ -165,17 +166,17 @@ login()
 
 # Add a comment section
 @st.cache_resource(show_spinner=False)
-def worksheet(_credentials):
+def worksheet(_auth):
 
     scope = ["https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive"]
-    Worksheet = ServiceAccountCredentials.from_json_keyfile_dict(credentials, scope)
+    Worksheet = ServiceAccountCredentials.from_json_keyfile_dict(_auth, scope)
     client = gspread.authorize(Worksheet)
     db = client.open("mydb").worksheets()[1]
     return db
 
-comm_db = worksheet(_credentials=st.secrets["google_sheets_api_credentials"])
-comments = pd.DataFrame(comm_db.get_values(), columns=comm_db.get_values()[0]).drop(index=0)
+comm_db = worksheet(_auth = st.secrets["google_sheets_api_credentials"])
+comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0]).drop(index=0)
 
 
 COMMENT_TEMPLATE_MD = """{} - {}

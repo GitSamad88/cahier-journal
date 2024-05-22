@@ -789,12 +789,11 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     return buffer
 
 # """---------------------LOGIN----------------------------"""
+secrets_auth = st.secrets["google_sheets_api_credentials"]
+secrets_auth = secrets_auth
+smtp_gmail_ = st.secrets.smtp_gmail
+smtp_password_ = st.secrets.smtp_password
 def login():
-    secrets_auth = st.secrets["google_sheets_api_credentials"]
-    secrets_auth = secrets_auth
-    smtp_gmail_ = st.secrets.smtp_gmail
-    smtp_password_ = st.secrets.smtp_password
-    
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
                         smtp_password = smtp_password_,
@@ -805,12 +804,21 @@ def login():
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
     LOGGED_IN = __login__obj.build_login_ui()
     return LOGGED_IN
-
-
-if login():
     
+if "LOGGED_IN" not in st.session_state:
+    st.session_state["LOGGED_IN"] = False
+
+if not st.session_state["LOGGED_IN"]:
+    with st.container(border=True):
+        if __name__ == "__main__":
+            login()
+            st.info(
+                "Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                icon="ℹ️")
+else :
+    login()
         
-        # """"----------------Streamlit App-----------------"""
+    # """"----------------Streamlit App-----------------"""
 
     # JS code to modify te decoration on top
 

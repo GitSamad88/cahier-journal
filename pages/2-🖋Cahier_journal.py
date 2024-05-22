@@ -789,25 +789,30 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     return buffer
 
 # """---------------------LOGIN----------------------------"""
+def login()
+    secrets_auth = st.secrets["google_sheets_api_credentials"]
+    secrets_auth = secrets_auth
+    smtp_gmail_ = st.secrets.smtp_gmail
+    smtp_password_ = st.secrets.smtp_password
+    
+    __login__obj = __login__(credentials = secrets_auth,
+                        smtp_username = smtp_gmail_,
+                        smtp_password = smtp_password_,
+                        company_name = "Moudakira.ma",
+                        width = 200, height = 300,
+                        logout_button_name = 'Sortir', hide_menu_bool = False,
+                        hide_footer_bool = False,
+                        lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
+    LOGGED_IN = __login__obj.build_login_ui()
+    return LOGGED_IN
 
-#cred = pd.read_csv("https://docs.google.com/spreadsheets/d/1c0KODi57SYHz569TKxeHrCRsHs3FVE3POnPF06K_biU/gviz/tq?tqx=out:csv&sheet=cred")
-#json_auth_ = cred.set_index(cred.columns[0]).to_dict()["0"]
-secrets_auth = st.secrets["google_sheets_api_credentials"]
-secrets_auth = secrets_auth
-smtp_gmail_ = st.secrets.smtp_gmail
-smtp_password_ = st.secrets.smtp_password
 
-__login__obj = __login__(credentials = secrets_auth,
-                    smtp_username = smtp_gmail_,
-                    smtp_password = smtp_password_,
-                    company_name = "Moudakira.ma",
-                    width = 200, height = 300,
-                    logout_button_name = 'Sortir', hide_menu_bool = False,
-                    hide_footer_bool = False,
-                    lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
-LOGGED_IN = __login__obj.build_login_ui()
-
-if LOGGED_IN == True:
+if not st.session_state["LOGGED_IN"]:
+    with st.container(border = True):
+        login()
+        st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+            icon="ℹ️")
+        
         # """"----------------Streamlit App-----------------"""
 
     # JS code to modify te decoration on top
@@ -869,7 +874,7 @@ if LOGGED_IN == True:
     form = col1.form(key="my_form")
 
 
-    teaching_language = form.selectbox("Sèlèctionez la langue ", ["Français"],
+    teaching_language = form.selectbox("Sélectionez la langue ", ["Français"],
                                        placeholder="choisissez une option",index=None)
 
     next = form.form_submit_button("Cliquez pour choisir les niveaux ou les groupes")
@@ -1063,7 +1068,8 @@ if LOGGED_IN == True:
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
-
+else:
+    login()
 #else:
     #form.warning("Sélectionnez les niveaux!")
 

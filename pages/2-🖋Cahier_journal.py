@@ -807,11 +807,8 @@ def login():
     return LOGGED_IN
 
 
-if not st.session_state["LOGGED_IN"]:
-    with st.container(border = True):
-        login()
-        st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation pour créer un.",
-            icon="ℹ️")
+if login():
+    
         
         # """"----------------Streamlit App-----------------"""
 

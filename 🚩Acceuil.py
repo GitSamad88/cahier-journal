@@ -162,13 +162,18 @@ def login():
   return LOGGED_IN
 
 
-#if not st.session_state["LOGGED_IN"]:
-#   with st.container(border = True):
-#      login()
-#       st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation.",icon="ℹ️")
-#else:
-login()
+if "LOGGED_IN" not in st.session_state:
+    st.session_state["LOGGED_IN"] = False
 
+if not st.session_state["LOGGED_IN"]:
+    with st.container(border = True):
+        if __name__ == "__main__":
+            login()
+            st.info(
+                "Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                icon="ℹ️")
+elif __name__ == "__main__":
+    login()
 
 
 

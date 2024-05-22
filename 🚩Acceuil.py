@@ -137,31 +137,33 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
 
 # Add  a login form
 def login():
-  title_placeholder = st.empty()
-  title_placeholder.subheader("S'enregistrer")
-  secrets_auth = st.secrets["google_sheets_api_credentials"]
-  secrets_auth = secrets_auth
-  smtp_gmail_ = st.secrets.smtp_gmail
-  smtp_password_ = st.secrets.smtp_password
+  with st.container(border = True):
+    title_placeholder = st.empty()
+    title_placeholder.subheader("S'enregistrer")
+    secrets_auth = st.secrets["google_sheets_api_credentials"]
+    secrets_auth = secrets_auth
+    smtp_gmail_ = st.secrets.smtp_gmail
+    smtp_password_ = st.secrets.smtp_password
+    
+    
+    __login__obj = __login__(credentials=secrets_auth,
+                        smtp_username = smtp_gmail_,
+                        smtp_password = smtp_password_,
+                        company_name = "Teslato",
+                        width = 200, height = 300,
+                        logout_button_name = 'Sortir', hide_menu_bool = False,
+                        hide_footer_bool = False,
+                        lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
   
   
-  __login__obj = __login__(credentials=secrets_auth,
-                      smtp_username = smtp_gmail_,
-                      smtp_password = smtp_password_,
-                      company_name = "Teslato",
-                      width = 200, height = 300,
-                      logout_button_name = 'Sortir', hide_menu_bool = False,
-                      hide_footer_bool = False,
-                      lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
-
-
-  LOGGED_IN = __login__obj.build_login_ui()
-  if LOGGED_IN:
-    title_placeholder.empty()
+    LOGGED_IN = __login__obj.build_login_ui()
+    if LOGGED_IN:
+      title_placeholder.empty()
+      
+    st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation.",
+                icon="ℹ️")
 
 login()
-
-
 
 
 
@@ -223,7 +225,7 @@ with st.expander("💬 Les avis",expanded=True):
 
     if submit:
         date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        comm_db.append_row([name, comment, f'{star} 🌟',str(date)])
+        comm_db.append_row([name, comment, f'{star}🌟',str(date)])
         if "just_posted" not in st.session_state:
             st.session_state["just_posted"] = True
         st.experimental_rerun()

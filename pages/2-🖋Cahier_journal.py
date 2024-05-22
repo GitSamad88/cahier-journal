@@ -789,7 +789,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     return buffer
 
 # """---------------------LOGIN----------------------------"""
-def login()
+def login():
     secrets_auth = st.secrets["google_sheets_api_credentials"]
     secrets_auth = secrets_auth
     smtp_gmail_ = st.secrets.smtp_gmail

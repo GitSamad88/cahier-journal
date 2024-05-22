@@ -822,7 +822,7 @@ else :
 
     # JS code to modify te decoration on top
 
-    st.title("Le Cahier des Leçons Journaliéres ")
+    st.title("Le Cahier des Leçons Journalières ")
     st.empty()
 
 

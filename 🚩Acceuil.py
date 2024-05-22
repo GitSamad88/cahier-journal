@@ -165,7 +165,7 @@ def login():
 if not st.session_state["LOGGED_IN"]:
     with st.container(border = True):
         login()
-      st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation.",
+        st.info("Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation.",
               icon="ℹ️")
 else:
     login()

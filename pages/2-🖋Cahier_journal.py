@@ -1068,8 +1068,6 @@ if not st.session_state["LOGGED_IN"]:
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
-else:
-    login()
 #else:
     #form.warning("Sélectionnez les niveaux!")
 

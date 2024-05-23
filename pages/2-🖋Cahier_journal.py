@@ -1032,7 +1032,8 @@ else :
             options = [french_manual_name1, french_manual_name2,
                        maths_manual_name1, maths_manual_name2,
                        act_sc_manual_name1, act_sc_manual_name2]
-            if all(len(val) != 0 for val in options) and (enregistre == True):
+          if all(len(val) != 0 for val in options) and (enregistre == True):
+                
 
                 selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2,
                                          maths_manual_name1, maths_manual_name2, act_sc_manual_name1,
@@ -1072,14 +1073,15 @@ else :
                            key="workbook.xlsx",
                            file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
                             )
-            else:
+                else:
                     modal_title = "Pas d'emplois!"
                     modal = Modal(key="modal002", title=modal_title, padding=20, max_width=400)
                     with modal.container():
                         st.warning("Veuillez d'abord importer ou créer votre emplois!")
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")
-        elif all(len(val) == 0 for val in options) and (enregistre == False):
-            st.warning("Veuillez sélectionner toutes les options!")
+          elif all(len(val) == 0 for val in options) and (enregistre == False):
+              
+              st.warning("Veuillez sélectionner toutes les options!")
 #else:
     #form.warning("Sélectionnez les niveaux!")
 

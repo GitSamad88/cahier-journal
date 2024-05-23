@@ -665,37 +665,27 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
                 # FR
                 fr_repa = fr_peda_class(niveau)
-                print("fr_repa:",fr_repa)
                 if course in fr_repa.columns:
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
                 #else: courses_elements.append("              ")
 
                 # Maths
                 math_repa = Maths_peda_class(niveau)
-                #print(math_repa["Maths"])
                 if course in math_repa.columns:
-                    #print(math_repa.columns[:4])
-                    #print(f'this is {course} course')
                     emplois_jour_Maths = emplois_week_Maths[emplois_week_Maths["Jour"] == 1 + len(weeks_days) % 6]
-                    #print(int(list(emplois_jour_Maths["Séance"])[0]))
                     seance = 6 if emplois_jour_Maths.empty else int(list(emplois_jour_Maths["Séance"])[0])
-                    #seance = str(seance)
-
                     for s in list(math_repa["Séance"]):
-                        #print("s: ",s)
-
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             print("indices: ",indices)
                             courses_elements.append(math_repa["Maths"][indices[0]])
-                            #print(math_repa["Maths"][indices[0]])
 
                 # Eveil Scientifique:
                 es_repa = EvSc_peda_class(niveau)
                 if course in es_repa.columns:
                     emplois_jour_EvSc = emplois_week_EvSc[emplois_week_EvSc["Jour"] == 1 + len(weeks_days) % 6]
-                    seance = 6 if emplois_jour_EvSc.empty else int(emplois_jour_EvSc["Séance"])# ["Sèance"] was named "Séance" with "é"
-                    for s in list(es_repa["Séance"]):# ["Sèance"] was named "Séance" with "é"
+                    seance = 6 if emplois_jour_EvSc.empty else int(emplois_jour_EvSc["Séance"])
+                    for s in list(es_repa["Séance"]):
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
@@ -714,7 +704,6 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
             course_element = [str(cours_elem) for cours_elem in courses_elements]
             sheet[element_cell] = '\n'.join(course_element)
-            #print('\n'.join(course_element))
 
         def periode_seance(niveau, period_cell, seance_cell):
             for peda_day in classe_emploi["Jour"]:
@@ -728,8 +717,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
 
             sheet["C5"] = classes[0]
-            # try:
-            courses(0, "D5")  # ,"F5")
+            courses(0, "D5") 
             periode_seance(0, "E5", "G5")
             course_element(0, "F5")
 
@@ -737,12 +725,9 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
             courses(1, "D7")
             periode_seance(1, "E7", "G7")
             course_element(1, "F7")
-            # except:
-            # print("error!")
-            # break
+
 
         else:
-            # try:
             sheet["C5"] = classes[1]
             courses(1, "D5")
             periode_seance(1, "E5", "G5")
@@ -752,9 +737,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
             courses(0, "D7")
             periode_seance(0, "E7", "G7")
             course_element(0, "F7")
-            # except:
-            # print("error!")
-            # break
+
 
         # Théme
         # title = peda_class(classes[niveau])["U. D / Thème"][1]
@@ -780,8 +763,6 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
-
-        print("----------------------------")
 
     # wb.save(f'Cahier_Journalier_U{1+list(Unites.values()).index(unite)} niveaux {C1}-{C2}.xlsx')
     wb.save(buffer)

@@ -979,6 +979,7 @@ else :
             period = form.selectbox("sélectionnez la séance de Lundi", ["Matinée", "Après midi"])
 
             # Select Unit, all U if user payed else U1
+            @st.experimental_memo(not_hashed={"credentials"})
             @st.cache_resource(show_spinner=False)
             def worksheet(credentials):
 

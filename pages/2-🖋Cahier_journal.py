@@ -794,6 +794,8 @@ secrets_auth = secrets_auth
 smtp_gmail_ = st.secrets.smtp_gmail
 smtp_password_ = st.secrets.smtp_password
 def login():
+    title_placeholder = st.empty()
+    title_placeholder.subheader("S'enregistrer")
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
                         smtp_password = smtp_password_,
@@ -803,6 +805,9 @@ def login():
                         hide_footer_bool = False,
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
     LOGGED_IN = __login__obj.build_login_ui()
+    if  LOGGED_IN:
+        title_placeholder.empty()
+        
     return LOGGED_IN
     
 if "LOGGED_IN" not in st.session_state:

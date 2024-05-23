@@ -902,6 +902,7 @@ else :
         selected_manuels = []
 
         if (len(level1) != 0) and (len(level2) != 0):
+            
 
 
             # disponible manuels:
@@ -1032,7 +1033,7 @@ else :
             options = [french_manual_name1, french_manual_name2,
                        maths_manual_name1, maths_manual_name2,
                        act_sc_manual_name1, act_sc_manual_name2]
-          if all(len(val) != 0 for val in options) and (enregistre == True):
+            if all(len(val) != 0 for val in options) and (enregistre == True):
                 
 
                 selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2,
@@ -1042,46 +1043,44 @@ else :
             #if all(str(value[0]) in dispo_manuels for value in selected_manuels):
                 # """"-------------Emplois Du Temps-----------""""
                 if "emplois" in st.session_state:
-                    
                     emplois = st.session_state["emplois"]
                     emplois.dropna(inplace=True)
                     emplois.index = range(emplois.shape[0])
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
-                    modal = Modal(key="modal001",title=modal_title,max_width= 600, padding = 10)
-                    #with modal.container():
-                    
-                    with st.spinner("La création de votre journal est en cours..."):
-                        journal = U_W_D(
-                          fr_manuel1=french_manual_name1[0],
-                          fr_manuel2=french_manual_name2[0],
-                          math_manuel1=maths_manual_name1[0],
-                          math_manuel2=maths_manual_name2[0],
-                          es_manuel1=act_sc_manual_name1[0],
-                          es_manuel2=act_sc_manual_name2[0],
-                          C1=level1[0],
-                          C2=level2[0],
-                          séance_de_lundi=period,
-                          u=unit[0],
-                          )
-                    
-                        st.success("Votre journal est a été crèer avec succès! ")
-                        download = st.download_button(
-                           label="Téléchargez votre cahier journal",
-                           data=journal,
-                           key="workbook.xlsx",
-                           file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
-                            )
+                    modal = Modal(key="modal001",title=modal_title)
+                    with modal.container():
+                        with st.spinner("La création de votre journal est en cours..."):
+
+                            journal = U_W_D(
+                              fr_manuel1=french_manual_name1[0],
+                              fr_manuel2=french_manual_name2[0],
+                              math_manuel1=maths_manual_name1[0],
+                              math_manuel2=maths_manual_name2[0],
+                              es_manuel1=act_sc_manual_name1[0],
+                              es_manuel2=act_sc_manual_name2[0],
+                              C1=level1[0],
+                              C2=level2[0],
+                              séance_de_lundi=period,
+                              u=unit[0],
+                              )
+                            st.success("Votre journal est a été crèer avec succès! ")
+                            download = st.download_button(
+                               label="Téléchargez votre cahier journal",
+                               data=journal,
+                               key="workbook.xlsx",
+                               file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
+                                )
                 else:
                     modal_title = "Pas d'emplois!"
-                    modal = Modal(key="modal002", title=modal_title, padding=20, max_width=400)
+                    modal = Modal(key="modal002", title=modal_title, padding=10, max_width=400)
                     with modal.container():
                         st.warning("Veuillez d'abord importer ou créer votre emplois!")
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")
-          elif all(len(val) == 0 for val in options) and (enregistre == False):
-              
-              st.warning("Veuillez sélectionner toutes les options!")
+            elif all(len(val) == 0 for val in options) and (enregistre == False):
+                st.warning("Veuillez sélectionner toutes les options!")
+
 #else:
     #form.warning("Sélectionnez les niveaux!")
 

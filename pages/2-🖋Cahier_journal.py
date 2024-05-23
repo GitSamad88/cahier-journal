@@ -1042,14 +1042,16 @@ else :
             #if all(str(value[0]) in dispo_manuels for value in selected_manuels):
                 # """"-------------Emplois Du Temps-----------""""
                 if "emplois" in st.session_state:
+                    
                     emplois = st.session_state["emplois"]
                     emplois.dropna(inplace=True)
                     emplois.index = range(emplois.shape[0])
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
-                    modal = Modal(key="modal001",title=modal_title,max_width= 800, padding = 50)
+                    modal = Modal(key="modal001",title=modal_title,max_width= 800, padding = 100)
                     with modal.container():
+                        
                         with st.spinner("La création de votre journal est en cours..."):
                             journal = U_W_D(
                               fr_manuel1=french_manual_name1[0],
@@ -1063,8 +1065,9 @@ else :
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                        st.success("Votre journal est a été crèer avec succès! ")
-                        download = st.download_button(
+                        
+                            st.success("Votre journal est a été crèer avec succès! ")
+                            download = st.download_button(
                                label="Téléchargez votre cahier journal",
                                data=journal,
                                key="workbook.xlsx",

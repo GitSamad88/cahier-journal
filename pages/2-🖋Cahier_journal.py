@@ -1063,8 +1063,8 @@ else :
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                            st.success("Votre journal est a été crèer avec succès! ")
-                            download = st.download_button(
+                        st.success("Votre journal est a été crèer avec succès! ")
+                        download = st.download_button(
                                label="Téléchargez votre cahier journal",
                                data=journal,
                                key="workbook.xlsx",

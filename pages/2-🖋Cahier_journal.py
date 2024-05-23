@@ -1048,10 +1048,9 @@ else :
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
-                    modal = Modal(key="modal001",title=modal_title)
+                    modal = Modal(key="modal001",title=modal_title,max_width= 800, padding = 50)
                     with modal.container():
                         with st.spinner("La création de votre journal est en cours..."):
-
                             journal = U_W_D(
                               fr_manuel1=french_manual_name1[0],
                               fr_manuel2=french_manual_name2[0],
@@ -1064,7 +1063,7 @@ else :
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                            st.success("Votre cahier journal est a été crèer avec succès! ")
+                            st.success("Votre journal est a été crèer avec succès! ")
                             download = st.download_button(
                                label="Téléchargez votre cahier journal",
                                data=journal,
@@ -1073,7 +1072,7 @@ else :
                                 )
                 else:
                     modal_title = "Pas d'emplois!"
-                    modal = Modal(key="modal002", title=modal_title, padding=10, max_width=400)
+                    modal = Modal(key="modal002", title=modal_title, padding=20, max_width=400)
                     with modal.container():
                         st.warning("Veuillez d'abord importer ou créer votre emplois!")
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")

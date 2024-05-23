@@ -1049,7 +1049,7 @@ else :
                     emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
-                    modal = Modal(key="modal001",title=modal_title,max_width= 800, padding = 100)
+                    modal = Modal(key="modal001",title=modal_title,max_width= 600, padding = 10)
                     with modal.container():
                         
                         with st.spinner("La création de votre journal est en cours..."):

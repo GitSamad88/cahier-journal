@@ -1050,10 +1050,11 @@ else :
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
                     modal = Modal(key="modal001",title=modal_title)
-                    with modal.container():
-                        with st.spinner("La création de votre journal est en cours..."):
+                    #with modal.container():
+                    with st.spinner("La création de votre journal est en cours..."):
+                        
 
-                            journal = U_W_D(
+                        journal = U_W_D(
                               fr_manuel1=french_manual_name1[0],
                               fr_manuel2=french_manual_name2[0],
                               math_manuel1=maths_manual_name1[0],
@@ -1065,8 +1066,8 @@ else :
                               séance_de_lundi=period,
                               u=unit[0],
                               )
-                            st.success("Votre journal est a été crèer avec succès! ")
-                            download = st.download_button(
+                        st.success("Votre journal est a été crèer avec succès! ")
+                        download = st.download_button(
                                label="Téléchargez votre cahier journal",
                                data=journal,
                                key="workbook.xlsx",

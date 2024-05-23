@@ -979,20 +979,19 @@ else :
             period = form.selectbox("sélectionnez la séance de Lundi", ["Matinée", "Après midi"])
 
             # Select Unit, all U if user payed else U1
-            @st.experimental_memo(not_hashed={"credentials"})
             @st.cache_resource(show_spinner=False)
-            def worksheet(credentials):
+            def worksheet(_credentials):
 
                 scope = ["https://www.googleapis.com/auth/spreadsheets",
                          "https://www.googleapis.com/auth/drive"]
-                Worksheet = ServiceAccountCredentials.from_json_keyfile_dict(credentials, scope)
+                Worksheet = ServiceAccountCredentials.from_json_keyfile_dict(_credentials, scope)
                 client = gspread.authorize(Worksheet)
                 sheet = client.open("mydb").sheet1
                 return sheet
 
             secrets_auth = st.secrets["google_sheets_api_credentials"]
             secrets_auth_ = secrets_auth
-            sheet = worksheet(credentials = secrets_auth_)
+            sheet = worksheet(_credentials = secrets_auth_)
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']

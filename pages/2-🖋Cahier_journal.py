@@ -420,7 +420,6 @@ def EvSc_manuel_level(level, manuel):
 def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()
-    #emplois=pd.read_csv(r"C:\Users\hp\Downloads\emplois_3_4_(2).csv")
     emplois=st.session_state["emplois"]
     emplois.dropna(inplace=True)
     emplois.index = range(emplois.shape[0])
@@ -1050,30 +1049,30 @@ else :
                     emplois[["Matière", "Séance", "Durée"]] = emplois[["Matière", "Séance", "Durée"]].astype("str")
                     modal_title = "Veuillez patienter!"
                     modal = Modal(key="modal001",title=modal_title,max_width= 600, padding = 10)
-                    with modal.container():
-                        
-                        with st.spinner("La création de votre journal est en cours..."):
-                            journal = U_W_D(
-                              fr_manuel1=french_manual_name1[0],
-                              fr_manuel2=french_manual_name2[0],
-                              math_manuel1=maths_manual_name1[0],
-                              math_manuel2=maths_manual_name2[0],
-                              es_manuel1=act_sc_manual_name1[0],
-                              es_manuel2=act_sc_manual_name2[0],
-                              C1=level1[0],
-                              C2=level2[0],
-                              séance_de_lundi=period,
-                              u=unit[0],
-                              )
-                        
-                            st.success("Votre journal est a été crèer avec succès! ")
-                            download = st.download_button(
-                               label="Téléchargez votre cahier journal",
-                               data=journal,
-                               key="workbook.xlsx",
-                               file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
-                                )
-                else:
+                    #with modal.container():
+                    
+                    with st.spinner("La création de votre journal est en cours..."):
+                        journal = U_W_D(
+                          fr_manuel1=french_manual_name1[0],
+                          fr_manuel2=french_manual_name2[0],
+                          math_manuel1=maths_manual_name1[0],
+                          math_manuel2=maths_manual_name2[0],
+                          es_manuel1=act_sc_manual_name1[0],
+                          es_manuel2=act_sc_manual_name2[0],
+                          C1=level1[0],
+                          C2=level2[0],
+                          séance_de_lundi=period,
+                          u=unit[0],
+                          )
+                    
+                        st.success("Votre journal est a été crèer avec succès! ")
+                        download = st.download_button(
+                           label="Téléchargez votre cahier journal",
+                           data=journal,
+                           key="workbook.xlsx",
+                           file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
+                            )
+            else:
                     modal_title = "Pas d'emplois!"
                     modal = Modal(key="modal002", title=modal_title, padding=20, max_width=400)
                     with modal.container():

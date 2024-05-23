@@ -990,7 +990,7 @@ else :
                 return sheet
 
 
-            sheet = worksheet(credentials=json_auth_)
+            sheet = worksheet(credentials = secrets_auth)
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']

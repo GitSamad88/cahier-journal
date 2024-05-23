@@ -813,7 +813,7 @@ if not st.session_state["LOGGED_IN"]:
         if __name__ == "__main__":
             login()
             st.info(
-                "Si vous n'avez pas un compte, Veuillez clicker sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
                 icon="ℹ️")
 else :
     login()

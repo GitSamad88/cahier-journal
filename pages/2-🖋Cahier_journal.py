@@ -1032,7 +1032,7 @@ else :
                     modal_title = "Veuillez patienter!"
                     modal = Modal(key="modal001",title=modal_title)
                     with modal.container():
-                        with st.spinner("La création de votre journal est en cours..."):
+                        with st.spinner("La création de votre cahier journal est en cours..."):
                             
     
                             journal = U_W_D(

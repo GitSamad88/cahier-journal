@@ -456,7 +456,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         "Bonne_annee": [dt.date(2024, 1, 1)],
         "Watika_Isstiklala": [dt.date(2024, 1, 11)],
         "Amazigh_Day": [dt.date(2024, 1, 14)],
-        "Middle_V": np.arange(dt.date(2024, 1, 22), dt.date(2023, 1, 29)),
+        "Middle_V": np.arange(dt.date(2024, 1, 22), dt.date(2024, 1, 29)),
         "V1S2": np.arange(dt.date(2024, 3, 11), dt.date(2024, 3, 17)),
         "Aid_Fiter": np.arange(dt.date(2024, 4, 7), dt.date(2024, 4, 12)),
         "V2S2": np.arange(dt.date(2024, 4, 29), dt.date(2024, 5, 5)),

@@ -517,9 +517,9 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     wb = Workbook()
 
     # initialize citations
-    citations = pd.read_csv(r"C:\Users\hp\Downloads\citations.csv")
-    random_list = random.sample(range(citations.shape[0]), citations.shape[0])
-    citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
+    #citations = pd.read_csv(r"C:\Users\hp\Downloads\citations.csv")
+    #random_list = random.sample(range(citations.shape[0]), citations.shape[0])
+    #citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
 
     for k in range(len(unite)):
         sheets.append(wb.create_sheet(f'feuille {k}'))
@@ -568,7 +568,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         # citation
         sheet.merge_cells('B9:E9')
         sheet["B9"].alignment = Alignment(horizontal="left",vertical="top",wrapText=True)
-        sheet["B9"] = f"CITATION: {citation[random_list[i[0]]]}"
+        #sheet["B9"] = f"CITATION: {citation[random_list[i[0]]]}"
 
         # remarque
         # sheet.merge_cells('B9:E9')

@@ -883,10 +883,13 @@ else :
     if (teaching_language == "Français"):
         # Select Levels
         level1 = form.multiselect(
-            "Choisissez un niveau", [1,2,3,4,5,6], max_selections=1,key="level1")
+            "Veuillez choisir le premier groupe ou niveau que vous accueillerez pendant la séance de lundi.",
+            [1,2,3,4,5,6], max_selections=1,key="level1")
 
         level2 = form.multiselect(
-            "Choisissez un niveau", [1,2,3,4,5,6], max_selections=1,key="leve2")
+            "Veuillez choisir le deuxieme groupe ou niveau que vous accueillerez pendant la séance de lundi.",
+            [1,2,3,4,5,6], max_selections=1,key="leve2")
+        
         form.form_submit_button(label="Cliquez pour choisir les manuels")
         selected_manuels = []
 

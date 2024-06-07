@@ -515,8 +515,14 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     weeks_days = []
     sheets = []
     wb = Workbook()
+
+    # initialize citations
+    citations = pd.read_csv(r"C:\Users\hp\Downloads\citations.csv")
+    random_list = random.sample(range(citations.shape[0]), citations.shape[0])
+    citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
+
     for k in range(len(unite)):
-        sheets.append(wb.create_sheet(f'sheet {k}'))
+        sheets.append(wb.create_sheet(f'feuille {k}'))
 
     for i, date, sheet in zip(enumerate(unite), unite, sheets):
         date_list = format_datetime(date, 'full', locale='fr_FR').split()[0:4]
@@ -561,7 +567,8 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
         # citation
         sheet.merge_cells('B9:E9')
-        sheet["B9"] = "CITATION: "
+        sheet["B9"].alignment = Alignment(horizontal="left",vertical="top",wrapText=True)
+        sheet["B9"] = f"CITATION: {citation[random_list[i[0]]]}"
 
         # remarque
         # sheet.merge_cells('B9:E9')
@@ -584,7 +591,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         ineven_fromrec_t = outeven_torec_t + rec_t
         if séance_de_lundi == "Matinèe":
 
-            if date_list[0] in ["lundi", "mercredi", "samedi"]:
+            if date_list[0] in ["mardi", "jeudi", "vendredi"]:
 
                 sheet["B5"] = f'De {int(inmor_t)}  à {int(outmor_torec_t)}'
                 sheet["B7"] = f'De {int(inmor_fromrec_t)}  à {int(outmor_t)}'
@@ -593,7 +600,8 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
                 sheet["B5"] = f'De {ineven_t}  à {outeven_torec_t}'
                 sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
-        else:
+                
+        elif séance_de_lundi == "Après midi":
 
             if date_list[0] in ["mardi", "jeudi", "vendredi"]:
                 sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'
@@ -977,7 +985,7 @@ else :
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']
 
-            code=form.text_input("Si vous voulez choisir d'autre unité, entrez votre code ici :",
+            code = form.text_input("Si vous voulez choisir d'autre unité, entrez votre code ici :",
                                  placeholder="Entrez votre code")
             if code in codes:
                 form.success("Félicitation! vous pouvez maintenant choisir parmi toutes les unités.")

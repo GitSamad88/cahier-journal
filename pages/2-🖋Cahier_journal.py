@@ -580,7 +580,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
 
-        sheet["F2"] = f'Date:'#{str_date}'
+        sheet["F2"] = f'Date: {str_date}'
 
         #----------------in and out time---------------------
 

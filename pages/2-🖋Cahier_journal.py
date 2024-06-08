@@ -602,7 +602,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                 sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
                 
         else:
-
+            
             if date_list[0] in ["mardi", "jeudi", "vendredi"]:
                 sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'
                 sheet["B7"] = f'De {inmor_fromrec_t}  à {outmor_t}'

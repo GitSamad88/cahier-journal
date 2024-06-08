@@ -589,19 +589,19 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         inmor_fromrec_t = outmor_torec_t + rec_t
         outeven_torec_t = ineven_t + ((outeven_t - ineven_t) - rec_t) / 2
         ineven_fromrec_t = outeven_torec_t + rec_t
-        if séance_de_lundi == "Matinèe":
+        if séance_de_lundi == "Matinée":
 
-            if date_list[0] in ["mardi", "jeudi", "vendredi"]:
+            if date_list[0] in ["lundi", "mercredi", "samedi"]:
 
-                sheet["B5"] = f'De {int(inmor_t)}  à {int(outmor_torec_t)}'
-                sheet["B7"] = f'De {int(inmor_fromrec_t)}  à {int(outmor_t)}'
+                sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'
+                sheet["B7"] = f'De {inmor_fromrec_t}  à {outmor_t}'
 
             else:
 
                 sheet["B5"] = f'De {ineven_t}  à {outeven_torec_t}'
                 sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
                 
-        elif séance_de_lundi == "Après midi":
+        else:
 
             if date_list[0] in ["mardi", "jeudi", "vendredi"]:
                 sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'

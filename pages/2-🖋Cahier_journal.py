@@ -1,4 +1,5 @@
 import time
+import random
 import streamlit as st
 from streamlit_modal import Modal
 from streamlit_signin_auth_ui.widgets import __login__
@@ -517,7 +518,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     wb = Workbook()
 
     # initialize citations
-    citatiions = pd.read_csv(r"https://docs.google.com/spreadsheets/d/1VJs8_Z3zsww-LaiMmMZAtcmUJKBqW7KsTmuGJtiCdyA"+linkc+"citaions")
+    citations = pd.read_csv(r"https://docs.google.com/spreadsheets/d/1VJs8_Z3zsww-LaiMmMZAtcmUJKBqW7KsTmuGJtiCdyA"+linkc+"citations")
     #citations = pd.read_csv(r"C:\Users\hp\Downloads\citations.csv")
     random_list = random.sample(range(citations.shape[0]), citations.shape[0])
     citation = citations["Définition"] + "\n" + "source: " + citations["Source"]

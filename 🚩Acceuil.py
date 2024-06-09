@@ -283,7 +283,7 @@ window.onload = function() {
 </script>
 """
 
-components.html(js_code)
-
+#components.html(js_code)
+st.markdown(js_code, unsafe_allow_html=True)
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)

@@ -80,6 +80,19 @@ def inject_ga():
 #inject_ga()
 
 
+# Scroll to the top
+js_code = """
+<script>
+window.onload = function() {
+    window.scrollTo(0, 0);
+}
+</script>
+"""
+
+#components.html(js_code)
+st.markdown(js_code, unsafe_allow_html=True)
+
+
 # write title, subheaders and paragraphes
 # add video and images 
 st.title("Moudakira.ma: Cahier des Leçons Journalières ")
@@ -274,16 +287,5 @@ footer = """
     </div>
 """
 
-# Scroll to the top
-js_code = """
-<script>
-window.onload = function() {
-    window.scrollTo(0, 0);
-}
-</script>
-"""
-
-#components.html(js_code)
-st.markdown(js_code, unsafe_allow_html=True)
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)

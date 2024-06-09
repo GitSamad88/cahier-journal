@@ -1148,6 +1148,16 @@ footer = """
     </div>
 """
 
+# Scroll to the top
+js_code = """
+<script>
+window.onload = function() {
+    window.scrollTo(0, 0);
+}
+</script>
+"""
 
+# Embed the JavaScript in the Streamlit app
+components.html(js_code)
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)

@@ -447,21 +447,21 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     ##"Eveil scientifique" == "Eveil Scientifique"
 
     # """------------------Dates-----------------"""
-    all_time = np.arange(dt.date(2023, 9, 4), dt.date(2024, 6, 7)).astype(datetime)
+    all_time = np.arange(dt.date(2024, 9, 3), dt.date(2025, 6, 20)).astype(datetime)
     holiday_list = pd.Series({
-        "Mawlid_nabawi": [dt.date(2023, 9, 28), dt.date(2023, 9, 29)],
-        "V1S1": np.arange(dt.date(2023, 10, 16), dt.date(2023, 10, 22)),
-        "March_vert": [dt.date(2023, 11, 6)],
-        "Aid_isstiklal": [dt.date(2023, 11, 18)],
-        "V2S1": np.arange(dt.date(2023, 12, 4), dt.date(2023, 12, 10)),
+        "Mawlid_nabawi": [dt.date(2024, 10, 16), dt.date(2024, 10, 17)],
+        "V1S1": np.arange(dt.date(2024, 10, 20), dt.date(2024, 10, 27)),
+        "March_vert": [dt.date(2024, 11, 6)],
+        "Aid_isstiklal": [dt.date(2024, 11, 18)],
+        "V2S1": np.arange(dt.date(2024, 12, 8), dt.date(2024, 12, 15)),
         "Bonne_annee": [dt.date(2024, 1, 1)],
-        "Watika_Isstiklala": [dt.date(2024, 1, 11)],
-        "Amazigh_Day": [dt.date(2024, 1, 14)],
-        "Middle_V": np.arange(dt.date(2024, 1, 22), dt.date(2024, 1, 29)),
-        "V1S2": np.arange(dt.date(2024, 3, 11), dt.date(2024, 3, 17)),
-        "Aid_Fiter": np.arange(dt.date(2024, 4, 7), dt.date(2024, 4, 12)),
-        "V2S2": np.arange(dt.date(2024, 4, 29), dt.date(2024, 5, 5)),
-        "Aid_Adha": [dt.date(2024, 6, 14), dt.date(2024, 6, 15), dt.date(2024, 6, 17)]
+        "Watika_Isstiklala": [dt.date(2025, 1, 11)],
+        "Amazigh_Day": [dt.date(2025, 1, 14)],
+        "Middle_V": np.arange(dt.date(2025, 1, 26), dt.date(2025, 2, 2)),
+        "V1S2": np.arange(dt.date(2025, 3, 16), dt.date(2025, 3, 22)),
+        "Aid_Fiter": np.arange(dt.date(2025, 3, 31), dt.date(2025, 4, 1)),
+        "V2S2": np.arange(dt.date(2025, 5, 4), dt.date(2024, 5, 11)),
+        "Aid_Adha": [dt.date(2025, 6, 6), dt.date(2025, 6, 7)]
     })
 
     for i in range(len(holiday_list.values)):

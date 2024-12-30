@@ -701,7 +701,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
                 if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V"]:
-                    courses_elements.append("...................")
+                    courses_elements.append("...........................................................................")
 
 
             if "U. D / Thème" in fr_peda_class(niveau).columns:

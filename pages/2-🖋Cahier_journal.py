@@ -729,9 +729,8 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
                     
                 # Rituel en lecture:
-                if (course == "Rituel en lecture")
                 fr_rituel_repa = fr_rituel_peda_class(niveau)
-                if course in ["Act. rituelle","Rituel en lecture"]:
+                if (course == "Rituel en lecture"):
                     emplois_jour_fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
                     courses_elements.append((emplois_jour_fr_rituel).to_list()[0])
                     

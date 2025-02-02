@@ -127,7 +127,7 @@ def fr_manuel_level(manuel, level):
 
     if manuel=="L'école de mots":
         #"""-----L'école de mots-----"""
-        ecole1= ecole2= ecole3 =  ecole5 = ecole6 = pd.DataFrame()
+        ecole1 = ecole2 = ecole3 =  ecole5 = ecole6 = pd.DataFrame()
         #ecole4 = pd.read_csv("https://drive.google.com/uc?id=1G-BJkULB-66jxpgcW52yLtRhVZ2OvVam")
         ecole4 = pd.read_csv(docs_link+"1XEHukH1KTxTAOf-SAQjSS39UorL-3FIe1MhlLFLysT4"+linkc+"Repa_Fr_Lecole_de_mots_4aep")
         Ecole_de_mots = [ecole1,ecole2,ecole3,ecole4,ecole5,ecole6]
@@ -258,9 +258,7 @@ def maths_manuel_level(manuel, level):
     #"""----Marjii----"""
     if manuel == "المرجع":
         marjii1 = marjii4 = marjii5 = marjii6 = pd.DataFrame()
-        #marjii2 = pd.read_csv("https://drive.google.com/uc?export=download&id=1BS7EbN67g8x_cRiXFz3mPVo6tw2N1kJG")
         marjii2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1PeWXWqVwMHF7MNmTudRo68-5ihoEMkN1gUTkYHfbNa0"+linkc+"Repa_Maths_Marji3_2aep")
-        #marjii3 = pd.read_csv("https://drive.google.com/uc?export=download&id=1uqWAiTsxuKidpDM7kfXK3_v4xQJQ0Ptw")
         marjii3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1XAQ9UfrHB8X0HwJ6CpxXMVWbszUyYRj2f8VpjWf-q9w"+linkc+"Repa_Maths_Marji3_3aep")
         Marjii = [marjii1,marjii2,marjii3,marjii4,marjii5,marjii6]
         Maths_manuels["المرجع"] = Marjii
@@ -302,13 +300,11 @@ def EvSc_manuel_level(level, manuel):
 
     #"""----Fadaa----"""
     if manuel == "الفضاء":
-        #drive_path="https://drive.google.com/uc?export=download&id="
         es_fadaa1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1jCKg31ZFO3ONJsGA9hPDGbkxsMvyRCNLLUasRbtfCRo"+linkc+"Repa_EvSc_Fadaa_1aep")
         es_fadaa1["Séance"] = [json.loads(es_fadaa1["Séance"][i]) for i in range(len(es_fadaa1["Séance"]))]
 
         es_fadaa2 = es_fadaa3 =es_fadaa5= pd.DataFrame()
         pd.DataFrame()
-        #es_fadaa4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1In96DfzKRp6gctolLJhFuMNQWew2KwIB")
         es_fadaa4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1QM8kJ1YBexKcdPWAPBWg8Jz7H8u4RPehvfco6zMfqCU"+linkc+"Repa_EvSc_Fadaa_4aep")
         es_fadaa4["Séance"] = [json.loads(es_fadaa4["Séance"][i]) for i in range(len(es_fadaa4["Séance"]))]
 
@@ -325,7 +321,6 @@ def EvSc_manuel_level(level, manuel):
 
         manhal3=pd.read_csv("https://docs.google.com/spreadsheets/d/1tPN6uHeAEci7tizdQ_FXxzmzMCVO_5G_Y_ZBkojODc8"+linkc+"Repa_EvSc_Manhal_3aep")
         manhal3 = manhal3[["U", "S", "Eveil Scientifique", "Séance"]].dropna(axis=0)
-        #manhal3.rename(columns={"Séance": "Sèance"}, inplace=True)
         manhal3["Séance"] = [json.loads(manhal3["Séance"][i]) for i in range(len(manhal3["Séance"]))]
 
         manhal5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1Ecdj4XNidyM7cykdN3SgGOBfcWslTQd1zUxwAnxVsqU"+linkc+"Repa_EvSc_Manhal_5aep")
@@ -456,7 +451,7 @@ def rituel_lecture(manuel, level):
 
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
 @st.cache_resource(show_spinner=False)
-def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()
     emplois=st.session_state["emplois"]
@@ -483,8 +478,8 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     EvSc_class = [my_EvSc_class_1, my_EvSc_class_2]
 
     #Rituel en lecture
-    fr_rituel_class_1 = rituel_lecture(manuel=fr_rituel_manuel1, level=C1)
-    fr_rituel_class_2 = rituel_lecture(manuel=fr_rituel_manuel2, level=C2)
+    fr_rituel_class_1 = rituel_lecture(manuel=lecture_rituel1, level=C1)
+    fr_rituel_class_2 = rituel_lecture(manuel=lecture_rituel2, level=C2)
     fr_rituel_class = [fr_rituel_class_1, fr_rituel_class_2]
 
     
@@ -956,6 +951,7 @@ else :
             st.table(Maths_dispo_manuels)
             st.write("Les manuels d'eveil scientifique disponibles: ")
             st.table(EvSc_available_manules)
+            st.write("Le manuel de rituel en lecture disponible pour tous les niveaux est: Mes Rituels En Lecture.")
 
             # French
             #french_manuels = ["Mes apprentissages"]  # , "L'oasis des mots","Pour communiquer", "L'école des mots", "Le nouvel espace","Mon livre de français"]
@@ -977,6 +973,13 @@ else :
                                                    else [i for i in french_dispo_manuels6 if i != ""] if level2[0] == 6
                                                    else [None],
                                                    key="fr2", max_selections=1)
+            
+            fr_rituel_manual_name = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:
+                                                     {level1[0]} et {level2[0]}",
+                                                     ["Mes rituels en lecture",
+                                                      "rituels personalisés(un espace sera disponibl pour ajouter vos rituels.)"],
+                                                     key = "lecture_rituel",
+                                                     max_selections=1)
 
             # Maths
             maths_manual_name1 = form.multiselect(f"Choisissez le manuel de maths pour le niveau: {level1[0]}",
@@ -1080,7 +1083,7 @@ else :
             if all(len(val) != 0 for val in options) and (enregistre == True):
                 
 
-                selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2,
+                selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2,fr_rituel_manual_name,
                                          maths_manual_name1, maths_manual_name2, act_sc_manual_name1,
                                          act_sc_manual_name2])
 
@@ -1101,6 +1104,8 @@ else :
                             journal = U_W_D(
                                   fr_manuel1=french_manual_name1[0],
                                   fr_manuel2=french_manual_name2[0],
+                                  fr_rituel1= fr_rituel_manual_name[0]
+                                  fr_rituel2= fr_rituel_manual_name[0]
                                   math_manuel1=maths_manual_name1[0],
                                   math_manuel2=maths_manual_name2[0],
                                   es_manuel1=act_sc_manual_name1[0],

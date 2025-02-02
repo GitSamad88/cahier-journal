@@ -974,10 +974,9 @@ else :
                                                    else [None],
                                                    key="fr2", max_selections=1)
             
-            fr_rituel_manual_name = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:
-                                                     {level1[0]} et {level2[0]}",
+            fr_rituel_manual_name = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} et {level2[0]}",
                                                      ["Mes rituels en lecture",
-                                                      "rituels personalisés(un espace sera disponibl pour ajouter vos rituels.)"],
+                                                      "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel",
                                                      max_selections=1)
 

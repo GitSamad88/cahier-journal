@@ -109,8 +109,6 @@ def fr_manuel_level(manuel, level):
         mes_app2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1YpCjGEsGTgcEsd2GycBu_p9WT7SuIkRvuSj7DgwLGPY/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_App_2aep")
         mes_app3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1HpLYUHC9hm234KismLpPjS7WjmjenLSOPO1dN2ppLs4/gviz/tq?tqx=out:csv&sheet=repartition_annuelle_fr_mes_apprentissage_3aep")
         mes_app4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1i0cQ8rw-H_-HZ8HYrDa2tmM20lXlcU9bkYByD-MUN_I/gviz/tq?tqx=out:csv&sheet=repartiton_FR_Mes_apprentissage_4AEP")
-        #mes_app4["Dictèe"] = mes_app4["Orth / Dictée"]
-        #mes_app4.rename(columns={"Orth / Dictée": "Orthographe"}, inplace=True)
         mes_app5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1AZS1Mbv8ht1eAH-bsXrpoAyxzEcg4OFZb6bJzp5yRmo/gviz/tq?tqx=out:csv&sheet=annuelle_repa_mes_app_5aep")
         mes_app6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1MbQy6JjTmIuNV_ZF3FA76Xq9xj1f4oq_SUo5viADrQw/gviz/tq?tqx=out:csv&sheet=Repa_Fr_Mes_app_6aep")
         Mes_app_manuel = [mes_app1, mes_app2, mes_app3, mes_app4, mes_app5, mes_app6]
@@ -416,6 +414,46 @@ def EvSc_manuel_level(level, manuel):
         print("Ce manuel n'est pas disponible pour ce niveau, choisissez un autre manuel!")
         print("Remarque: le niveau doit être entre 1 et 6!")
 
+@st.cache_resource()
+def rituel_lecture(manuel, level):
+    
+    if manuel=="Mes rituels en lecture":
+        
+        if level == 1:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1R36mcDc8E2oBitaZ-6L1u5p_-evHEvyYiPvcxJdwsIY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_1aep")
+        if level == 2:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1X0HZn_JR6PqA_dakApdqssGOhNb7uG_Bd_EzU3Kz1KQ/gviz/tq?tqx=out:csv&sheet=Rituel_fr_2aep")
+        if level == 3:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1oYzmmG7Q0qaEVm_pb1_Ewc0ZWLgQaO_DtmjntBwcDys/gviz/tq?tqx=out:csv&sheet=Rituel_fr_3aep")
+            rituel_ = rituel_[["Jour","Semaine","Objectif"]]
+        if level == 4:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/183mIvzLuEbWCD-Y12DFrpTdhcaB5vCz4C1FE2nI69UY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_4aep")
+        if level == 5:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1XBvsaVmkHkxQpWQfZt4JKE9k6ZQ4-lyHibRwR1L0mb0/gviz/tq?tqx=out:csv&sheet=Rituel_fr_5aep")
+        if level == 6:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nKrhINMuy-uvgC1igDw7CzZ4ukdFGE1L1kFEoQOJ0QI/gviz/tq?tqx=out:csv&sheet=Rituel_fr_6aep")
+        rituel_U = []
+        for s in range(len(rituel_["Semaine"])):
+            if (rituel_["Semaine"][s] <= 5):
+                rituel_U.append(1)
+            elif (rituel_["Semaine"][s] <= 10):
+                rituel_U.append(2)
+            elif (rituel_["Semaine"][s] <= 15):
+                rituel_U.append(3)
+            elif (rituel_["Semaine"][s] <= 20):
+                rituel_U.append(4)
+            elif (rituel_["Semaine"][s] <= 25):
+                rituel_U.append(5)
+            elif (rituel_["Semaine"][s] <= 30):
+                rituel_U.append(6)
+            else :
+                rituel_U.append(7)
+                
+        rituel_["U"]=rituel_U
+        return rituel_
+    else :
+        return None    
+
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
 @st.cache_resource(show_spinner=False)
 def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
@@ -444,7 +482,12 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
     my_EvSc_class_2 = EvSc_manuel_level(level=C2, manuel=es_manuel2)
     EvSc_class = [my_EvSc_class_1, my_EvSc_class_2]
 
-    ##"Eveil scientifique" == "Eveil Scientifique"
+    #Rituel en lecture
+    fr_rituel_class_1 = rituel_lecture(manuel=fr_rituel_manuel1, level=C1)
+    fr_rituel_class_2 = rituel_lecture(manuel=fr_rituel_manuel2, level=C2)
+    fr_rituel_class = [fr_rituel_class_1, fr_rituel_class_2]
+
+    
 
     # """------------------Dates-----------------"""
     all_time = np.arange(dt.date(2024, 9, 3), dt.date(2025, 6, 20)).astype(datetime)
@@ -617,7 +660,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
 
 
-                # Discipline
+        # Discipline
         sheet["D4"] = "Discipline"
 
         # Classe
@@ -636,12 +679,18 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
         # Frensh
         def fr_peda_class(niveau):
             my_class =fr_class[niveau]
-            # my_class.drop(columns=["Unnamed: 0"],inplace=True)
-            #my_class.index
             if type(my_class) == pd.core.frame.DataFrame:
                 fr_Unite_Repa = my_class[my_class["U"] == 1 + list(Unites.values()).index(unite)]
                 fr_Week_Repa = fr_Unite_Repa[fr_Unite_Repa["S"] == 1 + int(i[0] / 6)]
                 return (fr_Week_Repa)
+            else:
+                return my_class
+        def fr_rituel_peda_class(niveau):
+            my_class = fr_rituel_class[niveau]
+            if type(my_class) == pd.core.frame.DataFrame:
+                fr_rituel_Unite_Repa = my_class[my_class["U"] == 1 + list(Unites.values()).index(unite) ]
+                fr_rituel_Week_Repa = fr_rituel_Unite_Repa[fr_rituel_Unite_Repa["Semaine"] ==  1 + int(i[0] / 6 ]
+                return (fr_rituel_Week_Repa)
             else:
                 return my_class
 
@@ -678,8 +727,14 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
-                #else: courses_elements.append("              ")
-
+                    
+                # Rituel en lecture:
+                if (course == "Rituel en lecture")
+                fr_rituel_repa = fr_rituel_peda_class(niveau)
+                if course in ["Act. rituelle","Rituel en lecture"]:
+                    emplois_jour_fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
+                    courses_elements.append((emplois_jour_fr_rituel).to_list()[0])
+                    
                 # Maths
                 math_repa = Maths_peda_class(niveau)
                 if course in math_repa.columns:
@@ -688,7 +743,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                     for s in list(math_repa["Séance"]):
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
-                            print("indices: ",indices)
+                            #print("indices: ",indices)
                             courses_elements.append(math_repa["Maths"][indices[0]])
 
                 # Eveil Scientifique:
@@ -751,9 +806,6 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
 
         # Théme
-        # title = peda_class(classes[niveau])["U. D / Thème"][1]
-        # print("Théme:",title)
-        # sheet["F3"] = f'Théme:  {title}'
 
         # Durée
         sheet["E4"] = "Durée"
@@ -769,13 +821,11 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
 
         # Smaine
         sheet["F8"] = f'Semaine:{1 + int(i[0] / 6)}'
-        # print("Day: ", 1 + len(weeks_days) % 6)
         # Jour
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
 
-    # wb.save(f'Cahier_Journalier_U{1+list(Unites.values()).index(unite)} niveaux {C1}-{C2}.xlsx')
     wb.save(buffer)
     return buffer
 

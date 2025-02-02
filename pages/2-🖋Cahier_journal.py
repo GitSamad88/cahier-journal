@@ -220,22 +220,17 @@ def maths_manuel_level(manuel, level):
     if manuel == "الجيد":
         jayed1 = jayed3 = jayed5 = pd.DataFrame()
         jayed2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1boAFep-ooci_LQyQ4X3RkX2pjmjbNJM6dpvLgMz8Nyw"+linkc+"Repa_Maths_Jayed_2aep")
-        #jayed2 = pd.read_csv("https://drive.google.com/uc?export=download&id=1GmCzdcYcm2RlNckrHOEfGhtuddSPPzle")
         jayed4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1kk4n_1DyGk_aQOKT2xmhNSSjKVMuYj5tcM387qDVt8o"+linkc+"Repa_Maths_Jayed_4aep")
-        #jayed4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1_boyz8lB5BaPbT0s3hiTAfrsrvWCmJFT")
         jayed6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1Jqt50GIXwP3HQZAUnD3wIq0UGexVrfJaETe8O0y2oRE"+linkc+"Repa_Maths_Jayed_6aep")
-        #jayed6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1mObs-UCy9nOfto7-eczyvPcDbAP7zASF")
         Jayed= [jayed1, jayed2, jayed3, jayed4, jayed5, jayed6]
         Maths_manuels["الجيد"] = Jayed
 
     #"""----Fadaa-----"""
     if manuel == "الفضاء":
         fada1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1fUZRGEnZXn8WNQ0557sQAvcC3ejCzXlUAQVUZ2UHhQQ"+linkc+"Repa_Maths_Fada2_1aep")
-        #fada1 = pd.read_csv("https://drive.google.com/uc?export=download&id=1nTvwWpk1Hn5DPV2gJV6W6sXXgYTNibw6")
         fada4 = fada5 = fada6 = pd.DataFrame()
         fada2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1kNDJfembuOL47-xtL7_tLM_OMk5mDyJlndD5s9v1JQw"+linkc+"Repa_Maths_Fada2_2aep")
         fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1zM_tG0zlfV3So3CFOsO2Aaqk4Ca6g_UX093gTZrfotM"+linkc+"Repa_Maths_Fada2_3aep")
-        #fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/16Tpk0FjPLs6jpbAjVa4DWC7L4VYxfruldvujbpWoJsc/gviz/tq?tqx=out:csv&sheet=Repa__3aep_Maths_Fada2")
         Fadaa = [fada1, fada2, fada3, fada4, fada5, fada6]
         Maths_manuels["الفضاء"] = Fadaa
 
@@ -250,7 +245,6 @@ def maths_manuel_level(manuel, level):
     #"""-----Jadid-----"""
     if manuel =="الجديد":
         jadid1 = jadid2 = jadid3 = jadid4 = jadid5 = pd.DataFrame()
-        #jadid6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1CDFy3sbl8Y5tkoaUoV3FK51-ApvGqDXu")
         jadid6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1AQnPGRV3EvfiS6JPggjxb2d-bAxkoSoSLEkIw1kiSkk"+linkc+"Repa_Maths_Jadid_6aep")
         Jadid = [jadid1, jadid2, jadid3,jadid4, jadid5,jadid6]
         Maths_manuels["الجديد"]=Jadid

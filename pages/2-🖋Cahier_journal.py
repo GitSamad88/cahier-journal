@@ -755,7 +755,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
-                if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V"]:
+                if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V","Rituel en maths"]:
                     courses_elements.append("...........................................................................")
 
 

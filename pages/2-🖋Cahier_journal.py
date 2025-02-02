@@ -537,6 +537,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     fr_manuels = [fr_manuel1, fr_manuel2]
     math_manuels = [math_manuel1, math_manuel2]
     es_manuels = [es_manuel1, es_manuel2]
+    lecture_manuels = [lecture_rituel1, lecture_rituel2]
 
     #"""------Sheet Format preparation------"""
     align = Alignment(horizontal="center",
@@ -1101,20 +1102,20 @@ else :
                             
     
                             journal = U_W_D(
-                                  fr_manuel1=french_manual_name1[0],
-                                  fr_manuel2=french_manual_name2[0],
-                                  fr_rituel1= fr_rituel_manual_name[0],
-                                  fr_rituel2= fr_rituel_manual_name[0],
-                                  math_manuel1=maths_manual_name1[0],
-                                  math_manuel2=maths_manual_name2[0],
-                                  es_manuel1=act_sc_manual_name1[0],
-                                  es_manuel2=act_sc_manual_name2[0],
-                                  C1=level1[0],
-                                  C2=level2[0],
-                                  séance_de_lundi=period,
-                                  u=unit[0],
+                                  fr_manuel1 = french_manual_name1[0],
+                                  fr_manuel2 = french_manual_name2[0],
+                                  lecture_rituel1 = fr_rituel_manual_name[0],
+                                  lecture_rituel2 = fr_rituel_manual_name[0],
+                                  math_manuel1 = maths_manual_name1[0],
+                                  math_manuel2 = maths_manual_name2[0],
+                                  es_manuel1 = act_sc_manual_name1[0],
+                                  es_manuel2 = act_sc_manual_name2[0],
+                                  C1 = level1[0],
+                                  C2 = level2[0],
+                                  séance_de_lundi = period,
+                                  u = unit[0],
                                   )
-                            st.success("Votre journal est a été crèer avec succès! ")
+                            st.success("Votre cahier journal a été crèer avec succès! ")
                             download = st.download_button(
                                    label="Téléchargez votre cahier journal",
                                    data=journal,

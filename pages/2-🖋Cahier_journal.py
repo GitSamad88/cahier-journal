@@ -444,8 +444,8 @@ def rituel_lecture(manuel, level):
             else :
                 rituel_U.append(7)
                 
-        rituel_["U"] = [1+int(i/6) for i in rituel["Semaine"]]
-        S = [(i%5) for i in rituel["Semaine"]]
+        rituel_["U"] = [1+int(i/6) for i in rituel_["Semaine"]]
+        S = [(i%5) for i in rituel_["Semaine"]]
         rituel_["S"] = [S[i] + 1 if S[i] == 0 else S[i] for i in range(len(S))]
         rituel_ = rituel_[["U","S","Semaine","Jour","Objectif"]]
         return rituel_

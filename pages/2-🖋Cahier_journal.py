@@ -1103,8 +1103,8 @@ else :
                             journal = U_W_D(
                                   fr_manuel1=french_manual_name1[0],
                                   fr_manuel2=french_manual_name2[0],
-                                  fr_rituel1= fr_rituel_manual_name[0]
-                                  fr_rituel2= fr_rituel_manual_name[0]
+                                  fr_rituel1= fr_rituel_manual_name[0],
+                                  fr_rituel2= fr_rituel_manual_name[0],
                                   math_manuel1=maths_manual_name1[0],
                                   math_manuel2=maths_manual_name2[0],
                                   es_manuel1=act_sc_manual_name1[0],

@@ -444,7 +444,10 @@ def rituel_lecture(manuel, level):
             else :
                 rituel_U.append(7)
                 
-        rituel_["U"]=rituel_U
+        rituel_["U"] = [1+int(i/6) for i in rituel["Semaine"]]
+        S = [(i%5) for i in rituel["Semaine"]]
+        rituel_["S"] = [S[i] + 1 if S[i] == 0 else S[i] for i in range(len(S))]
+        rituel_ = rituel_[["U","S","Semaine","Jour","Objectif"]]
         return rituel_
     else :
         return None    
@@ -652,9 +655,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             else:
                 sheet["B5"] = f'De {ineven_t}  à {outeven_torec_t}'
                 sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
-
-
-
 
         # Discipline
         sheet["D4"] = "Discipline"
@@ -1131,11 +1131,7 @@ else :
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
 
-#else:
-    #form.warning("Sélectionnez les niveaux!")
 
-#elif (teaching_language == "Arabe"):
-    #form.warning("La création du cahier de journal de la langue arabe est impossible pour le moment!")
 
 components.html(
     """

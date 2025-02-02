@@ -689,7 +689,7 @@ def U_W_D(fr_manuel1, fr_manuel2, math_manuel1, math_manuel2, es_manuel1, es_man
             my_class = fr_rituel_class[niveau]
             if type(my_class) == pd.core.frame.DataFrame:
                 fr_rituel_Unite_Repa = my_class[my_class["U"] == 1 + list(Unites.values()).index(unite) ]
-                fr_rituel_Week_Repa = fr_rituel_Unite_Repa[fr_rituel_Unite_Repa["Semaine"] ==  1 + int(i[0] / 6 ]
+                fr_rituel_Week_Repa = fr_rituel_Unite_Repa[fr_rituel_Unite_Repa["Semaine"] ==  1 + int(i[0] / 6) ]
                 return (fr_rituel_Week_Repa)
             else:
                 return my_class

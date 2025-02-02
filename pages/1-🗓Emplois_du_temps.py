@@ -107,26 +107,27 @@ if (creat_or_import == "Créer un nouveau emplois"):
 
     jours, matieres, dures, niveaux,seances = [],[],[],[],[]
 
-    level1_courses = ["",'Maths', 'Eveil Scientifique', 'Act. Orales', 'Oral ', 'Lecture','Act. rituelle',
+    level1_courses = ["",'Maths', "Rituel en Maths",'Eveil Scientifique', 'Act. Orales', 'Oral ', 'Lecture',"Rituel en lecture",
                       'Graphisme/ Ecriture/ Copie', 'Comptine/ Chant', 'Projet de classe','D.C.V','Amazigh & A.V.S']
 
-    level2_courses= ["",'Maths', 'Eveil Scientifique','Act. orales', 'Exercices écrits','Act. rituelle'
+    level2_courses= ["",'Maths',"Rituel en Maths", 'Eveil Scientifique','Act. orales', 'Exercices écrits',"Rituel en lecture",
                      'Projet de classe','Lecture', 'Ecriture',
                      'Poésie', 'Lecture/ Ecriture','Copie/ Dictée','D.C.V','Amazigh & A.V.S']
-    level3_courses = ["",'Maths', 'Eveil Scientifique','Act. Orales', 'Lecture','Exercices écrits',
-                      "Prod. de l'écrit", 'Ecriture / Copie', 'Dictée','Act. rituelle',
+    
+    level3_courses = ["",'Maths',"Rituel en Maths", 'Eveil Scientifique','Act. Orales', 'Lecture','Exercices écrits',
+                      "Prod. de l'écrit", 'Ecriture / Copie', 'Dictée',"Rituel en lecture",
                       'Projet de classe','Poésie','D.C.V','Amazigh & A.V.S']
 
-    level4_courses = ["",'Maths', 'Eveil Scientifique', 'Act. Orales', 'Grammaire', 'Conjugaison', 'Poésie',
-                      'Ecriture / Copie','Lecture', "Prod. de l’écrit",'Act. rituelle',
+    level4_courses = ["",'Maths',"Rituel en Maths", 'Eveil Scientifique', 'Act. Orales', 'Grammaire', 'Conjugaison', 'Poésie',
+                      'Ecriture / Copie','Lecture', "Prod. de l’écrit","Rituel en lecture",
                       'Projet de classe','Orth / Dictée','D.C.V','Amazigh & A.V.S']
 
-    level5_courses = ["",'Maths', 'Eveil Scientifique','Act. Orales', 'Lecture diction','Act. rituelle',
+    level5_courses = ["",'Maths',"Rituel en Maths", 'Eveil Scientifique','Act. Orales', 'Lecture diction',"Rituel en lecture",
                          'Orthographe', 'Lexique', 'Poésie', 'Lecture','Conjugaison', 'Projet de classe',
                           'Prod. de l’écrit','Grammaire',"Pro. de l'écrit/ Lecture diction",'D.C.V','Amazigh & A.V.S']
 
-    level6_courses = ["",'Maths', 'Eveil Scientifique', 'Act. Orales', 'Conjugaison','Lexique',
-                       'Projet de classe', 'Grammaire', 'Lecture','Act. rituelle',
+    level6_courses = ["",'Maths',"Rituel en Maths", 'Eveil Scientifique', 'Act. Orales', 'Conjugaison','Lexique',
+                       'Projet de classe', 'Grammaire', 'Lecture',"Rituel en lecture",
                       "Pro. de l'écrit/ Lecture diction", 'Orthographe','D.C.V','Amazigh & A.V.S']
 
     for n, m in enumerate(["premier", "deuxième"]):
@@ -179,7 +180,7 @@ if (creat_or_import == "Créer un nouveau emplois"):
 elif creat_or_import == "Importer votre emplois":
     # """warnings: you have to add instructions!"""
     st.info(
-        'Remarque: Votre fichier doit  être en format CSV. '
+        'Remarque: Votre fichier doit être en format CSV. '
         'Les colonnes de votre fichier doivent être "Niveau", "Jour", "Matière", "Séance" et "Durée"')
 
     if st.button("Cliquez pour voir un exemple! "):

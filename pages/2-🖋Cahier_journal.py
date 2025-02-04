@@ -120,7 +120,6 @@ def fr_manuel_level(manuel, level):
         #"""-----Espace de l'ècole-----"""
         espace1 = espace3 = espace4 = espace5 = espace6 = pd.DataFrame()
         espace2 = pd.read_csv(docs_link+"1E2tZWzNNdS81H2ljxUzsugxeI2G9AQJx0QdQfv8ipjg"+linkc+"Repa_Fr_Espace_De_Lecole_2aep")
-        #espace2 = pd.read_csv("https://drive.google.com/uc?id=1mLoFqgkgxCrvW_TtaF2bZCnRu6x3OCOR")#,storage_options = {'User-Agent': 'Mozilla/5.0'})
         Espace = [espace1,espace2,espace3,espace4,espace5,espace6]
         fr_manuels_dict["Espace de l'école"]=Espace
 
@@ -128,7 +127,6 @@ def fr_manuel_level(manuel, level):
     if manuel=="L'école de mots":
         #"""-----L'école de mots-----"""
         ecole1 = ecole2 = ecole3 =  ecole5 = ecole6 = pd.DataFrame()
-        #ecole4 = pd.read_csv("https://drive.google.com/uc?id=1G-BJkULB-66jxpgcW52yLtRhVZ2OvVam")
         ecole4 = pd.read_csv(docs_link+"1XEHukH1KTxTAOf-SAQjSS39UorL-3FIe1MhlLFLysT4"+linkc+"Repa_Fr_Lecole_de_mots_4aep")
         Ecole_de_mots = [ecole1,ecole2,ecole3,ecole4,ecole5,ecole6]
         fr_manuels_dict["L'école de mots"]=Ecole_de_mots
@@ -145,9 +143,7 @@ def fr_manuel_level(manuel, level):
     if manuel =="Nouvel espace":
         #"""-----Nouvel Espace-----"""
         nouvel_espace1 = nouvel_espace3 = nouvel_espace5 = nouvel_espace6 = pd.DataFrame()
-        #nouvel_espace2= pd.read_csv("https://drive.google.com/uc?export=download&id=1WP7BNiGITEPdGutqXqhO-Sq0bRXOm_Qh")
         nouvel_espace2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1n9j1BlRkIVxjGB_74TNfJLTQEGaIrCl1jyuhxq9Dbs8"+linkc+"Repa_Fr_Nouvel_Espace_2aep")
-        #nouvel_espace4 = pd.read_csv("https://drive.google.com/uc?export=download&id=1Gqgmg4nt_gXKAPHaNj8Klu1AJAWdPeCz")
         nouvel_espace4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1EYLaBN3rHkCRgx5HpNRoeQ8RAFabj8-a1ougO-Cu_u4"+linkc+"Repa_Fr_Nouvel_Espace_4aep")
         Nouvel_espace = [nouvel_espace1,nouvel_espace2,nouvel_espace3,nouvel_espace4,nouvel_espace5,nouvel_espace6]
         fr_manuels_dict["Nouvel espace"]=Nouvel_espace
@@ -156,14 +152,12 @@ def fr_manuel_level(manuel, level):
     if manuel == "Parcours français":
         #"""----Parcours Français----"""
         parcours1 = parcours2 = parcours3 = parcours4 = parcours5 =pd.DataFrame()
-        #parcours6 = pd.read_csv("https://drive.google.com/uc?export=download&id=1CKVaMOTZVTN0A3COtXy313pMaozvHU3n")
         parcours6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1ESEZCpX_IuKVNG3gLJ1IEc1jWlBn-xdpUPirpx4vLHY"+linkc+"Repa_Fr_Parcours_6aep")
         Parcours = [parcours1, parcours2, parcours3,parcours4,parcours5,parcours6]
         fr_manuels_dict["Parcours français"]=Parcours
 
 
     if manuel == "Pour communiquer":
-        #"""---Pour communiquer---"""
         pour_comm1 = pour_comm2 = pour_comm3 = pour_comm4 = pour_comm6 = pd.DataFrame()
         pour_comm5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1nkeR0Xdfj7pdkM606hscR7RCHyxRpAVldvVPWEBe3KM"+linkc+"Repa_Fr_Pour_Communiquer_5aep")
         Pour_Communiquer = [pour_comm1, pour_comm2, pour_comm3, pour_comm4, pour_comm5, pour_comm6]
@@ -380,11 +374,11 @@ def EvSc_manuel_level(level, manuel):
         es_moukhtar2["Séance"] = [json.loads(es_moukhtar2["Séance"][i]) for i in range(len(es_moukhtar2["Séance"]))]
         es_moukhtar_manuel = [es_moukhtar1, es_moukhtar2,es_moukhtar3,
                               es_moukhtar4,es_moukhtar5,es_moukhtar6]
-        EvSc_manuels["المختار"]=es_moukhtar_manuel
+        EvSc_manuels["المختار"] = es_moukhtar_manuel
 
     #"""----Attajdid----"""
     if manuel == "التجديد":
-        es_tajdid1 =es_tajdid2 =es_tajdid3 =es_tajdid4 =es_tajdid5 = pd.DataFrame()
+        es_tajdid1 = es_tajdid2 = es_tajdid3 = es_tajdid4 = es_tajdid5 = pd.DataFrame()
 
         es_tajdid6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1adwmq-D2sc1JwcxaTFBUzT8hzOy5Rp0c7_dq_WMa5a8"+linkc+"Repa_EvSc_Attajdid_6aep")
         es_tajdid6["Séance"] = [json.loads(es_tajdid6["Séance"][i]) for i in range(len(es_tajdid6["Séance"]))]
@@ -406,7 +400,7 @@ def EvSc_manuel_level(level, manuel):
 @st.cache_resource()
 def rituel_lecture(manuel, level):
     
-    if manuel=="Mes rituels en lecture":
+    if manuel == "Mes rituels en lecture":
         
         if level == 1:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1R36mcDc8E2oBitaZ-6L1u5p_-evHEvyYiPvcxJdwsIY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_1aep")
@@ -421,22 +415,6 @@ def rituel_lecture(manuel, level):
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1XBvsaVmkHkxQpWQfZt4JKE9k6ZQ4-lyHibRwR1L0mb0/gviz/tq?tqx=out:csv&sheet=Rituel_fr_5aep")
         if level == 6:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nKrhINMuy-uvgC1igDw7CzZ4ukdFGE1L1kFEoQOJ0QI/gviz/tq?tqx=out:csv&sheet=Rituel_fr_6aep")
-        rituel_U = []
-        for s in range(len(rituel_["Semaine"])):
-            if (rituel_["Semaine"][s] <= 5):
-                rituel_U.append(1)
-            elif (rituel_["Semaine"][s] <= 10):
-                rituel_U.append(2)
-            elif (rituel_["Semaine"][s] <= 15):
-                rituel_U.append(3)
-            elif (rituel_["Semaine"][s] <= 20):
-                rituel_U.append(4)
-            elif (rituel_["Semaine"][s] <= 25):
-                rituel_U.append(5)
-            elif (rituel_["Semaine"][s] <= 30):
-                rituel_U.append(6)
-            else :
-                rituel_U.append(7)
                 
         rituel_["U"] = [1+int(i/6) for i in rituel_["Semaine"]]
         S = [(i%5) for i in rituel_["Semaine"]]
@@ -555,7 +533,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
     # initialize citations
     citations = pd.read_csv(r"https://docs.google.com/spreadsheets/d/1VJs8_Z3zsww-LaiMmMZAtcmUJKBqW7KsTmuGJtiCdyA"+linkc+"citations")
-    #citations = pd.read_csv(r"C:\Users\hp\Downloads\citations.csv")
     random_list = random.sample(range(citations.shape[0]), citations.shape[0])
     citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
 
@@ -619,7 +596,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
 
-        sheet["F2"] = f'Date: ................................. '#{str_date}'
+        sheet["F2"] = f'Date: ............................................... '#{str_date}'
 
         #----------------in and out time---------------------
 
@@ -675,6 +652,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (fr_Week_Repa)
             else:
                 return my_class
+        # Ritual of Lecture        
         def fr_rituel_peda_class(niveau):
             my_class = fr_rituel_class[niveau]
             if type(my_class) == pd.core.frame.DataFrame:
@@ -854,9 +832,6 @@ else :
     login()
         
     # """"----------------Streamlit App-----------------"""
-
-    # JS code to modify te decoration on top
-
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
 
@@ -969,10 +944,15 @@ else :
                                                    else [None],
                                                    key="fr2", max_selections=1)
             
-            fr_rituel_manual_name = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} et {level2[0]}",
+            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:{level1[0]}",
                                                      ["Mes rituels en lecture",
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
-                                                     key = "lecture_rituel",
+                                                     key = "lecture_rituel1",
+                                                     max_selections=1)
+            fr_rituel_manual_name2 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:{level2[0]}",
+                                                     ["Mes rituels en lecture",
+                                                      "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
+                                                     key = "lecture_rituel2",
                                                      max_selections=1)
 
             # Maths
@@ -1098,8 +1078,8 @@ else :
                             journal = U_W_D(
                                   fr_manuel1 = french_manual_name1[0],
                                   fr_manuel2 = french_manual_name2[0],
-                                  lecture_rituel1 = fr_rituel_manual_name[0],
-                                  lecture_rituel2 = fr_rituel_manual_name[0],
+                                  lecture_rituel1 = fr_rituel_manual_name1[0],
+                                  lecture_rituel2 = fr_rituel_manual_name2[0],
                                   math_manuel1 = maths_manual_name1[0],
                                   math_manuel2 = maths_manual_name2[0],
                                   es_manuel1 = act_sc_manual_name1[0],

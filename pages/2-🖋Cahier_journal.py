@@ -571,7 +571,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 c.alignment = Alignment(horizontal="center",vertical="center",wrapText=True)
 
 
-        sheet.column_dimensions["F"].width = 60
+        sheet.column_dimensions["F"].width = 80
 
         sheet.column_dimensions["D"].width = 22
         sheet.column_dimensions["B"].width = 12
@@ -579,7 +579,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             sheet.column_dimensions[lettre].width = 8
             
         for row in [5, 7, 9]:
-            sheet.row_dimensions[row].height = 120
+            sheet.row_dimensions[row].height = 140
 
         # citation
         sheet.merge_cells('B9:E9')

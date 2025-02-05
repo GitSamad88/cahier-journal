@@ -16,6 +16,7 @@ from datetime import datetime
 import datetime as dt
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
+from openpyxl.utils import get_column_letter
 from babel.dates import format_datetime
 from io import BytesIO
 import warnings
@@ -793,6 +794,36 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
 
+
+    def autofit_columns_and_rows(wb):
+        
+        """
+        Adjusts column width based on the longest content in each column.
+        Adjusts row height based on the number of line breaks in a cell.
+        """
+        for col in ws.columns:
+            max_length = 0
+            col_letter = get_column_letter(col[0].column)
+            
+            for cell in col:
+                try:
+                    if cell.value:
+                        max_length = max(max_length, len(str(cell.value)))
+                except:
+                    pass
+            
+            ws.column_dimensions[col_letter].width = max_length + 2  # Add padding
+        
+        for row in ws.iter_rows():
+            max_height = 15  # Default row height
+            for cell in row:
+                if cell.value and isinstance(cell.value, str):
+                    lines = cell.value.count("\n") + 1  # Count line breaks
+                    max_height = max(max_height, lines * 15)  # Approximate row height
+            
+            ws.row_dimensions[row[0].row].height = max_height
+
+    autofit_columns_and_rows(wb=wb)
     wb.save(buffer)
     return buffer
 

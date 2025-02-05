@@ -531,6 +531,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     weeks_days = []
     sheets = []
     wb = Workbook()
+    ws = wb.active
 
     # initialize citations
     citations = pd.read_csv(r"https://docs.google.com/spreadsheets/d/1VJs8_Z3zsww-LaiMmMZAtcmUJKBqW7KsTmuGJtiCdyA"+linkc+"citations")
@@ -795,7 +796,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         weeks_days.append(i[0])
 
 
-    def autofit_columns_and_rows(wb):
+    def autofit_columns_and_rows(sheet):
         
         """
         Adjusts column width based on the longest content in each column.
@@ -822,8 +823,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
             wb.row_dimensions[row[0].row].height = max_height
-
-    autofit_columns_and_rows(wb=wb)
+    for sheet in sheets:
+        autofit_columns_and_rows(sheet = sheet)
     wb.save(buffer)
     return buffer
 

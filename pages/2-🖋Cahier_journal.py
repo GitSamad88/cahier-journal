@@ -802,7 +802,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         Adjusts column width based on the longest content in each column.
         Adjusts row height based on the number of line breaks in a cell.
         """
-        for col in wb.columns:
+        for col in sheet.columns:
             max_length = 0
             col_letter = get_column_letter(col[0].column)
             
@@ -813,16 +813,16 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 except:
                     pass
             
-            wb.column_dimensions[col_letter].width = max_length + 2  # Add padding
+            sheet.column_dimensions[col_letter].width = max_length + 2  # Add padding
         
-        for row in wb.iter_rows():
+        for row in sheet.iter_rows():
             max_height = 15  # Default row height
             for cell in row:
                 if cell.value and isinstance(cell.value, str):
                     lines = cell.value.count("\n") + 1  # Count line breaks
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
-            wb.row_dimensions[row[0].row].height = max_height
+            sheet.row_dimensions[row[0].row].height = max_height
     for sheet in sheets:
         autofit_columns_and_rows(sheet = sheet)
     wb.save(buffer)

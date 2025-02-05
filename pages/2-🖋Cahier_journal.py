@@ -801,7 +801,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         Adjusts column width based on the longest content in each column.
         Adjusts row height based on the number of line breaks in a cell.
         """
-        for col in ws.columns:
+        for col in wb.columns:
             max_length = 0
             col_letter = get_column_letter(col[0].column)
             
@@ -812,16 +812,16 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 except:
                     pass
             
-            ws.column_dimensions[col_letter].width = max_length + 2  # Add padding
+            wb.column_dimensions[col_letter].width = max_length + 2  # Add padding
         
-        for row in ws.iter_rows():
+        for row in wb.iter_rows():
             max_height = 15  # Default row height
             for cell in row:
                 if cell.value and isinstance(cell.value, str):
                     lines = cell.value.count("\n") + 1  # Count line breaks
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
-            ws.row_dimensions[row[0].row].height = max_height
+            wb.row_dimensions[row[0].row].height = max_height
 
     autofit_columns_and_rows(wb=wb)
     wb.save(buffer)
@@ -975,12 +975,12 @@ else :
                                                    else [None],
                                                    key="fr2", max_selections=1)
             
-            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:{level1[0]}",
+            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]}",
                                                      ["Mes rituels en lecture",
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel1",
                                                      max_selections=1)
-            fr_rituel_manual_name2 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux:{level2[0]}",
+            fr_rituel_manual_name2 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level2[0]}",
                                                      ["Mes rituels en lecture",
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel2",

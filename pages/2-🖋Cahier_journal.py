@@ -580,7 +580,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             sheet.column_dimensions[lettre].width = 8
             
         for row in [5, 7, 9]:
-            sheet.row_dimensions[row].height = 140
+            sheet.row_dimensions[row].height = 130
 
         # citation
         sheet.merge_cells('B9:E9')
@@ -823,8 +823,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
             sheet.row_dimensions[row[0].row].height = max_height
-    for sheet in sheets:
-        autofit_columns_and_rows(sheet = sheet)
+    #for sheet in sheets:
+     #   autofit_columns_and_rows(sheet = sheet)
     wb.save(buffer)
     return buffer
 

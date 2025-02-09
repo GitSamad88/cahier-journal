@@ -696,12 +696,10 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             emplois_week_EvSc = classe_emploi[classe_emploi["Matière"] == "Eveil Scientifique"]
 
             for course in jour_emploi["Matière"]:
-
                 # FR
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
-                    
                 # Rituel en lecture:
                 fr_rituel_repa = fr_rituel_peda_class(niveau)
                 if (course == "Rituel en lecture"):
@@ -716,7 +714,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     for s in list(math_repa["Séance"]):
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
-                            #print("indices: ",indices)
                             courses_elements.append(math_repa["Maths"][indices[0]])
 
                 # Eveil Scientifique:
@@ -740,7 +737,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
 
             sheet["F3"] = f'Théme:  {title}'
-
             course_element = [str(cours_elem) for cours_elem in courses_elements]
             sheet[element_cell] = '\n'.join(course_element)
 

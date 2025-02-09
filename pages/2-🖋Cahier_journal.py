@@ -746,8 +746,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
 
-                    sheet[period_cell] = '\n'.join(jour_emploi["Durée"].to_list())
-                    sheet[seance_cell] = '\n'.join(jour_emploi["Séance"].to_list())
+                    sheet[period_cell] = "".join([str(num)+"\n\n" if (num==10.0)  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[seance_cell] = "".join([str(num)+"\n\n" if (num==10.0)  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
 
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
 
@@ -789,7 +789,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         sheet["H4"] = "Fiche"
 
         # Smaine
-        sheet["F8"] = f'Semaine:{1 + int(i[0] / 6)}'
+        sheet["F8"] = f'Semaine: {1 + int(i[0] / 6)}'
         # Jour
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
@@ -891,7 +891,7 @@ else :
     Maths_dispo_manuels5 = ["المفيد","النجاح",""]
     Maths_dispo_manuels6 = ["الجيد","الجديد",""]
     Maths_dispo_manuels = pd.DataFrame({
-                                     'Niveau 1':Maths_dispo_manuels1,
+                                    'Niveau 1':Maths_dispo_manuels1,
                                     'Niveau 2':Maths_dispo_manuels2,
                                     'Niveau 3':Maths_dispo_manuels3,
                                     'Niveau 4':Maths_dispo_manuels4,

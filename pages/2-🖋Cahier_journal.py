@@ -691,6 +691,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
         def course_element(niveau, element_cell):
             courses_elements = []
+            rituel_lines = []
             jour_emploi = classe_emploi[classe_emploi["Jour"] == 1 + len(weeks_days) % 6]
             emplois_week_Maths = classe_emploi[classe_emploi["Matière"] == "Maths"]
             emplois_week_EvSc = classe_emploi[classe_emploi["Matière"] == "Eveil Scientifique"]
@@ -705,8 +706,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 fr_rituel_repa = fr_rituel_peda_class(niveau)
                 emplois_jour_fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
                 rituel = emplois_jour_fr_rituel.to_list()
-                global rituel_lines
-                rituel_lines = len(rituel[0].splitlines())
+                rituel_lines.append(rituel[0].splitlines())
                 if (course == "Rituel en lecture"):
                     courses_elements.append( rituel[0] if rituel else "")
                     
@@ -749,8 +749,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[period_cell] = "".join([str(num) + rituel_lines*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
-                    sheet[seance_cell] = "".join([str(num) + rituel_lines*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
+                    sheet[period_cell] = "".join([str(num) + rituel_lines[0]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[seance_cell] = "".join([str(num) + rituel_lines[0]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
 
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
 

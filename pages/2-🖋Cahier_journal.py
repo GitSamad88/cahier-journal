@@ -743,7 +743,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             course_element = [str(cours_elem) for cours_elem in courses_elements]
             sheet[element_cell] = '\n'.join(course_element)
             
-        sheet['G9'] = rituel_lines[0]
+        sheet['G9'] = rituel_lines  
+        #if len(rituel_lines) != 0:
+            
         def periode_seance(niveau, period_cell, seance_cell):
             for peda_day in classe_emploi["Jour"]:
                 if peda_day == (1 + len(weeks_days) % 6):

@@ -706,8 +706,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if (course == "Rituel en lecture"):
                     fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
                     rituel = fr_rituel.to_list()
-                    rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
-                    sheet["G9"] = len(rituel[0].splitlines()) if rituel else 0 
+                    #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
+                    #sheet["G9"] = rituel[0].splitlines() 
                     courses_elements.append( rituel[0] if rituel else "")
                     
                 # Maths

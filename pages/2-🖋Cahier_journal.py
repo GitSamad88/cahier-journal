@@ -704,7 +704,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 fr_rituel_repa = fr_rituel_peda_class(niveau)
                 if (course == "Rituel en lecture"):
                     emplois_jour_fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
-                    courses_elements.append((emplois_jour_fr_rituel).to_list()[0] if len((emplois_jour_fr_rituel).to_list()) != 0 else "")
+                    global rituel
+                    rituel = emplois_jour_fr_rituel.to_list()
+                    courses_elements.append( rituel[0] if len(rituel) != 0 else "")
                     
                 # Maths
                 math_repa = Maths_peda_class(niveau)
@@ -745,9 +747,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-
-                    sheet[period_cell] = "".join([str(num)+"\n\n\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
-                    sheet[seance_cell] = "".join([str(num)+"\n\n\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
+                    rituel_lines = len(rituel[0].splitlines())
+                    sheet[period_cell] = "".join([str(num) + rituel_lines*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[seance_cell] = "".join([str(num) + rituel_lines*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
 
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
 
@@ -943,9 +945,7 @@ else :
         selected_manuels = []
 
         if (len(level1) != 0) and (len(level2) != 0):
-            
-
-
+        
             # disponible manuels:
             st.write("Les manuels de français disponibles: ")
             st.table(french_dispo_manuels)

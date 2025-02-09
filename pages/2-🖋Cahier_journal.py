@@ -688,10 +688,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
                     sheet[matiéres_cell] = "".join([i+"\n\n\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"].to_list())
-
+        rituel_lines = []
         def course_element(niveau, element_cell):
             courses_elements = []
-            rituel_lines = []
             jour_emploi = classe_emploi[classe_emploi["Jour"] == 1 + len(weeks_days) % 6]
             emplois_week_Maths = classe_emploi[classe_emploi["Matière"] == "Maths"]
             emplois_week_EvSc = classe_emploi[classe_emploi["Matière"] == "Eveil Scientifique"]

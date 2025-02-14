@@ -405,7 +405,7 @@ def EvSc_manuel_level(level, manuel):
 @st.cache_resource()
 def rituel_lecture(manuel, level):
     
-    if manuel == "Mes rituels en lecture":
+    if (manuel == "Mes rituels en lecture (Objectifs complets)") or (manuel == "Mes rituels en lecture (Objectifs résumés par IA)":
         
         if level == 1:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1R36mcDc8E2oBitaZ-6L1u5p_-evHEvyYiPvcxJdwsIY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_1aep")
@@ -704,11 +704,22 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 # Rituel en lecture:
                 fr_rituel_repa = fr_rituel_peda_class(niveau)
                 if (course == "Rituel en lecture"):
-                    fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
-                    rituel = fr_rituel.to_list()
-                    #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
-                    #sheet["G9"] = rituel[0].splitlines() 
-                    courses_elements.append( rituel[0] if rituel else "")
+                    if (lecture_rituel1 == "Mes rituels en lecture (Objectifs complets)") and (lecture_rituel2 == "Mes rituels en lecture (Objectifs complets)"):
+                        fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
+                        rituel = fr_rituel.to_list()
+                        #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
+                        #sheet["G9"] = rituel[0].splitlines() 
+                        courses_elements.append( rituel[0] if rituel else "")
+                    elif (lecture_rituel1 == "Mes rituels en lecture (Objectifs résumés par IA)") and (lecture_rituel2 == "Mes rituels en lecture (Objectifs résumés par IA)"):
+                        fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resumé"]
+                        rituel = fr_rituel.to_list()
+                        #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
+                        #sheet["G9"] = rituel[0].splitlines() 
+                        courses_elements.append( rituel[0] if rituel else "")
+                    else:
+                        courses_elements.append("...................................................")
+  
+                        
                     
                 # Maths
                 math_repa = Maths_peda_class(niveau)
@@ -980,16 +991,13 @@ else :
                                                    else [None],
                                                    key="fr2", max_selections=1)
             
-            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]}",
-                                                     ["Mes rituels en lecture",
+            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} et {level2[0]} ",
+                                                     ["Mes rituels en lecture (Objectifs complets)",
+                                                      "Mes rituels en lecture (Objectifs résumés par IA)",
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
-                                                     key = "lecture_rituel1",
+                                                     key = "lecture_rituel",
                                                      max_selections=1)
-            fr_rituel_manual_name2 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level2[0]}",
-                                                     ["Mes rituels en lecture",
-                                                      "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
-                                                     key = "lecture_rituel2",
-                                                     max_selections=1)
+           
 
             # Maths
             maths_manual_name1 = form.multiselect(f"Choisissez le manuel de maths pour le niveau: {level1[0]}",
@@ -1115,7 +1123,7 @@ else :
                                   fr_manuel1 = french_manual_name1[0],
                                   fr_manuel2 = french_manual_name2[0],
                                   lecture_rituel1 = fr_rituel_manual_name1[0],
-                                  lecture_rituel2 = fr_rituel_manual_name2[0],
+                                  lecture_rituel2 = fr_rituel_manual_name1[0],
                                   math_manuel1 = maths_manual_name1[0],
                                   math_manuel2 = maths_manual_name2[0],
                                   es_manuel1 = act_sc_manual_name1[0],
@@ -1203,7 +1211,7 @@ footer = """
         <p>&nbsp;</p>
         <hr>
         <p>Made by <a href="https://www.linkedin.com/in/abdessamad-taoufiq-082013209" target="_blank" style="font-style: oblique;">TAOUFIQ ABDESSAMAD</a>.</p>
-        <p> tous droits réservés © 2024 </p>
+        <p> tous droits réservés © 2025 </p>
 
     </div>
 """

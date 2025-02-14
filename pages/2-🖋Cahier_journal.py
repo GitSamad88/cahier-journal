@@ -1104,7 +1104,7 @@ else :
                 
 
                 selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2, fr_rituel_manual_name1,
-                                         fr_rituel_manual_name2 ,maths_manual_name1, maths_manual_name2,
+                                         maths_manual_name1, maths_manual_name2,
                                          act_sc_manual_name1, act_sc_manual_name2])
 
             #if all(str(value[0]) in dispo_manuels for value in selected_manuels):

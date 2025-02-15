@@ -414,7 +414,7 @@ def rituel_lecture(manuel, level):
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1X0HZn_JR6PqA_dakApdqssGOhNb7uG_Bd_EzU3Kz1KQ/gviz/tq?tqx=out:csv&sheet=Rituel_fr_2aep")
         if level == 3:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1oYzmmG7Q0qaEVm_pb1_Ewc0ZWLgQaO_DtmjntBwcDys/gviz/tq?tqx=out:csv&sheet=Rituel_fr_3aep")
-            rituel_ = rituel_[["Jour","Semaine","Objectif"]]
+            rituel_ = rituel_[["Jour","Semaine","Objectif","Objectif_Resume"]]
         if level == 4:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/183mIvzLuEbWCD-Y12DFrpTdhcaB5vCz4C1FE2nI69UY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_4aep")
         if level == 5:

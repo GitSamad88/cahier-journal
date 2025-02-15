@@ -425,7 +425,7 @@ def rituel_lecture(manuel, level):
         rituel_["U"] = [1+int(i/6) for i in rituel_["Semaine"]]
         S = [(i%5) for i in rituel_["Semaine"]]
         rituel_["S"] = [S[i] + 1 if S[i] == 0 else S[i] for i in range(len(S))]
-        rituel_ = rituel_[["U","S","Semaine","Jour","Objectif"]]
+        rituel_ = rituel_[["U","S","Semaine","Jour","Objectif","Objectif_Resume"]]
         return rituel_
     else :
         return None    
@@ -712,7 +712,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         #sheet["G9"] = rituel[0].splitlines() 
                         courses_elements.append( rituel[0] if rituel else "")
                     elif lecture_rituel1 == "Mes rituels en lecture (Objectifs résumés par IA)":
-                        fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resumé"]
+                        fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resume"]
                         rituel = fr_rituel.to_list()
                         #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
                         #sheet["G9"] = rituel[0].splitlines() 

@@ -763,7 +763,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[period_cell] = "".join([str(num) + rituel_lines*[0]"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[period_cell] = "".join([str(num) + rituel_lines[0]*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
                     sheet[seance_cell] = "".join([str(num) + rituel_lines[0]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
                     #(rituel_lines[0]*"\n" if rituel_lines[0] != 0 else "\n")
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:

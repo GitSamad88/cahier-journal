@@ -703,7 +703,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     fr_rituel_repa = fr_rituel_peda_class(niveau)
                     if lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs complets)":
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6)]["Objectif"]
-                        rituel = fr_rituel.to_list()[0] if fr_rituel else "Rituel en lecture"
+                        rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel = re.split(r'[.,]', rituel)
                         rituel = [rit for rit in rituel if rit != ''] 
                         rituel_lines.append(len(rituel) if rituel else 1 )

@@ -700,6 +700,10 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 # FR
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
+                    if (course == "Ecriture / Copie") and (Class[niveau] == 4):
+                        fr_repa[course] == "Ecrire en majiscule et en miniscule les lettres: " + fr_repa[course]
+                    if (course == "Ecriture / Copie") and (Class[niveau] == 3):
+                        fr_repa[course] == "Ecrire des: " + fr_repa[course]
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
                    
                 # Rituel en lecture:
@@ -763,7 +767,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
                     sheet[period_cell] = "".join([str(num) + 3*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
-                    #sheet[seance_cell] = "".join([str(num) + (rituel_lines[0]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
+                    sheet[seance_cell] = "".join([str(num) + (rituel_lines[0]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
                     #(rituel_lines[0]*"\n" if rituel_lines[0] != 0 else "\n")
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
 

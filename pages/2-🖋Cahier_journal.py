@@ -697,9 +697,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 # FR
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
-                    if (course == "Ecriture / Copie") and (Class[niveau] == 4):
+                    if (course == "Ecriture / Copie") and (classes[niveau] == 4):
                         fr_repa[course] == "Ecrire en majiscule et en miniscule les lettres: " + fr_repa[course]
-                    if (course == "Ecriture / Copie") and (Class[niveau] == 3):
+                    if (course == "Ecriture / Copie") and (classes[niveau] == 3):
                         fr_repa[course] == "Ecrire des: " + fr_repa[course]
                     courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
                    

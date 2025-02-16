@@ -609,23 +609,23 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
             if date_list[0] in ["lundi", "mercredi", "samedi"]:
 
-                sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'
-                sheet["B7"] = f'De {inmor_fromrec_t}  à {outmor_t}'
+                sheet["B5"] = f'De\n\n {inmor_t}  à\n\n  {outmor_torec_t}'
+                sheet["B7"] = f'De \n\n {inmor_fromrec_t}  à\n\n  {outmor_t}'
 
             else:
 
-                sheet["B5"] = f'De {ineven_t}  à {outeven_torec_t}'
-                sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
+                sheet["B5"] = f'De\n\n {ineven_t}  à\n\n  {outeven_torec_t}'
+                sheet["B7"] = f'De\n\n {ineven_fromrec_t}  à\n\n  {outeven_t}'
                 
         else:
             
             if date_list[0] in ["mardi", "jeudi", "vendredi"]:
-                sheet["B5"] = f'De {inmor_t}  à {outmor_torec_t}'
-                sheet["B7"] = f'De {inmor_fromrec_t}  à {outmor_t}'
+                sheet["B5"] = f'De\n\n  {inmor_t}  à\n\n {outmor_torec_t}'
+                sheet["B7"] = f'De\n\n {inmor_fromrec_t}  à\n\n {outmor_t}'
 
             else:
-                sheet["B5"] = f'De {ineven_t}  à {outeven_torec_t}'
-                sheet["B7"] = f'De {ineven_fromrec_t}  à {outeven_t}'
+                sheet["B5"] = f'De\n\n  {ineven_t}  à\n\n {outeven_torec_t}'
+                sheet["B7"] = f'De\n\n {ineven_fromrec_t}  à\n\n {outeven_t}'
 
         # Discipline
         sheet["D4"] = "Discipline"
@@ -672,7 +672,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-
+        rituel_lines = []
         def courses(niveau, matiéres_cell):
             global classe_emploi
             classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]
@@ -682,7 +682,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
                     sheet[matiéres_cell] = "".join([i+"\n\n\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"].to_list())
-        rituel_lines = []
+        
         def course_element(niveau, element_cell):
             courses_elements = []
             jour_emploi = classe_emploi[classe_emploi["Jour"] == 1 + len(weeks_days) % 6]
@@ -714,9 +714,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resume"]
                         rituel = fr_rituel.to_list()[0]
                         rituel = re.split(r'[.,]', rituel)
-                        rituel = [rit for rit in rituel if rit != '']
+                        rituel = [rit for rit in rituel if rit != '' else '']
                         rituel_lines.append(len(rituel) if rituel else 1 )
-                        sheet["G9"] = len(rituel) if rituel else 1
+                        sheet["G9"] = len(rituel) 
                         courses_elements.append( "\n".join(rituel) if rituel else "")
                     else:
                         courses_elements.append("...................................................")    
@@ -755,7 +755,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             course_element = [str(cours_elem) for cours_elem in courses_elements]
             sheet[element_cell] = '\n'.join(course_element)
             
-        sheet['H9'] = len(rituel_lines) 
+        sheet['H9'] = rituel_lines
         #if len(rituel_lines) != 0:
             
         def periode_seance(niveau, period_cell, seance_cell):

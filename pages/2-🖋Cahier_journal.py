@@ -1,17 +1,14 @@
-import time
-import random
+import time, re, gspread, random
 import streamlit as st
 from streamlit_modal import Modal
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from oauth2client.service_account import ServiceAccountCredentials
-import gspread
 import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
-import pathlib
-import shutil
+import pathlib,  shutil
 from datetime import datetime
 import datetime as dt
 from openpyxl import Workbook
@@ -19,8 +16,7 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 from openpyxl.utils import get_column_letter
 from babel.dates import format_datetime
 from io import BytesIO
-import warnings
-import json
+import warnings,json
 warnings.filterwarnings("ignore")
 
 # page configue

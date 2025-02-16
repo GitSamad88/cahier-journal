@@ -716,7 +716,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel = fr_rituel.to_list()
                         #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
                         #sheet["G9"] = rituel[0].splitlines() 
-                       courses_elements.append( rituel[0] if rituel else "")
+                        courses_elements.append( rituel[0] if rituel else "")
                     else:
                         courses_elements.append("...................................................")    
                     

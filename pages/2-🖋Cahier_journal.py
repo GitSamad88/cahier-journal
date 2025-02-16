@@ -697,25 +697,31 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 # FR
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
+                    crs = fr_repa[course][1 + int(i[0] / 6)]
                     fr_repa[course] = "Ecrire en majiscule et en miniscule les lettres: "  + fr_repa[course] if (course == "Ecriture / Copie") and (classes[niveau] == 4)  else fr_repa[course]
-                    fr_repa[course] = "Ecrire des: " + fr_repa[course] if (course == "Ecriture / Copie") and (classes[niveau] == 3) else fr_repa[course]
-                    courses_elements.append(fr_repa[course][1 + int(i[0] / 6)])
+                    fr_repa[course] = "Ecrire :"  + (fr_repa[course] if (course == "Ecriture / Copie") and (classes[niveau] in [1,2,3]) else fr_repa[course])
+                    courses_elements.append(crs)
                    
                 # Rituel en lecture:
                 if (course == "Rituel en lecture"):
                     fr_rituel_repa = fr_rituel_peda_class(niveau)
                     if lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs complets)":
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6)]["Objectif"]
-                        rituel = fr_rituel.to_list()
-                        #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
-                        #sheet["G9"] = rituel[0].splitlines() 
-                        courses_elements.append( rituel[0] if rituel else "")
+                        rituel = fr_rituel.to_list()[0]
+                        rituel = re.split(r'[.,]', rituel)
+                        rituel = [rit for rit in rituel if rit != ''] 
+                        rituel_lines.append(len(rituel) if rituel else 1 )
+                        sheet["G9"] = len(rituel) if rituel else 1
+                        courses_elements.append( "\n".join(rituel) if rituel else "")
+                        
                     elif lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resume"]
-                        rituel = fr_rituel.to_list()
-                        #rituel_lines.append(len(rituel[0].splitlines()) if rituel else 1 )
-                        #sheet["G9"] = rituel[0].splitlines() 
-                        courses_elements.append( rituel[0] if rituel else "")
+                        rituel = fr_rituel.to_list()[0]
+                        rituel = re.split(r'[.,]', rituel)
+                        rituel = [rit for rit in rituel if rit != '']
+                        rituel_lines.append(len(rituel) if rituel else 1 )
+                        sheet["G9"] = len(rituel) if rituel else 1
+                        courses_elements.append( "\n".join(rituel) if rituel else "")
                     else:
                         courses_elements.append("...................................................")    
                     
@@ -994,12 +1000,12 @@ else :
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel1",
                                                      max_selections=1)
-            fr_rituel_manual_name2 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level2[0]} ",
-                                                     ["Mes rituels en lecture (Objectifs complets)",
-                                                      "Mes rituels en lecture (Objectifs résumés par IA)",
-                                                      "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
-                                                     key = "lecture_rituel2",
-                                                     max_selections=1)
+            fr_rituel_manual_name2 =  fr_rituel_manual_name1 #form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level2[0]} ",
+                                                    # ["Mes rituels en lecture (Objectifs complets)",
+                                                    # "Mes rituels en lecture (Objectifs résumés par IA)",
+                                                    #  "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
+                                                    # key = "lecture_rituel2",
+                                                    # max_selections=1)
            
 
             # Maths

@@ -417,7 +417,7 @@ def rituel_lecture(manuel, level):
         
         Total_Days = (rituel_['Semaine'] - 1) * 5 + rituel_['Jour']
         rituel_["U"]  = ((Total_Days - 1) // 25) + 1  
-        rituel_["S"] = (rituel_['Semaine'] - 1) % 5 + 1 
+        rituel_["S"] = S = (rituel_['Semaine'] - 1) % 5 + 1 
         rituel_["S"] = [S[i] + 1 if S[i] == 0 else S[i] for i in range(len(S))]
         rituel_ = rituel_[["U","S","Semaine","Jour","Objectif","Objectif_Resume"]]
         return rituel_

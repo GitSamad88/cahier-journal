@@ -570,7 +570,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
 
         sheet.column_dimensions["F"].width = 80
-
         sheet.column_dimensions["D"].width = 22
         sheet.column_dimensions["B"].width = 12
         for lettre in ["C", "E", "G", "H"]:
@@ -693,8 +692,10 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 fr_repa = fr_peda_class(niveau)
                 if course in fr_repa.columns:
                     crs = fr_repa[course][1 + int(i[0] / 6)]
-                    fr_repa[course] = "Ecrire en majiscule et en miniscule les lettres: "  + (fr_repa[course] if (course == "Ecriture / Copie") and (classes[niveau] == 4)  else fr_repa[course])
-                    fr_repa[course] = "Ecrire :"  + (fr_repa[course] if (course == "Ecriture / Copie") and (classes[niveau] in [1,2,3]) else fr_repa[course])
+                    if (course == "Ecriture / Copie") and (classes[niveau] == 4):
+                        crs = "Ecrire en majiscule et en miniscule les lettres: "  + crs
+                    if (course == "Ecriture / Copie") and (classes[niveau] in [1,2,3):
+                        crs = "Ecrire: "  + crs
                     courses_elements.append(crs)
                    
                 # Rituel en lecture:
@@ -706,17 +707,15 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel = re.split(r'[.,]', rituel)
                         rituel = [rit for rit in rituel if rit != ''] 
                         rituel_lines.append(len(rituel) if rituel else 1 )
-                        sheet["G9"] = len(rituel) if rituel else 1
-                        courses_elements.append( "\n".join(rituel) if rituel else "")
+                        courses_elements.append( "\n".join(rituel) + str(len(rituel)) if rituel else "")
                         
                     elif lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resume"]
                         rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel = re.split(r'[.,]', rituel)
                         rituel = [rit for rit in rituel if rit != '']
-                        sheet["G9"] = len(rituel)
                         rituel_lines.append(len(rituel) if rituel else 1 )
-                        courses_elements.append( "\n".join(rituel) if rituel else "")
+                        courses_elements.append( "\n".join(rituel) + str(len(rituel)) if rituel else "")
                     else:
                         courses_elements.append("...................................................")    
                     

@@ -695,7 +695,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     if (course == "Ecriture / Copie") and (classes[niveau] == 4):
                         crs = "Ecrire en majiscule et en miniscule les lettres: "  + crs
                     if (course == "Ecriture / Copie") and (classes[niveau] in [1,2,3]):
-                        crs = ("Ecrire: "  + crs) if crs not None else crs
+                        crs =  f"Ecrire: {crs}" if crs is not None else crs
+
                     courses_elements.append(crs)
                    
                 # Rituel en lecture:

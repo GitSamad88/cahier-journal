@@ -670,7 +670,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-        rituel_lines = {}
+        rituel_lines = {0:1, 1:1}
         def courses(niveau, matiéres_cell):
             global classe_emploi
             classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]

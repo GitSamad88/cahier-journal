@@ -415,8 +415,11 @@ def rituel_lecture(manuel, level):
         if level == 6:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nKrhINMuy-uvgC1igDw7CzZ4ukdFGE1L1kFEoQOJ0QI/gviz/tq?tqx=out:csv&sheet=Rituel_fr_6aep")
         
+                       
+        rituel_ = rituel_.head(150) 
         rituel_["U"] = 1 + rituel_.index//25
-        rituel_["S"] = 1 + rituel_.index // 5
+        total_repeats = int(rituel_.shape[0]/25)
+        rituel_["S"] = [num for _ in range(total_repeats) for num in range(1,6) for _ in range(5)]
 
         return rituel_
     else :

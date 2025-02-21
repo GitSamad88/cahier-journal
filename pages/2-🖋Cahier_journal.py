@@ -693,7 +693,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if course in fr_repa.columns:
                     crs = fr_repa[course][1 + int(i[0] / 6)]
                     if (course == "Ecriture / Copie") and (classes[niveau] == 4):
-                        crs = "Ecrire en majiscule et en miniscule les lettres: "  + crs
+                        crs =  f"Ecrire en majiscule et en miniscule les lettres: {crs}" if crs is not None else crs
                     if (course == "Ecriture / Copie") and (classes[niveau] in [1,2,3]):
                         crs =  f"Ecrire: {crs}" if crs is not None else crs
 

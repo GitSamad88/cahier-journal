@@ -786,7 +786,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             sheet["G9"] = f"la longueur du rituel du niveau {classes[1]} est: {rituel_lines[1]}"
             
             # Class 0
-            sheet["H9"] = f"la longueur du rituel du niveau {classes[0]} est : {rituel_lines[0]}"
+            #sheet["H9"] = f"la longueur du rituel du niveau {classes[0]} est : {rituel_lines[0]}"
             sheet["C7"] = classes[0]
             courses(0, "D7")
             periode_seance(0, "E7", "G7")

@@ -670,7 +670,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-        rituel_lines = []
+        rituel_lines = {}
         def courses(niveau, matiéres_cell):
             global classe_emploi
             classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]
@@ -706,7 +706,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel = re.split(r'[.,]', rituel)
                         rituel = [rit for rit in rituel if rit != ''] 
-                        rituel_lines.append(len(rituel) if rituel else 1 )
+                        rituel_lines[niveau] = len(rituel) if rituel else 1 
                         courses_elements.append( "\n".join(rituel) + str(len(rituel)) if rituel else "")
                         
                     elif lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":
@@ -714,7 +714,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel = re.split(r'[.,]', rituel)
                         rituel = [rit for rit in rituel if rit != '']
-                        rituel_lines.append(len(rituel) if rituel else 1 )
+                        rituel_lines[niveau] = len(rituel) if rituel else 1 
                         courses_elements.append( "\n".join(rituel) + str(len(rituel)) if rituel else "")
                     else:
                         courses_elements.append("...................................................")    
@@ -751,10 +751,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
             sheet["F3"] = f'Théme:  {title}'
             course_element = [str(cours_elem) for cours_elem in courses_elements]
-            sheet[element_cell] = '\n'.join(course_element)
-            
-        sheet['H9'] = len(rituel_lines)
-            
+            sheet[element_cell] = '\n'.join(course_element)            
         def periode_seance(niveau, period_cell, seance_cell):
             for peda_day in classe_emploi["Jour"]:
                 if peda_day == (1 + len(weeks_days) % 6):
@@ -762,14 +759,18 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
                     sheet[period_cell] = "".join([str(num) + 3*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
                     sheet[seance_cell] = "".join([str(num) + 3*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
-                    #(rituel_lines[0]*"\n" if rituel_lines[0] != 0 else "\n")
+               
+        # Write periods, seances courses and there elements in a table on the sheet.
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:
-
+            # class 0
             sheet["C5"] = classes[0]
             courses(0, "D5") 
             periode_seance(0, "E5", "G5")
             course_element(0, "F5")
-
+            sheet['H9'] = f"la longueur du rituel du niveau {classes[0]} est : {rituel_lines[0}"
+            
+            #Class 1
+            sheet['G9'] = f"la longueur du rituel du niveau {classes[1]} est: {rituel_lines[1]}"
             sheet["C7"] = classes[1]
             courses(1, "D7")
             periode_seance(1, "E7", "G7")
@@ -777,11 +778,15 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
 
 
         else:
+            #Class 1
             sheet["C5"] = classes[1]
             courses(1, "D5")
             periode_seance(1, "E5", "G5")
             course_element(1, "F5")
-
+            sheet['G9'] = f"la longueur du rituel du niveau {classes[1]} est: {rituel_lines[1]}"
+            
+            # Class 0
+            sheet['H9'] = f"la longueur du rituel du niveau {classes[0]} est : {rituel_lines[0}"
             sheet["C7"] = classes[0]
             courses(0, "D7")
             periode_seance(0, "E7", "G7")

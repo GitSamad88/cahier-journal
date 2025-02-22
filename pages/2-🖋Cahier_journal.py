@@ -675,15 +675,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-        def courses(niveau, matiéres_cell):
-            global classe_emploi
-            classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]
-            for peda_day in classe_emploi["Jour"]:
-
-                if peda_day == (1 + len(weeks_days) % 6):
-                    global jour_emploi
-                    jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[matiéres_cell] = "".join([i+"\n\n\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"].to_list())
+        to_list())
         
         def course_element(niveau, element_cell):
             courses_elements = []
@@ -745,6 +737,15 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
                 if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V","Rituel en maths"]:
                     courses_elements.append("...........................................................................")
+                    
+        def courses(niveau, matiéres_cell):
+            global classe_emploi
+            classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]
+            for peda_day in classe_emploi["Jour"]:
+                if peda_day == (1 + len(weeks_days) % 6):
+                    global jour_emploi
+                    jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
+                    sheet[matiéres_cell] = "".join([i + rituel_lines[niveau]*"\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"]. 
 
 
             if "U. D / Thème" in fr_peda_class(niveau).columns:
@@ -762,8 +763,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[period_cell] = "".join([str(num) + 3*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
-                    sheet[seance_cell] = "".join([str(num) + 3*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
+                    sheet[period_cell] = "".join([str(num) + rituel_lines[niveau]*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
+                    sheet[seance_cell] = "".join([str(num) + rituel_lines[niveau]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
                
         # Write periods, seances courses and there elements in a table on the sheet.
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:

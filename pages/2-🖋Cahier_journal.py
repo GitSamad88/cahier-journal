@@ -702,7 +702,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel_words = [rit for rit in rituel.split() 
                                          if rit not in ['',' ',":",";","a","à","de","la","le","un","une","et"] ]
-                       rituel_lines[niveau] = (1 + int(len(rituel_words)/10)) if rituel else 1 
+                        rituel_lines[niveau] = (1 + int(len(rituel_words)/10)) if rituel else 1 
                         courses_elements.append( rituel  if rituel else "")
                         
                     elif lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":

@@ -675,7 +675,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-        to_list())
         
         def course_element(niveau, element_cell):
             courses_elements = []

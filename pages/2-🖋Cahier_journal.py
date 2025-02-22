@@ -408,13 +408,14 @@ def rituel_lecture(manuel, level):
         if level == 3:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1oYzmmG7Q0qaEVm_pb1_Ewc0ZWLgQaO_DtmjntBwcDys/gviz/tq?tqx=out:csv&sheet=Rituel_fr_3aep")
             rituel_ = rituel_[["Jour","Semaine","Objectif","Objectif_Resume"]]
+            rituel_ = rituel_.reindex(range(150)
         if level == 4:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/183mIvzLuEbWCD-Y12DFrpTdhcaB5vCz4C1FE2nI69UY/gviz/tq?tqx=out:csv&sheet=Rituel_fr_4aep")
         if level == 5:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1XBvsaVmkHkxQpWQfZt4JKE9k6ZQ4-lyHibRwR1L0mb0/gviz/tq?tqx=out:csv&sheet=Rituel_fr_5aep")
         if level == 6:
             rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nKrhINMuy-uvgC1igDw7CzZ4ukdFGE1L1kFEoQOJ0QI/gviz/tq?tqx=out:csv&sheet=Rituel_fr_6aep")
-        
+            rituel_ = rituel_.reindex(range(150)
                        
         rituel_ = rituel_.head(150) 
         rituel_["U"] = 1 + rituel_.index//25
@@ -514,6 +515,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     math_manuels = [math_manuel1, math_manuel2]
     es_manuels = [es_manuel1, es_manuel2]
     lecture_manuels = [lecture_rituel1, lecture_rituel2]
+    rituel_lines = {0:1, 1:1}
 
     #"""------Sheet Format preparation------"""
     align = Alignment(horizontal="center",
@@ -673,7 +675,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (EvSc_Week_Repa)
             else:
                 return my_class
-        rituel_lines = {0:1, 1:1}
         def courses(niveau, matiéres_cell):
             global classe_emploi
             classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]

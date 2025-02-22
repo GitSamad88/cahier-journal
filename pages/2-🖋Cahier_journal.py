@@ -676,7 +676,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             else:
                 return my_class
                 
-         courses_elements = []
+        courses_elements = []
         def course_element(niveau, element_cell):
             jour_emploi = classe_emploi[classe_emploi["Jour"] == 1 + len(weeks_days) % 6]
             emplois_week_Maths = classe_emploi[classe_emploi["Matière"] == "Maths"]

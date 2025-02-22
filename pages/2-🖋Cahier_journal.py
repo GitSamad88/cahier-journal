@@ -676,8 +676,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             else:
                 return my_class
                 
-        courses_elements = []
         def course_element(niveau, element_cell):
+            courses_elements = []
             jour_emploi = classe_emploi[classe_emploi["Jour"] == 1 + len(weeks_days) % 6]
             emplois_week_Maths = classe_emploi[classe_emploi["Matière"] == "Maths"]
             emplois_week_EvSc = classe_emploi[classe_emploi["Matière"] == "Eveil Scientifique"]
@@ -737,6 +737,16 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V","Rituel en maths"]:
                     courses_elements.append("...........................................................................")
                     
+            if "U. D / Thème" in fr_peda_class(niveau).columns:
+                title = fr_peda_class(niveau)["U. D / Thème"][1 + int(i[0] / 6)]
+            elif "Thème" in fr_peda_class(niveau).columns:
+                title = fr_peda_class(niveau)["Thème"][1 + int(i[0] / 6)]
+            else: title=""
+            sheet["F3"] = f'Théme:  {title}'
+            course_element = [str(cours_elem) for cours_elem in courses_elements]
+            sheet[element_cell] = '\n'.join(course_element) 
+
+
         def courses(niveau, matiéres_cell):
             global classe_emploi
             classe_emploi = emplois[emplois["Niveau"] == classes[niveau]]
@@ -745,18 +755,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
                     sheet[matiéres_cell] = "".join([i + rituel_lines[niveau]*"\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"]. 
-
-
-            if "U. D / Thème" in fr_peda_class(niveau).columns:
-                title = fr_peda_class(niveau)["U. D / Thème"][1 + int(i[0] / 6)]
-            elif "Thème" in fr_peda_class(niveau).columns:
-                title = fr_peda_class(niveau)["Thème"][1 + int(i[0] / 6)]
-            else: title=""
-
-
-            sheet["F3"] = f'Théme:  {title}'
-            course_element = [str(cours_elem) for cours_elem in courses_elements]
-            sheet[element_cell] = '\n'.join(course_element)            
+        
         def periode_seance(niveau, period_cell, seance_cell):
             for peda_day in classe_emploi["Jour"]:
                 if peda_day == (1 + len(weeks_days) % 6):

@@ -424,11 +424,39 @@ def rituel_lecture(manuel, level):
 
         return rituel_
     else :
-        return None    
+        return None 
+    
+def rituel_maths(manuel, level):
+    
+    if manuel == "Rituels en maths (objectifs génèrés par le IA)":
+        
+        if level == 1:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nDXuZ1t1N4QQECt9nqE6OH0rdHPcf-xf3NDVVmut93Q/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_1aep")
+        if level == 2:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1nzoeggZmezifbujDQ-cfayLNVsjhqvAtR6jQxuoF8lk/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_2aep")
+        if level == 3:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1BQW1irTXkxxzns-OmenFiUIy6PNc9PUga03q9vWg37o/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_3aep")
+        if level == 4:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1lmkp11WYPQx7CYend1btSm7Ht47Ls6yYumdG2n9HjDQ/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_4aep")
+        if level == 5:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/1jbf2U0LocrqZz9SjS_S_6EN2UNwBUKee2JvVa4-35rA/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_5aep")
+        if level == 6:
+            rituel_ = pd.read_csv("https://docs.google.com/spreadsheets/d/11sV5obwHITRkLXmVnS7-5Uxf3ibuqv91d-3jije8Z5g/gviz/tq?tqx=out:csv&sheet=Maths_Rituls_Obj_6aep")
+        
+        rituel_ = rituel_.reindex(range(150))
+        rituel_["U"] = 1 + rituel_.index//25
+        total_repeats = int(rituel_.shape[0]/25)
+        rituel_["S"] = [num for _ in range(total_repeats) for num in range(1,6) for _ in range(5)]
+        rituel_["Jour"] = 1 + rituel_.index % 5
+
+
+        return rituel_
+    else :
+        return None 
 
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
 @st.cache_resource(show_spinner=False)
-def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2, math_rituel1, math_rituel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()
     emplois=st.session_state["emplois"]
@@ -458,6 +486,11 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     fr_rituel_class_1 = rituel_lecture(manuel=lecture_rituel1, level=C1)
     fr_rituel_class_2 = rituel_lecture(manuel=lecture_rituel2, level=C2)
     fr_rituel_class = [fr_rituel_class_1, fr_rituel_class_2]
+    
+    # Rituel en Maths 
+    maths_rituel_class_1 = rituel_maths(manuel = maths_rituel1, level = C1)
+    maths_rituel_class_2 = rituel_maths(manuel = maths_rituel2, level = C2)
+    maths_rituel_class = [maths_rituel_class_1, maths_rituel_class_2]
 
     
 
@@ -513,6 +546,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     classes = [C1, C2]
     fr_manuels = [fr_manuel1, fr_manuel2]
     math_manuels = [math_manuel1, math_manuel2]
+    maths_rituels = [math_rituel1, math_rituel2]
     es_manuels = [es_manuel1, es_manuel2]
     lecture_manuels = [lecture_rituel1, lecture_rituel2]
     rituel_lines = {0:1, 1:1}
@@ -645,6 +679,16 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 return (maths_Week_Repa)
             else:
                 return my_class
+                
+        # Ritual of maths        
+        def maths_rituel_peda_class(niveau):
+            my_class = maths_rituel_class[niveau]
+            if type(my_class) == pd.core.frame.DataFrame:
+                maths_rituel_Unite_Repa = my_class[my_class["U"] == 3 ]
+                maths_rituel_Week_Repa = maths_rituel_Unite_Repa[maths_rituel_Unite_Repa["S"] == 4 ]
+                return (maths_rituel_Week_Repa)
+            else:
+                return my_class
 
         # Frensh
         def fr_peda_class(niveau):
@@ -724,6 +768,16 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(math_repa["Maths"][indices[0]])
+                            
+                # Rituel en lecture
+                if (course == "Rituel en maths"):
+                    maths_rituel_repa = maths_rituel_peda_class(0)
+                    if maths_rituels[0] == "Rituels en maths (objectifs génèrés par le IA)":
+                      maths_rituel = maths_rituel_repa[maths_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
+                      rituel = maths_rituel.to_list()[0] if maths_rituel.to_list() else "Rituel en maths"
+                      courses_elements.append( str(rituel).strip()  if rituel else "")
+                    else:
+                      courses_elements.append("...................................................")
 
                 # Eveil Scientifique:
                 es_repa = EvSc_peda_class(niveau)
@@ -875,7 +929,7 @@ if not st.session_state["LOGGED_IN"]:
         if __name__ == "__main__":
             login()
             st.info(
-                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour le créer.",
                 icon="ℹ️")
 else :
     login()
@@ -990,19 +1044,13 @@ else :
                                                    else [None],
                                                    key="fr2", max_selections=1)
             
-            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} ",
+            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} et {level2[0]}",
                                                      ["Mes rituels en lecture (Objectifs complets)",
                                                       "Mes rituels en lecture (Objectifs résumés par IA)",
                                                       "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel1",
                                                      max_selections=1)
-            fr_rituel_manual_name2 =  fr_rituel_manual_name1 #form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level2[0]} ",
-                                                    # ["Mes rituels en lecture (Objectifs complets)",
-                                                    # "Mes rituels en lecture (Objectifs résumés par IA)",
-                                                    #  "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
-                                                    # key = "lecture_rituel2",
-                                                    # max_selections=1)
-           
+            fr_rituel_manual_name2 =  fr_rituel_manual_name1 
 
             # Maths
             maths_manual_name1 = form.multiselect(f"Choisissez le manuel de maths pour le niveau: {level1[0]}",
@@ -1024,6 +1072,17 @@ else :
                                                   else [i for i in Maths_dispo_manuels6 if i != ""] if level2[0] == 6
                                                   else [None],
                                                   key="math2", max_selections=1)
+            
+            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en maths pour les niveaux: {level1[0]} et {level2[0]} ",
+                                                     ["Rituels en maths (objectifs génèrés par le IA)",
+                                                      "Rituels en maths personalisés"],
+                                                     key = "maths_rituel1",
+                                                     max_selections=1)
+            fr_rituel_manual_name2 = fr_rituel_manual_name1
+
+
+
+            
 
             # Act. Sc.
             act_sc_manual_name1 = form.multiselect(f"Choisissez le manuel d'éveil scientifique pour le niveau:{level1[0]}",
@@ -1106,7 +1165,9 @@ else :
             if all(len(val) != 0 for val in options) and (enregistre == True):
                 
 
-                selected_manuels.extend([level1, level2, french_manual_name1, french_manual_name2, fr_rituel_manual_name1,
+                selected_manuels.extend([level1, level2, french_manual_name1,
+                                         french_manual_name2, fr_rituel_manual_name1,
+                                         maths_manual_name1, maths_manual_name2, 
                                          maths_manual_name1, maths_manual_name2,
                                          act_sc_manual_name1, act_sc_manual_name2])
 
@@ -1129,6 +1190,8 @@ else :
                                   fr_manuel2 = french_manual_name2[0],
                                   lecture_rituel1 = fr_rituel_manual_name1[0],
                                   lecture_rituel2 = fr_rituel_manual_name2[0],
+                                  math_rituel1 = fr_rituel_manual_name1[0],
+                                  math_rituel2 = fr_rituel_manual_name2[0],
                                   math_manuel1 = maths_manual_name1[0],
                                   math_manuel2 = maths_manual_name2[0],
                                   es_manuel1 = act_sc_manual_name1[0],

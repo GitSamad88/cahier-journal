@@ -488,8 +488,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
     fr_rituel_class = [fr_rituel_class_1, fr_rituel_class_2]
     
     # Rituel en Maths 
-    maths_rituel_class_1 = rituel_maths(manuel = maths_rituel1, level = C1)
-    maths_rituel_class_2 = rituel_maths(manuel = maths_rituel2, level = C2)
+    maths_rituel_class_1 = rituel_maths(manuel = math_rituel1, level = C1)
+    maths_rituel_class_2 = rituel_maths(manuel = math_rituel2, level = C2)
     maths_rituel_class = [maths_rituel_class_1, maths_rituel_class_2]
 
     

@@ -633,7 +633,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
 
-        sheet["F2"] = f'Date: ............................................... '#{str_date}'
+        sheet["F2"] = f'Date: ............................................... '
 
         #----------------in and out time---------------------
 
@@ -680,17 +680,17 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             else:
                 return my_class
                 
-        # Ritual of maths        
+        # Rituel de maths        
         def maths_rituel_peda_class(niveau):
             my_class = maths_rituel_class[niveau]
             if type(my_class) == pd.core.frame.DataFrame:
-                maths_rituel_Unite_Repa = my_class[my_class["U"] == 3 ]
-                maths_rituel_Week_Repa = maths_rituel_Unite_Repa[maths_rituel_Unite_Repa["S"] == 4 ]
+                maths_rituel_Unite_Repa = my_class[my_class["U"] == 1 + list(Unites.values()).index(unite) ]
+                maths_rituel_Week_Repa = maths_rituel_Unite_Repa[maths_rituel_Unite_Repa["S"] == 1 + int(i[0] / 6) ]
                 return (maths_rituel_Week_Repa)
             else:
                 return my_class
 
-        # Frensh
+        # Français
         def fr_peda_class(niveau):
             my_class =fr_class[niveau]
             if type(my_class) == pd.core.frame.DataFrame:
@@ -700,7 +700,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
             else:
                 return my_class
                 
-        # Ritual of Lecture        
+        # Rituel de Lecture        
         def fr_rituel_peda_class(niveau):
             my_class = fr_rituel_class[niveau]
             if type(my_class) == pd.core.frame.DataFrame:
@@ -771,8 +771,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                             
                 # Rituel en lecture
                 if (course == "Rituel en maths"):
-                    maths_rituel_repa = maths_rituel_peda_class(0)
-                    if maths_rituels[0] == "Rituels en maths (objectifs génèrés par le IA)":
+                    maths_rituel_repa = maths_rituel_peda_class(niveau)
+                    if maths_rituels[niveau] == "Rituels en maths (objectifs génèrés par le IA)":
                       maths_rituel = maths_rituel_repa[maths_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif"]
                       rituel = maths_rituel.to_list()[0] if maths_rituel.to_list() else "Rituel en maths"
                       courses_elements.append( str(rituel).strip()  if rituel else "")
@@ -788,8 +788,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
-                if course in ["Act. rituelle","Amazigh & A.V.S","D.C.V","Rituel en maths"]:
-                    courses_elements.append("...........................................................................")
+                if course in ["Amazigh & A.V.S","D.C.V"]:
+                    courses_elements.append("......................................................")
                     
             if "U. D / Thème" in fr_peda_class(niveau).columns:
                 title = fr_peda_class(niveau)["U. D / Thème"][1 + int(i[0] / 6)]
@@ -808,15 +808,15 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[matiéres_cell] = "".join([i + rituel_lines[niveau]*"\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) #'\n'.join(jour_emploi["Matière"]. 
+                    sheet[matiéres_cell] = "".join([i + rituel_lines[niveau]*"\n" if i == "Rituel en lecture" else i+"\n" for i in jour_emploi["Matière"]]) 
         
         def periode_seance(niveau, period_cell, seance_cell):
             for peda_day in classe_emploi["Jour"]:
                 if peda_day == (1 + len(weeks_days) % 6):
                     global jour_emploi
                     jour_emploi = classe_emploi[classe_emploi["Jour"] == peda_day]
-                    sheet[period_cell] = "".join([str(num) + rituel_lines[niveau]*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])#'\n'.join(jour_emploi["Durée"].to_list())
-                    sheet[seance_cell] = "".join([str(num) + rituel_lines[niveau]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])#'\n'.join(jour_emploi["Séance"].to_list())
+                    sheet[period_cell] = "".join([str(num) + rituel_lines[niveau]*"\n"  if (num=="10")  and (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Durée"].to_list())])
+                    sheet[seance_cell] = "".join([str(num) + rituel_lines[niveau]*"\n" if (i==2) else str(num)+"\n"  for i,num in enumerate(jour_emploi["Séance"].to_list())])
                
         # Write periods, seances courses and there elements in a table on the sheet.
         if date_list[0] in ["lundi", "mercredi", "vendredi"]:

@@ -1073,12 +1073,12 @@ else :
                                                   else [None],
                                                   key="math2", max_selections=1)
             
-            fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en maths pour les niveaux: {level1[0]} et {level2[0]} ",
+            math_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en maths pour les niveaux: {level1[0]} et {level2[0]} ",
                                                      ["Rituels en maths (objectifs génèrés par le IA)",
                                                       "Rituels en maths personalisés"],
                                                      key = "maths_rituel1",
                                                      max_selections=1)
-            fr_rituel_manual_name2 = fr_rituel_manual_name1
+            math_rituel_manual_name2 = math_rituel_manual_name1
 
 
 
@@ -1190,8 +1190,8 @@ else :
                                   fr_manuel2 = french_manual_name2[0],
                                   lecture_rituel1 = fr_rituel_manual_name1[0],
                                   lecture_rituel2 = fr_rituel_manual_name2[0],
-                                  math_rituel1 = fr_rituel_manual_name1[0],
-                                  math_rituel2 = fr_rituel_manual_name2[0],
+                                  math_rituel1 = math_rituel_manual_name1[0],
+                                  math_rituel2 = math_rituel_manual_name2[0],
                                   math_manuel1 = maths_manual_name1[0],
                                   math_manuel2 = maths_manual_name2[0],
                                   es_manuel1 = act_sc_manual_name1[0],

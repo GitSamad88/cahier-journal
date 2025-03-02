@@ -749,7 +749,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                         rituel_lines[niveau] = (1 + int(len(rituel_words)/10)) if rituel else 1 
                         courses_elements.append( str(rituel).strip()  if rituel else "")
                         
-                    if lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":
+                    elif lecture_manuels[niveau] == "Mes rituels en lecture (Objectifs résumés par IA)":
                         fr_rituel = fr_rituel_repa[fr_rituel_repa["Jour"] == 1 + int(i[0] / 6) ]["Objectif_Resume"]
                         rituel = fr_rituel.to_list()[0] if fr_rituel.to_list() else "Rituel en lecture"
                         rituel_words = [rit for rit in rituel.split() 

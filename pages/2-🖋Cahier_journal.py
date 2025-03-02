@@ -1047,7 +1047,7 @@ else :
             fr_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en lecture pour les niveaux: {level1[0]} et {level2[0]}",
                                                      ["Mes rituels en lecture (Objectifs complets)",
                                                       "Mes rituels en lecture (Objectifs résumés par IA)",
-                                                      "rituels personalisés(un espace sera disponible pour ajouter vos rituels.)"],
+                                                      "Rituels personalisés (un espace sera disponible pour ajouter vos rituels.)"],
                                                      key = "lecture_rituel1",
                                                      max_selections=1)
             fr_rituel_manual_name2 =  fr_rituel_manual_name1 

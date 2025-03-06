@@ -291,7 +291,7 @@ def EvSc_manuel_level(level, manuel):
 
         es_fadaa2 = es_fadaa3 =es_fadaa5= pd.DataFrame()
         pd.DataFrame()
-        es_fadaa4 = pd.read_csv("https://docs.google.com/spreadsheets/d/1QM8kJ1YBexKcdPWAPBWg8Jz7H8u4RPehvfco6zMfqCU"+linkc+"Repa_EvSc_Fadaa_4aep")
+        es_fadaa4 = pd.read_csv("https://docs.google.com/spreadsheets/d/12i49DAfFhaunn_tvW7H6GvbkbwuleW8uQttARZB5EpE"+linkc+"Repa_EvSc_Fadaa_4aep")
         es_fadaa4["Séance"] = [json.loads(es_fadaa4["Séance"][i]) for i in range(len(es_fadaa4["Séance"]))]
 
         es_fadaa6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1u4z1-1t_KqqeRRXmwlIS7PNPvUjZL_dLErNjmqm3HkM"+linkc+"Repa_EvSc_Fada2_6aep")
@@ -792,9 +792,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                     for s in list(es_repa["Séance"]):
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
-                            courses_elements.append(es_repa["Eveil Scientifique"][indices[0]] 
-                                                    if evsc_course_lang=="Arabe"
-                                                    else es_repa['Eveil Scientifique (fr)'][indices[0]] )#Eveil Scientifique (fr)
+                            courses_elements.append(es_repa["Eveil Scientifique"][indices[0]] if evsc_course_lang=="Arabe" else es_repa['Eveil Scientifique (fr)'][indices[0]] )#Eveil Scientifique (fr)
                             
                 if course in ["Amazigh & A.V.S","D.C.V"]:
                     courses_elements.append("......................................................")

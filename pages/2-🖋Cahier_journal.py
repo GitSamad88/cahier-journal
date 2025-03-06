@@ -794,7 +794,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
                             courses_elements.append(es_repa["Eveil Scientifique"][indices[0]] 
                                                     if evsc_course_lang=="Arabe"
-                                                    else es_repa["Eveil Scientifique (fr)"][indices[0]] )#Eveil Scientifique (fr)
+                                                    else es_repa['Eveil Scientifique (fr)'][indices[0]] )#Eveil Scientifique (fr)
                             
                 if course in ["Amazigh & A.V.S","D.C.V"]:
                     courses_elements.append("......................................................")

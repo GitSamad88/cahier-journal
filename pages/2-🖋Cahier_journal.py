@@ -277,7 +277,7 @@ def EvSc_manuel_level(level, manuel):
     if manuel=="الجديد":
         #""""----Jadid----"""
         es_Jadid1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1s61a71JzE4MQsC5AYRy20kTlpYskfuU8UovoU9yfeJg"+linkc+"Repa_EvSc_Jadid_1aep")
-        es_Jadid1 = es_Jadid1[["U", "S", "Eveil Scientifique","Eveil Scientifique (fr)", "Séance"]].dropna(axis=0)
+        es_Jadid1 = es_Jadid1[["U", "S", "Eveil Scientifique", "Séance","Eveil Scientifique (fr)"]].dropna(axis=0)
         es_Jadid1["Séance"] = [json.loads(es_Jadid1["Séance"][i]) for i in range(len(es_Jadid1["Séance"]))]
 
         es_Jadid2 = es_Jadid3 = es_Jadid4 = es_Jadid5 = es_Jadid6 = pd.DataFrame()
@@ -295,7 +295,7 @@ def EvSc_manuel_level(level, manuel):
         es_fadaa4["Séance"] = [json.loads(es_fadaa4["Séance"][i]) for i in range(len(es_fadaa4["Séance"]))]
 
         es_fadaa6 = pd.read_csv("https://docs.google.com/spreadsheets/d/1u4z1-1t_KqqeRRXmwlIS7PNPvUjZL_dLErNjmqm3HkM"+linkc+"Repa_EvSc_Fada2_6aep")
-        es_fadaa6 = es_fadaa6[["U", "S", "Eveil Scientifique","Eveil Scientifique (fr)", "Séance"]].dropna(axis=0)
+        es_fadaa6 = es_fadaa6[["U", "S", "Eveil Scientifique", "Séance", "Eveil Scientifique (fr)"]].dropna(axis=0)
         es_fadaa6["Séance"] = [json.loads(es_fadaa6["Séance"][i]) for i in range(len(es_fadaa6["Séance"]))]
         es_fadaa_manuel = [es_fadaa1,es_fadaa2,es_fadaa3, es_fadaa4, es_fadaa5,es_fadaa6]
         EvSc_manuels["الفضاء"]= es_fadaa_manuel
@@ -306,11 +306,11 @@ def EvSc_manuel_level(level, manuel):
         manhal1 = manhal2 = manhal4 = manhal6 = pd.DataFrame()
 
         manhal3=pd.read_csv("https://docs.google.com/spreadsheets/d/1tPN6uHeAEci7tizdQ_FXxzmzMCVO_5G_Y_ZBkojODc8"+linkc+"Repa_EvSc_Manhal_3aep")
-        manhal3 = manhal3[["U", "S", "Eveil Scientifique","Eveil Scientifique (fr)", "Séance"]].dropna(axis=0)
+        manhal3 = manhal3[["U", "S", "Eveil Scientifique", "Séance","Eveil Scientifique (fr)"]].dropna(axis=0)
         manhal3["Séance"] = [json.loads(manhal3["Séance"][i]) for i in range(len(manhal3["Séance"]))]
 
         manhal5 = pd.read_csv("https://docs.google.com/spreadsheets/d/1Ecdj4XNidyM7cykdN3SgGOBfcWslTQd1zUxwAnxVsqU"+linkc+"Repa_EvSc_Manhal_5aep")
-        manhal5 = manhal5[["U", "S", "Eveil Scientifique", "Séance"]].dropna(axis=0)
+        manhal5 = manhal5[["U", "S", "Eveil Scientifique", "Séance","Eveil Scientifique (fr)"]].dropna(axis=0)
         manhal5["Séance"] = [json.loads(manhal5["Séance"][i]) for i in range(len(manhal5["Séance"]))]
         manhal_manuel = [manhal1,manhal2,manhal3,manhal4,manhal5,manhal6]
         EvSc_manuels["المنهل"]=manhal_manuel

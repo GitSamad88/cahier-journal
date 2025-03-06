@@ -456,7 +456,8 @@ def rituel_maths(manuel, level):
 
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
 @st.cache_resource(show_spinner=False)
-def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2, math_rituel1, math_rituel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2,maths_course_lang, 
+          math_rituel1, math_rituel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
     global buffer
     buffer = BytesIO()
     emplois=st.session_state["emplois"]
@@ -767,7 +768,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     for s in list(math_repa["Séance"]):
                         if seance in s:
                             indices = math_repa[math_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
-                            courses_elements.append(math_repa["Maths"][indices[0]])
+                            courses_elements.append(math_repa["Maths"][indices[0]] if maths_course_lang == "Arabe" else math_repa["Maths (fr)"][indices[0]])
                             
                 # Rituel en lecture
                 if (course == "Rituel en maths"):
@@ -1073,6 +1074,9 @@ else :
                                                   else [None],
                                                   key="math2", max_selections=1)
             
+            maths_cours_language = form.multiselect(f"Choisissez la langue de l'intitulé du cours de mathématiques pour les niveaux: {level1[0]} et {level2[0]}",
+                                                   ["Arabe","Français"],key = "title_language")
+                                                  
             math_rituel_manual_name1 = form.multiselect(f"Choisissez le manuel de rituel en maths pour les niveaux: {level1[0]} et {level2[0]} ",
                                                      ["Rituels en maths (objectifs génèrés par le IA)",
                                                       "Rituels en maths personalisés"],
@@ -1194,6 +1198,7 @@ else :
                                   math_rituel2 = math_rituel_manual_name2[0],
                                   math_manuel1 = maths_manual_name1[0],
                                   math_manuel2 = maths_manual_name2[0],
+                                  maths_course_lang = maths_cours_language[0],
                                   es_manuel1 = act_sc_manual_name1[0],
                                   es_manuel2 = act_sc_manual_name2[0],
                                   C1 = level1[0],

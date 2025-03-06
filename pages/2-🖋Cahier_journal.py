@@ -456,8 +456,12 @@ def rituel_maths(manuel, level):
 
 # 2 weeks for ED, 5 weeks for each Unit and 1 week for each EV ,pedagical_week=6 days
 @st.cache_resource(show_spinner=False)
-def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, math_manuel2,maths_course_lang, 
-          math_rituel1, math_rituel2, es_manuel1, es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
+          lecture_rituel2,math_manuel1, math_manuel2,
+          maths_course_lang,evsc_course_lang,
+          math_rituel1, math_rituel2, es_manuel1, 
+          es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+    
     global buffer
     buffer = BytesIO()
     emplois=st.session_state["emplois"]
@@ -788,7 +792,10 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1, lecture_rituel2,math_manuel1, 
                     for s in list(es_repa["Séance"]):
                         if seance in s:
                             indices = es_repa[es_repa['Séance'].apply(lambda x: any(item in x for item in s))].index
-                            courses_elements.append(es_repa["Eveil Scientifique"][indices[0]])
+                            courses_elements.append(es_repa["Eveil Scientifique"][indices[0]] 
+                                                    if evsc_course_lang=="Arabe"
+                                                    else es_repa["Eveil Scientifique (fr)"][indices[0]] )
+                            
                 if course in ["Amazigh & A.V.S","D.C.V"]:
                     courses_elements.append("......................................................")
                     
@@ -1108,6 +1115,8 @@ else :
                                                    else [i for i in EvSc_available_manules6 if i !=""] if level2[0] == 6
                                                    else [None],
                                                    key="evsc2", max_selections=1)
+            evsc_cours_language = form.multiselect(f"Choisissez la langue de l'intitulé du cours d'eveil scientifique pour les niveaux: {level1[0]} et {level2[0]}",
+                                                   ["Arabe","Français"],key = "title_language1")
             # Select Period
             period = form.selectbox("sélectionnez la séance de Lundi", ["Matinée", "Après midi"])
 
@@ -1201,6 +1210,7 @@ else :
                                   maths_course_lang = maths_cours_language[0],
                                   es_manuel1 = act_sc_manual_name1[0],
                                   es_manuel2 = act_sc_manual_name2[0],
+                                  evsc_course_lang = evsc_cours_language[0],
                                   C1 = level1[0],
                                   C2 = level2[0],
                                   séance_de_lundi = period,

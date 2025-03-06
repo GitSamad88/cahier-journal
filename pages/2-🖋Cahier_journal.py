@@ -1118,7 +1118,6 @@ else :
             evsc_cours_language = form.multiselect(f"Choisissez la langue de l'intitulé du cours d'eveil scientifique pour les niveaux: {level1[0]} et {level2[0]}",
                                                    ["Arabe","Français"],key = "title_language1")
 
-            test = form.multiselect("test", ["Ar","Fr"],key = "test")
             # Select Period
             period = form.selectbox("sélectionnez la séance de Lundi", ["Matinée", "Après midi"])
 

@@ -222,7 +222,7 @@ def maths_manuel_level(manuel, level):
         fada1 = pd.read_csv("https://docs.google.com/spreadsheets/d/1fUZRGEnZXn8WNQ0557sQAvcC3ejCzXlUAQVUZ2UHhQQ"+linkc+"Repa_Maths_Fada2_1aep")
         fada4 = fada5 = fada6 = pd.DataFrame()
         fada2 = pd.read_csv("https://docs.google.com/spreadsheets/d/1kNDJfembuOL47-xtL7_tLM_OMk5mDyJlndD5s9v1JQw"+linkc+"Repa_Maths_Fada2_2aep")
-        fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1zM_tG0zlfV3So3CFOsO2Aaqk4Ca6g_UX093gTZrfotM"+linkc+"Repa_Maths_Fada2_3aep")
+        fada3 = pd.read_csv("https://docs.google.com/spreadsheets/d/1P0nWOagjVsQRY_E4Qn_0bY5oDI8Nia11OczaVyA-tn4"+linkc+"Repa_Maths_Fada2_3aep")
         Fadaa = [fada1, fada2, fada3, fada4, fada5, fada6]
         Maths_manuels["الفضاء"] = Fadaa
 

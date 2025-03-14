@@ -80,7 +80,7 @@ def emplois_df(emplois):
     emplois.dropna(inplace=True)
     emplois.index=range(emplois.shape[0])
     #st.table(emplois)
-    csv_file = emplois.to_csv(encoding="utf-8-sig",index=False)
+    csv_file = emplois.to_csv(index=False)
     st.download_button(
         label="Téléchargez votre emplois",
         data=csv_file,
@@ -194,7 +194,7 @@ elif creat_or_import == "Importer votre emplois":
     if file is not None:
         # Read the CSV file into a DataFrame
 
-        emplois = pd.read_csv(file, encoding ="utf-8")
+        emplois = pd.read_csv(file)
         if all(item in list(emplois.columns) for item in ["Jour", "Matière", "Séance", "Durée", "Niveau"]):
             emplois.dropna(inplace=True)
             emplois.index = range(emplois.shape[0])

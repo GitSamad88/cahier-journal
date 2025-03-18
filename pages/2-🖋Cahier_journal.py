@@ -900,8 +900,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
             sheet.row_dimensions[row[0].row].height = max_height
-    for sheet in sheets:
-        autofit_columns_and_rows(sheet = sheet)
+
     wb.save(buffer)
     return buffer
 
@@ -1165,7 +1164,7 @@ else :
                                        key="outeven_t",step=dt.timedelta(minutes=5))
             outeven_t = dt.timedelta(hours=outeven_t.hour, minutes=outeven_t.minute)
             # select the recreation time
-            rec_t = form.time_input("Sélectionnez la durée de la rècreation:",dt.time(minute=10),
+            rec_t = form.time_input("Sélectionnez la durée de la rècréation:",dt.time(minute=10),
                                     key= "rec_t",step=dt.timedelta(minutes=1))
             rec_t = dt.timedelta(minutes=rec_t.minute)
 

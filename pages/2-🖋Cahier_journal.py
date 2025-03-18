@@ -507,13 +507,14 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         "March_vert": [dt.date(2024, 11, 6)],
         "Aid_isstiklal": [dt.date(2024, 11, 18)],
         "V2S1": np.arange(dt.date(2024, 12, 8), dt.date(2024, 12, 15)),
-        "Bonne_annee": [dt.date(2024, 1, 1)],
+        "Bonne_annee": [dt.date(2025, 1, 1)],
         "Watika_Isstiklala": [dt.date(2025, 1, 11)],
         "Amazigh_Day": [dt.date(2025, 1, 14)],
         "Middle_V": np.arange(dt.date(2025, 1, 26), dt.date(2025, 2, 2)),
-        "V1S2": np.arange(dt.date(2025, 3, 16), dt.date(2025, 3, 22)),
-        "Aid_Fiter": np.arange(dt.date(2025, 3, 31), dt.date(2025, 4, 1)),
-        "V2S2": np.arange(dt.date(2025, 5, 4), dt.date(2024, 5, 11)),
+        "V1S2": np.arange(dt.date(2025, 3, 16), dt.date(2025, 3, 23)),
+        "Aid_Fiter": np.arange(dt.date(2025, 3, 31), dt.date(2025, 4, 2)),
+        "fete_de_travail": [dt.date(2025, 5, 1)],
+        "V2S2": np.arange(dt.date(2025, 5, 4), dt.date(2024, 5, 12)),
         "Aid_Adha": [dt.date(2025, 6, 6), dt.date(2025, 6, 7)]
     })
 

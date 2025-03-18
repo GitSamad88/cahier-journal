@@ -629,7 +629,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         sheet["B9"] = f"CITATION: {citation[random_list[i[0]]]}"
 
         # remarque
-        # sheet.merge_cells('B9:E9')
+        #sheet.merge_cells('B9:E9')
         sheet["F9"] = "REMARQUES: "
 
         sheet.merge_cells('B6:H6')
@@ -638,7 +638,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
 
-        sheet["F2"] = f'Date: ............................................... '
+        sheet["F2"] = f'Date: {str_date}'# ............................................... '
 
         #----------------in and out time---------------------
 
@@ -900,8 +900,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                     max_height = max(max_height, lines * 15)  # Approximate row height
             
             sheet.row_dimensions[row[0].row].height = max_height
-    #for sheet in sheets:
-     #   autofit_columns_and_rows(sheet = sheet)
+    for sheet in sheets:
+        autofit_columns_and_rows(sheet = sheet)
     wb.save(buffer)
     return buffer
 

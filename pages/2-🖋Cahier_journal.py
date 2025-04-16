@@ -875,7 +875,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         weeks_days.append(i[0])
     wb.save(buffer)
     # """...........................Save the workbook in an xlsx file........................"""
-    def swap_button(workbook)
+    def swap_button(workbook):
+        
         random_name = ''.join(random.choices(string.ascii_letters, k=4))
         xlsx_file = f'{random_name}_sheet.xlsx'
         wb.save(xlsx_file)

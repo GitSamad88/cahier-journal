@@ -895,7 +895,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                 '''
 
     # === Step 2: Open with xlwings and inject macro + button ===
-
+    print(type(xw))
     app = xw.App(visible=False)
     wb_xlw = app.books.open(os.path.abspath(xlsx_file))
     # Add macro module
@@ -919,8 +919,8 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     with tempfile.NamedTemporaryFile(suffix=".xlsm", delete=False) as tmp:
         temp_xlsm_path = tmp.name
     wb_xlw.save(temp_xlsm_path)
-    #wb_xlw.close()
-    #app.quit()  
+    wb_xlw.close()
+    app.quit()  
     # Load file into BytesIO buffer
     with open(temp_xlsm_path, 'rb') as f:
         buffer.write(f.read())

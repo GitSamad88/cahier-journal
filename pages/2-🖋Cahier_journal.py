@@ -873,61 +873,63 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
-
+    wb.save(buffer)
     # """...........................Save the workbook in an xlsx file........................"""
-    random_name = ''.join(random.choices(string.ascii_letters, k=4))
-    xlsx_file = f'{random_name}_sheet.xlsx'
-    wb.save(xlsx_file)
-
-    #""" ......add a button using vba a code enabling user to swap the content of the linges 5 and 7......." 
-    #"""=== step 1 : create a vba code"""  
-    vba_code = '''
-                Sub SwapRanges()
-                
-                    Dim temp As Variant
-                    Dim i As Integer
-                    For i = 3 To 6 ' Iterate from column C (3) to F (6)
-                        temp = Cells(5, i).Value ' Row 5
-                        Cells(5, i).Value = Cells(7, i).Value ' Swap with Row 7
-                        Cells(7, i).Value = temp
-                    Next i
-                End Sub
-                '''
-
-    # === Step 2: Open with xlwings and inject macro + button ===
-    print(type(xw))
-    app = xw.App(visible=False)
-    wb_xlw = app.books.open(os.path.abspath(xlsx_file))
-    # Add macro module
-    vba_module = wb_xlw.api.VBProject.VBComponents.Add(1)
-    vba_module.Name = "SwapMacro" 
-    vba_module.CodeModule.AddFromString(vba_code)
-    # Add button to each sheet
-    for sheet in wb_xlw.sheets:
-        sheet.api.Activate()
+    def swap_button(workbook)
+        random_name = ''.join(random.choices(string.ascii_letters, k=4))
+        xlsx_file = f'{random_name}_sheet.xlsx'
+        wb.save(xlsx_file)
     
-        # Delete old buttons with the correct text
-        for btn in sheet.api.Buttons():
-            if btn.Text == "Echange des niveaux":
-                btn.Delete()
+        #""" ......add a button using vba a code enabling user to swap the content of the linges 5 and 7......." 
+        #"""=== step 1 : create a vba code"""  
+        vba_code = '''
+                    Sub SwapRanges()
+                    
+                        Dim temp As Variant
+                        Dim i As Integer
+                        For i = 3 To 6 ' Iterate from column C (3) to F (6)
+                            temp = Cells(5, i).Value ' Row 5
+                            Cells(5, i).Value = Cells(7, i).Value ' Swap with Row 7
+                            Cells(7, i).Value = temp
+                        Next i
+                    End Sub
+                    '''
     
-        button = sheet.api.Buttons().Add(80, 40, 80, 20)
-        button.OnAction = "SwapRanges" # Link to the correct macro name
-        button.Text = "Echange des niveaux"
+        # === Step 2: Open with xlwings and inject macro + button ===
+        print(type(xw))
+        app = xw.App(visible=False)
+        wb_xlw = app.books.open(os.path.abspath(xlsx_file))
+        # Add macro module
+        vba_module = wb_xlw.api.VBProject.VBComponents.Add(1)
+        vba_module.Name = "SwapMacro" 
+        vba_module.CodeModule.AddFromString(vba_code)
+        # Add button to each sheet
+        for sheet in wb_xlw.sheets:
+            sheet.api.Activate()
         
-    # Step 3: Save to real xlsm file, then load into BytesIO
-    with tempfile.NamedTemporaryFile(suffix=".xlsm", delete=False) as tmp:
-        temp_xlsm_path = tmp.name
-    wb_xlw.save(temp_xlsm_path)
-    wb_xlw.close()
-    app.quit()  
-    # Load file into BytesIO buffer
-    with open(temp_xlsm_path, 'rb') as f:
-        buffer.write(f.read())
-
-    # Reset stream position
-    buffer.seek(0)
-    #wb_xlw.save(buffer)
+            # Delete old buttons with the correct text
+            for btn in sheet.api.Buttons():
+                if btn.Text == "Echange des niveaux":
+                    btn.Delete()
+        
+            button = sheet.api.Buttons().Add(80, 40, 80, 20)
+            button.OnAction = "SwapRanges" # Link to the correct macro name
+            button.Text = "Echange des niveaux"
+            
+        # Step 3: Save to real xlsm file, then load into BytesIO
+        with tempfile.NamedTemporaryFile(suffix=".xlsm", delete=False) as tmp:
+            temp_xlsm_path = tmp.name
+        wb_xlw.save(temp_xlsm_path)
+        wb_xlw.close()
+        app.quit()  
+        # Load file into BytesIO buffer
+        with open(temp_xlsm_path, 'rb') as f:
+            buffer.write(f.read())
+    
+        # Reset stream position
+        buffer.seek(0)
+        #wb_xlw.save(buffer)
+              
     return buffer
 
 # """---------------------LOGIN----------------------------"""

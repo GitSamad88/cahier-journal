@@ -872,9 +872,9 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         # Jour
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
-       weeks_days.append(i[0])
+        weeks_days.append(i[0])
 
-   # """...........................Save the workbook in an xlsx file........................"""
+    # """...........................Save the workbook in an xlsx file........................"""
     random_name = ''.join(random.choices(string.ascii_letters, k=4))
     xlsx_file = f'{random_name}_sheet.xlsx'
     wb.save(xlsx_file)

@@ -897,7 +897,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
                     '''
     
         # === Step 2: Open with xlwings and inject macro + button ===
-        print(type(xw))
         app = xw.App(visible=False)
         wb_xlw = app.books.open(os.path.abspath(xlsx_file))
         # Add macro module
@@ -1248,7 +1247,7 @@ else :
                                    label="Téléchargez votre cahier journal",
                                    data=journal,
                                    key="workbook.xlsx",
-                                   file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
+                                   file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
                                     )
                 else:
                     modal_title = "Pas d'emplois!"

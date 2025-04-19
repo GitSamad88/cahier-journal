@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 import pathlib,  shutil
 from datetime import datetime
 import datetime as dt
+import openpyxl
 from openpyxl import Workbook
 import xlwings as xw
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
@@ -572,19 +573,23 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     font = Font(name="Lucida Handwriting",sz=12)
 
     weeks_days = []
-    sheets = []
-    wb = Workbook()
-    ws = wb.active
+    #sheets = []
+    #wb = Workbook()
+    #ws = wb.active
+
+    wb = openpyxl.load_workbook(r"/wb_swap_macro/wb_swap_levels.xlsm",keep_vba = True)
+    sheets = wb.sheetnames
 
     # initialize citations
     citations = pd.read_csv(r"https://docs.google.com/spreadsheets/d/1VJs8_Z3zsww-LaiMmMZAtcmUJKBqW7KsTmuGJtiCdyA"+linkc+"citations")
     random_list = random.sample(range(citations.shape[0]), citations.shape[0])
     citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
 
-    for k in range(len(unite)):
-        sheets.append(wb.create_sheet(f'feuille {k}'))
+    #for k in range(len(unite)):
+    #    sheets.append(wb.create_sheet(f'feuille {k}'))
 
-    for i, date, sheet in zip(enumerate(unite), unite, sheets):
+    for i, date, ws in zip(enumerate(unite), unite, sheets):
+        sheet = wb[ws]
         date_list = format_datetime(date, 'full', locale='fr_FR').split()[0:4]
         str_date = " ".join(date_list).replace(",", " ")
 
@@ -873,63 +878,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         sheet.merge_cells('B8:E8')
         sheet["B8"] = f'Jour: {1 + len(weeks_days) % 6}'
         weeks_days.append(i[0])
-    wb.save(buffer)
-    # """...........................Save the workbook in an xlsx file........................"""
-    def swap_button(workbook):
-        
-        random_name = ''.join(random.choices(string.ascii_letters, k=4))
-        xlsx_file = f'{random_name}_sheet.xlsx'
-        wb.save(xlsx_file)
-    
-        #""" ......add a button using vba a code enabling user to swap the content of the linges 5 and 7......." 
-        #"""=== step 1 : create a vba code"""  
-        vba_code = '''
-                    Sub SwapRanges()
-                    
-                        Dim temp As Variant
-                        Dim i As Integer
-                        For i = 3 To 6 ' Iterate from column C (3) to F (6)
-                            temp = Cells(5, i).Value ' Row 5
-                            Cells(5, i).Value = Cells(7, i).Value ' Swap with Row 7
-                            Cells(7, i).Value = temp
-                        Next i
-                    End Sub
-                    '''
-    
-        # === Step 2: Open with xlwings and inject macro + button ===
-        app = xw.App(visible=False)
-        wb_xlw = app.books.open(os.path.abspath(xlsx_file))
-        # Add macro module
-        vba_module = wb_xlw.api.VBProject.VBComponents.Add(1)
-        vba_module.Name = "SwapMacro" 
-        vba_module.CodeModule.AddFromString(vba_code)
-        # Add button to each sheet
-        for sheet in wb_xlw.sheets:
-            sheet.api.Activate()
-        
-            # Delete old buttons with the correct text
-            for btn in sheet.api.Buttons():
-                if btn.Text == "Echange des niveaux":
-                    btn.Delete()
-        
-            button = sheet.api.Buttons().Add(80, 40, 80, 20)
-            button.OnAction = "SwapRanges" # Link to the correct macro name
-            button.Text = "Echange des niveaux"
-            
-        # Step 3: Save to real xlsm file, then load into BytesIO
-        with tempfile.NamedTemporaryFile(suffix=".xlsm", delete=False) as tmp:
-            temp_xlsm_path = tmp.name
-        wb_xlw.save(temp_xlsm_path)
-        wb_xlw.close()
-        app.quit()  
-        # Load file into BytesIO buffer
-        with open(temp_xlsm_path, 'rb') as f:
-            buffer.write(f.read())
-    
-        # Reset stream position
-        buffer.seek(0)
-        #wb_xlw.save(buffer)
-              
+    wb.save(buffer)           
     return buffer
 
 # """---------------------LOGIN----------------------------"""
@@ -1246,8 +1195,8 @@ else :
                             download = st.download_button(
                                    label="Téléchargez votre cahier journal",
                                    data=journal,
-                                   key="workbook.xlsx",
-                                   file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsx",
+                                   key="workbook.xlsm",
+                                   file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
                                     )
                 else:
                     modal_title = "Pas d'emplois!"

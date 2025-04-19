@@ -466,6 +466,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     
     global buffer
     buffer = BytesIO()
+              
     emplois=st.session_state["emplois"]
     emplois.dropna(inplace=True)
     emplois.index = range(emplois.shape[0])
@@ -577,7 +578,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     #wb = Workbook()
     #ws = wb.active
 
-    wb = openpyxl.load_workbook(r"/wb_swap_macro/wb_swap_levels.xlsm",keep_vba = True)
+    wb = openpyxl.load_workbook(r"wb_swap_macro/wb_swap_levels.xlsm",keep_vba = True)
     sheets = wb.sheetnames
 
     # initialize citations

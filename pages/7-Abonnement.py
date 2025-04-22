@@ -125,7 +125,6 @@ def body_message(verification_code):
             <body>
                 <div class="container">
                     <h1>Vérifiez votre adresse e-mail</h1>
-                    <img src="C:/Users/hp/OneDrive/Images/Moudakira/app_images/Moudkira_dark_v_100_100.png" width="300" height="200">
                     <p>Merci de nous contacter! Pour vérifier votre émail, veuillez utiliser le code de vérification ci-dessous :</p>
                     <div class="verification-code">
                         """+f"""{verification_code}"""+"""
@@ -205,7 +204,7 @@ if st.session_state["submitted1"]:
     st.info("**Banque**: Attijariwafa Bank \n\n"
             "**Numéro de compte : 007194000702200030726337**")
     col1,col2 = st.columns(2)
-    col1.image("app-images/Attijari_logo_resized.png",use_container_width="auto")
+    col1.image("app-images/Attijari_logo_resized.png")#,use_container_width="auto")
     col2.image("app-images/account_QRCode.jpeg")
     st.write("Veuillez envoyez une capture d'écran de votre payemnt sur l'email suivant: **moudakira.ma@gmail.com** "
              "ou sur le Whatsapp suivant: **https://wa.me/+212667313488**,"

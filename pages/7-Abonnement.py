@@ -158,7 +158,8 @@ def send_email_ssl(sender_email, sender_password, receiver_email, subject, body)
   msg['To'] = receiver_email
 
   with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-    smtp.login(sender_email, sender_password)
+    smtp.login(sender_email,
+               sender_password)
     smtp.send_message(msg)
 
 
@@ -222,7 +223,8 @@ if st.session_state["submitted2"]:
         first_name = st.text_input("***Votre prénom***:")
         gmail = st.text_input("***Votre gmail***:",placeholder="nom.prenom@gmail.com")
         phone_number = st.text_input("***Votre numéro  de téléphone***:",value="0611111111",)
-        if not re.match(r"^0[1-9]\d{8}$",str(phone_number) ): st.warning("Le fromat de votre numéro de téléphone est incorrect!")
+        if not re.match(r"^0[1-9]\d{8}$",str(phone_number) ):
+            st.warning("Le fromat de votre numéro de téléphone est incorrect!")
         
         teaching_lng = st.multiselect("***La matiére que vous enseignez***:",["Français","Arabe"])
         teaching_class = st.multiselect("***Le(s) niveau(x) que vous enseignez***:",range(1,6),)
@@ -234,13 +236,16 @@ if st.session_state["submitted2"]:
             verification_code = str(np.random.randint(10000, 99999))
             try:
                 # send verification code to the user to verify his gmail
-                send_email_ssl(sender_email =  smtp_gmail, sender_password =smtp_password, receiver_email = gmail,
-                                    subject="Vérification de votre adresse e-mail",body = body_message(verification_code = verification_code ))
+                send_email_ssl(sender_email =  smtp_gmail,
+                               sender_password =smtp_password,
+                               receiver_email = gmail,
+                               subject="Vérification de votre adresse e-mail",
+                               body = body_message(verification_code = verification_code ))
                 
             except: st.warning("Votre gmail est incorrect.")
             
             st.session_state.verification_code = verification_code
-            st.write(verification_code)
+            #st.write(verification_code)
             st.success("Un email a été envoyé avec le code de vérification.")
         else:
             st.warning("Veuillez remplir tous les champs.")
@@ -258,15 +263,35 @@ if st.session_state["submitted2"]:
     if st.session_state.email_verified:
         if st.button("Enregistrer"):
             try:
+                # Add prospect data to the database (google sheet)
                 sheet.append_row(
                                  [family_name, first_name, gmail, phone_number,
-                                  teaching_lng[0] +" et "+teaching_lng[1], 
+                                  ' et '.join(str(num) for num in teaching_lng),
                                   ' et '.join(str(num) for num in teaching_class)]
                                  )
-                send_email_ssl(sender_email =  smtp_gmail, sender_password =smtp_password, receiver_email = "moudakira.ma@gmail.com",
-                                    subject="Un nouveau prospecte est ajouté!",
-                                    body =" Tu as une nouvelle demande de cahier journalier sur Moudakira.ma." )
                 st.info("***Votre demande a été bien enregistrée! Nous vous contacterons dans les plus brefs délais.***")
+                
+                # Send notification to the owner
+                send_email_ssl ( sender_email =  smtp_gmail,
+                                 sender_password =smtp_password, 
+                                 receiver_email = smtp_gmail,
+                                 subject="Un nouveau prospecte est ajouté!",
+                                 body =" Tu as une nouvelle demande de cahier journalier sur Moudakira.ma." )
+                
+                # Send successeful enregitrement message to the prospect  
+                send_email_ssl(sender_email =  smtp_gmail,
+                               sender_password =smtp_password, 
+                               receiver_email = gmail,
+                               subject="Votre demande a été bien enregistrée!",
+                               body = """ 
+                                                <h1>Bonjour """+f"""{first_name}"""+"""</h1>
+                                                <p>Votre demande a été bien enregistrée! Nous vous contacterons dans les plus brefs délais :</p>
+                                                <p>Si vous n'avez pas demander un abonnement sur moudakira.ma, veuillez ignorer cet e-mail.</p>
+                                                <div class="footer">
+                                                    <p>Ceci est un e-mail généré automatiquement. Veuillez ne pas répondre à ce message.</p>
+                                                    <p>&copy; Moudakira.ma - 2025</p>
+                                                </div>"""
+                             )
             except: 
                 st.warning("Une erreur est survenue lors de l'enregistrement de vos données. Veuillez réessayer ultérieurement.")
             
@@ -277,11 +302,6 @@ if st.session_state["submitted2"]:
         st.session_state["submitted2"] = False
         st.rerun()
     
-
- 
- 
- 
- 
  # Custom Footer and Hide right Menu
 Hid_Menu = """
 <style>
@@ -314,8 +334,10 @@ footer = """
 """
 
 
-st.markdown(footer,unsafe_allow_html=True)
-st.markdown(Hid_Menu,unsafe_allow_html=True)
+st.markdown(footer,
+            unsafe_allow_html=True)
+st.markdown(Hid_Menu,
+            unsafe_allow_html=True)
  
 
 

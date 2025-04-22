@@ -19,12 +19,12 @@ st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
 
 
 # load  google sheets api credentials (temporary method)
-with open(r"C:\Users\hp\PycharmProjects\Streamlitt_App\credentials.toml","r+") as cred:
-    credentials = toml.load(cred)
+#with open(r"C:\Users\hp\PycharmProjects\Streamlitt_App\credentials.toml","r+") as cred:
+#    credentials = toml.load(cred)
     
 # load  google sheets api credentials from secrets
-#secrets_auth = st.secrets["google_sheets_api_credentials"]
-#secrets_auth_ = secrets_auth
+secrets_auth = st.secrets["google_sheets_api_credentials"]
+secrets_auth_ = secrets_auth
 
 #open prospect sheet
 @st.cache_resource(show_spinner=False)
@@ -37,8 +37,8 @@ def worksheet(_credentials):
   return sheet
 
 
-sheet = worksheet(_credentials = credentials["google_sheets_api_credentials"])
-#sheet = worksheet(_credentials = secrets_auth_)
+s#heet = worksheet(_credentials = credentials["google_sheets_api_credentials"])
+sheet = worksheet(_credentials = secrets_auth_)
 
 # Session state initialization
 if "verification_code" not in st.session_state:
@@ -54,10 +54,8 @@ if ("submitted1" and "submitted2" not in st.session_state):
 
 
 #sys.stdout.reconfigure(encoding='utf-8')
-smtp_gmail = "moudakira.ma@gmail.com"
-#smtp_gmail = st.secrets["smtp_gmail"]
-smtp_password = "xjsr ppjo azos seqd"
-#smtp_password = st.secrets["smtp_password"]  
+smtp_gmail = st.secrets["smtp_gmail"]
+smtp_password = st.secrets["smtp_password"]  
 
 def body_message(verification_code):
     body_html = """ <!DOCTYPE html>
@@ -207,8 +205,8 @@ if st.session_state["submitted1"]:
     st.info("**Banque**: Attijariwafa Bank \n\n"
             "**Numéro de compte : 007194000702200030726337**")
     col1,col2 = st.columns(2)
-    col1.image(r"C:\Users\hp\Downloads\Attijari_logo_resized.png",use_container_width="auto")
-    col2.image(r"C:\Users\hp\Downloads\account_QRCode.jpeg")
+    col1.image("app-images/Attijari_logo_resized.png",use_container_width="auto")
+    col2.image("app-images/account_QRCode.jpeg")
     st.write("Veuillez envoyez une capture d'écran de votre payemnt sur l'email suivant: **moudakira.ma@gmail.com** "
              "ou sur le Whatsapp suivant: **https://wa.me/+212667313488**,"
              " Après une vérification, vous recevrez ***un code*** pour débloquer toutes les unités.")

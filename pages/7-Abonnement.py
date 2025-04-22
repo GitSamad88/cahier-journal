@@ -37,7 +37,7 @@ def worksheet(_credentials):
   return sheet
 
 
-s#heet = worksheet(_credentials = credentials["google_sheets_api_credentials"])
+#sheet = worksheet(_credentials = credentials["google_sheets_api_credentials"])
 sheet = worksheet(_credentials = secrets_auth_)
 
 # Session state initialization

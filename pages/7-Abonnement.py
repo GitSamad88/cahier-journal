@@ -244,13 +244,14 @@ if st.session_state["submitted2"]:
                                sender_password =smtp_password,
                                receiver_email = gmail,
                                subject="Vérification de votre adresse e-mail",
-                               body = body_message(verification_code = verification_code ))
+                               body = body_message(verification_code = verification_code )
+                              )
+                
+                st.session_state.verification_code = verification_code
+                st.success("Un email a été envoyé avec le code de vérification.")
                 
             except: st.warning("Votre gmail est incorrect.")
             
-            st.session_state.verification_code = verification_code
-            #st.write(verification_code)
-            st.success("Un email a été envoyé avec le code de vérification.")
         else:
             st.warning("Veuillez remplir tous les champs.")
     # Verification code input (outside the form)

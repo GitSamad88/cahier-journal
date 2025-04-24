@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 from email.mime.text import MIMEText
 import streamlit.components.v1 as components
-#from streamlit_extras.app_logo import add_logo
+from streamlit_extras.app_logo import add_logo
 
 
 # page configue
@@ -15,12 +15,8 @@ st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
     page_title="Abonnement")
 
 
-#add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
+add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
-
-# load  google sheets api credentials (temporary method)
-#with open(r"C:\Users\hp\PycharmProjects\Streamlitt_App\credentials.toml","r+") as cred:
-#    credentials = toml.load(cred)
     
 # load  google sheets api credentials from secrets
 secrets_auth = st.secrets["google_sheets_api_credentials"]
@@ -36,8 +32,6 @@ def worksheet(_credentials):
   sheet = client.open("mydb").worksheets()[2]
   return sheet
 
-
-#sheet = worksheet(_credentials = credentials["google_sheets_api_credentials"])
 sheet = worksheet(_credentials = secrets_auth_)
 
 # Session state initialization

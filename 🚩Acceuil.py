@@ -115,7 +115,7 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 
 
-col2.image("app-images/journal_presentation_d2.PNG")
+col2.image("app-images/capture_cahier_journal.PNG")
 
 col3, col4 = st.columns([0.6,0.4])
 
@@ -290,6 +290,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

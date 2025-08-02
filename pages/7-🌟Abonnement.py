@@ -309,6 +309,8 @@ Hid_Menu = """
 visibility : hidden;
 <\style>
 """
+current_year = datetime.now().year
+
 footer = """
 <style>
     .footer {
@@ -333,12 +335,12 @@ footer = """
 </div>
 """
 
-current_year = datetime.now().year
 st.markdown(footer,
             unsafe_allow_html=True)
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

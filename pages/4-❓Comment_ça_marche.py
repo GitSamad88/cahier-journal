@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit_extras.app_logo import add_logo
 import streamlit.components.v1 as components
-# page configue
+from datetime import datetim
+
 # page configue
 st.set_page_config(page_icon = r"app-images/Moudkira_dark_v_100_100.png",
                    page_title = "Comment ça marche?")
@@ -75,6 +76,9 @@ Hid_Menu = """
    visibility : hidden;
 <\style>
 """
+
+current_year = datetime.now().year
+
 footer = """
     <style>
         .footer {
@@ -100,8 +104,8 @@ footer = """
 """
 
 
-current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 

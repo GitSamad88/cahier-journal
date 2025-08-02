@@ -282,10 +282,11 @@ footer = """
         <p>&nbsp;</p>
         <hr>
         <p>Made by <a href="https://www.linkedin.com/in/abdessamad-taoufiq-082013209" target="_blank", style="font-style: oblique;">TAOUFIQ ABDESSAMAD</a>.</p>
-        <p> tous droits réservés © 2024 </p>
+        <p> tous droits réservés © 2025 </p>
 
     </div>
 """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+

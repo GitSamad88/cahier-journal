@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_extras.app_logo import add_logo
 import streamlit.components.v1 as components
-from datetime import datetim
+from datetime import datetime
 
 # page configue
 st.set_page_config(page_icon = r"app-images/Moudkira_dark_v_100_100.png",
@@ -106,6 +106,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

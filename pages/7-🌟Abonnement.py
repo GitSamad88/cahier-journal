@@ -8,6 +8,7 @@ from datetime import datetime
 from email.mime.text import MIMEText
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
+from datetime import datetime
 
 
 # page configue
@@ -327,17 +328,18 @@ footer = """
     <p>&nbsp;</p>
     <hr>
     <p>Made by <a href="https://www.linkedin.com/in/abdessamad-taoufiq-082013209" target="_blank" style="font-style: oblique;">TAOUFIQ ABDESSAMAD</a>.</p>
-    <p> tous droits réservés © 2025 </p>
+    """+ f"""<p style='text-align: center;'>tous droits réservés © {current_year}</p>
 
 </div>
 """
 
-
+current_year = datetime.now().year
 st.markdown(footer,
             unsafe_allow_html=True)
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

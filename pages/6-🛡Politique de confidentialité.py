@@ -217,7 +217,6 @@ le système d'exploitation de votre appareil mobile, le type de navigateur Inter
 
 """
 
-
 st.markdown(privacy_policy_html,unsafe_allow_html=True)
 
 # Custom Footer and Hide right Menu
@@ -246,11 +245,12 @@ footer = """
         <p>&nbsp;</p>
         <hr>
         <p>Made by <a href="https://www.linkedin.com/in/abdessamad-taoufiq-082013209" target="_blank" style="font-style: oblique;">TAOUFIQ ABDESSAMAD</a>.</p>
-        <p> tous droits réservés © 2024 </p>
+        """+ f"""<p style='text-align: center;'>tous droits réservés © {current_year}</p>
 
     </div>
 """
 
-
+current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+

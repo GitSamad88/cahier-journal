@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
-
+from datetime import datetime
 # page configue
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
     page_title="Politique De Confidentialité")
@@ -253,4 +253,5 @@ footer = """
 current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 

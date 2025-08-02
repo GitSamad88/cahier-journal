@@ -284,13 +284,14 @@ footer = """
         <p>Made by <a href="https://www.linkedin.com/in/abdessamad-taoufiq-082013209" target="_blank", style="font-style: oblique;">TAOUFIQ ABDESSAMAD</a>.</p>
         <p>tous droits réservés © <span id="year"></span></p>
 
-        <script>
-          document.getElementById("year").textContent = new Date().getFullYear();
-        </script>
     </div>
+    <script>
+          document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 

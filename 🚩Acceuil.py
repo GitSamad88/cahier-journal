@@ -6,17 +6,12 @@ from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit_star_rating as st_rating
 
-import re
-import secrets
+import re,secrets, gspread, pathlib,shutil,time, warnings
 from datetime import datetime
-import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
-import pathlib
 import urllib.request
-import shutil
-import time
-import warnings
+
 
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
                    page_title="Page D'acceuil")
@@ -76,6 +71,9 @@ def inject_ga():
         html = html.replace(ga_script, "")
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
+
+st.json(st.secrets["google_sheets_api_credentials"])
+
 
 #inject_ga()
 
@@ -288,6 +286,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

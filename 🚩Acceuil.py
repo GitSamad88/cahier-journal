@@ -6,7 +6,7 @@ from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit_star_rating as st_rating
 
-import re,secrets, gspread, pathlib,shutil,time, warnings
+import re,secrets, gspread, pathlib,shutil,time, warnings,json, toml
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
@@ -289,6 +289,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

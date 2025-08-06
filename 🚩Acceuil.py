@@ -73,6 +73,9 @@ def inject_ga():
         index_path.write_text(new_html)
 
 st.json(st.secrets["google_sheets_api_credentials"])
+with open(".streamlit/secrets.toml", "r") as f:
+    secrets = toml.load(f)
+st.write(secrets)
 
 
 #inject_ga()
@@ -286,6 +289,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

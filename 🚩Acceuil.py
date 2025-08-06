@@ -77,7 +77,7 @@ def inject_ga():
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
 
-inject_ga()
+#inject_ga()
 
 
 # Scroll to the top
@@ -290,6 +290,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

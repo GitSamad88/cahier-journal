@@ -218,11 +218,9 @@ def space(num_lines=1):
 
 # Comments part
 
-with st.expander("💬 Les avis",expanded=True):
+with st.expander("**💬 Avis:**",expanded=True):
 
     # Show comments
-
-    st.write("**Avis:**")
 
     for index, entry in enumerate(comments.itertuples()):
         st.markdown(COMMENT_TEMPLATE_MD.format( f''':red[{entry.name}]''', f''':green[{entry.date}]''', entry.comment,
@@ -290,6 +288,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

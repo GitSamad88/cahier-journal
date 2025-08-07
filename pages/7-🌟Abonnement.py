@@ -39,6 +39,10 @@ false_ga_script ="""<!-- Google tag (gtag.js) -->
   gtag('config', 'G-2TE23YZQ28');
 </script>"""
 
+g_adsense = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4265574502229447"
+     crossorigin="anonymous"></script>
+     """
 def inject_ga():
     index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
     soup = BeautifulSoup(index_path.read_text(), features="html.parser")
@@ -50,7 +54,7 @@ def inject_ga():
         else:
             shutil.copy(index_path, bck_index)
         html = str(soup)
-        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
     else :
 
@@ -62,7 +66,8 @@ def inject_ga():
         html = str(soup)
         html = html.replace(false_ga_script,"")
         html = html.replace(ga_script, "")
-        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        html = html.replace(g_adsense,"")
+        new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
 inject_ga()
 
@@ -387,6 +392,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

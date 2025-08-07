@@ -1,4 +1,4 @@
-import os,prequests
+import os,requests
 import streamlit as st
 import pandas as pd
 import streamlit.components.v1 as components
@@ -294,6 +294,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

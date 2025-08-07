@@ -153,11 +153,7 @@ def login():
   smtp_password_ = ""
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
-  """try:
-    secrets_auth = st.secrets["google_sheets_api_credentials"]
-    secrets_auth = secrets_auth
-    smtp_gmail_ = st.secrets.smtp_gmail
-    smtp_password_ = st.secrets.smtp_password"""
+
   secrets_auth = os.getenv("google_sheets_api_credentials","{}")
   secrets_auth = json.loads(secrets_auth)
   secrets_auth = secrets_auth
@@ -294,6 +290,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

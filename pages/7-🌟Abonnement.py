@@ -1,4 +1,4 @@
-import sys
+import sys,os
 import streamlit as st
 import pandas as pd 
 import numpy as np
@@ -14,15 +14,63 @@ from datetime import datetime
 # page configue
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
     page_title="Abonnement")
-
-
 add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
+
+
+# Inject Google Analytics
+GA_ID = "google_analytics"
+ga_script = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2TE23YZQ28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2TE23YZQ28');
+</script> """
+
+false_ga_script ="""<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2TE23YZQ28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2TE23YZQ28');
+</script>"""
+
+def inject_ga():
+    index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+    soup = BeautifulSoup(index_path.read_text(), features="html.parser")
+
+    if ("Google tag" not in str(soup)):
+        bck_index = index_path.with_suffix('.bck')
+        if bck_index.exists():
+            shutil.copy(bck_index, index_path)
+        else:
+            shutil.copy(index_path, bck_index)
+        html = str(soup)
+        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        index_path.write_text(new_html)
+    else :
+
+        bck_index = index_path.with_suffix('.bck')
+        if bck_index.exists():
+            shutil.copy(bck_index, index_path)
+        else:
+            shutil.copy(index_path, bck_index)
+        html = str(soup)
+        html = html.replace(false_ga_script,"")
+        html = html.replace(ga_script, "")
+        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        index_path.write_text(new_html)
+inject_ga()
+
+
 
     
 # load  google sheets api credentials from secrets
-secrets_auth = st.secrets["google_sheets_api_credentials"]
-secrets_auth_ = secrets_auth
-
+secrets_auth_ = os.getenv("google_sheets_api_credentials","{}")
 #open prospect sheet
 @st.cache_resource(show_spinner=False)
 def worksheet(_credentials):
@@ -48,9 +96,8 @@ if ("submitted1" and "submitted2" not in st.session_state):
 
 
 
-#sys.stdout.reconfigure(encoding='utf-8')
-smtp_gmail = st.secrets["smtp_gmail"]
-smtp_password = st.secrets["smtp_password"]  
+smtp_gmail = os.getenv("smtp_gmail","")
+smtp_password = os.getenv("smtp_password","")  
 
 def body_message(verification_code):
     body_html = """ <!DOCTYPE html>
@@ -340,6 +387,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

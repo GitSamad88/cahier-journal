@@ -72,10 +72,6 @@ def inject_ga():
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
 
-st.json(st.secrets["google_sheets_api_credentials"])
-with open(".streamlit/secrets.toml", "r") as f:
-    secrets = toml.load(f)
-st.write(secrets)
 
 
 #inject_ga()
@@ -151,6 +147,10 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
 
 # Add  a login form
 def login():
+  #Initialize variables
+  secrets_auth = {}
+  smtp_gmail_ = ""
+  smtp_password_ = ""
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
   try:
@@ -159,10 +159,12 @@ def login():
     smtp_gmail_ = st.secrets.smtp_gmail
     smtp_password_ = st.secrets.smtp_password
   except:
-    secrets_auth = os.getenv("google_sheets_api_credentials")
+    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+    secrets_auth = json.loads(secrets_auth)
     secrets_auth = secrets_auth
-    smtp_gmail_ = os.getenv("smtp_gmail")
-    smtp_password_ = os.getenv("smtp_password")
+    
+    smtp_gmail_ = os.getenv("smtp_gmail","")
+    smtp_password_ = os.getenv("smtp_password","")
     
   __login__obj = __login__(credentials=secrets_auth,
                       smtp_username = smtp_gmail_,
@@ -294,6 +296,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

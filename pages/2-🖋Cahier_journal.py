@@ -1,4 +1,4 @@
-import time, re, gspread, random, string
+import time, re, gspread, random, string, warnings, json
 import streamlit as st
 from streamlit_modal import Modal
 from streamlit_signin_auth_ui.widgets import __login__
@@ -18,7 +18,6 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 from openpyxl.utils import get_column_letter
 from babel.dates import format_datetime
 from io import BytesIO
-import warnings,json
 warnings.filterwarnings("ignore")
 
 # page configue
@@ -883,10 +882,25 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     return buffer
 
 # """---------------------LOGIN----------------------------"""
-secrets_auth = st.secrets["google_sheets_api_credentials"]
-secrets_auth = secrets_auth
-smtp_gmail_ = st.secrets.smtp_gmail
-smtp_password_ = st.secrets.smtp_password
+#Initialize variables
+secrets_auth = {}
+smtp_gmail_ = ""
+smtp_password_ = ""
+title_placeholder = st.empty()
+title_placeholder.subheader("S'enregistrer")
+try:
+    secrets_auth = st.secrets["google_sheets_api_credentials"]
+    secrets_auth = secrets_auth
+    smtp_gmail_ = st.secrets.smtp_gmail
+    smtp_password_ = st.secrets.smtp_password
+except:
+    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+    secrets_auth = json.loads(secrets_auth)
+    secrets_auth = secrets_auth
+    
+    smtp_gmail_ = os.getenv("smtp_gmail","")
+    smtp_password_ = os.getenv("smtp_password","")
+
 def login():
     title_placeholder = st.empty()
     title_placeholder.subheader("S'enregistrer")
@@ -912,7 +926,7 @@ if not st.session_state["LOGGED_IN"]:
         if __name__ == "__main__":
             login()
             st.info(
-                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour le créer.",
+                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
                 icon="ℹ️")
 else :
     login()
@@ -1107,9 +1121,7 @@ else :
                 sheet = client.open("mydb").sheet1
                 return sheet
 
-            secrets_auth = st.secrets["google_sheets_api_credentials"]
-            secrets_auth_ = secrets_auth
-            sheet = worksheet(_credentials = secrets_auth_)
+            sheet = worksheet(_credentials = secrets_auth)
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']
@@ -1200,10 +1212,10 @@ else :
                                    file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
                                     )
                 else:
-                    modal_title = "Pas d'emplois!"
+                    modal_title = "Pas d'emplois du temps!"
                     modal = Modal(key="modal002", title=modal_title, padding=10, max_width=400)
                     with modal.container():
-                        st.warning("Veuillez d'abord importer ou créer votre emplois!")
+                        st.warning("Veuillez d'abord importer ou créer votre emplois du temps!")
                     #st.warning("Veuillez importez ou créer votre emplois d'abord!")
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
@@ -1279,5 +1291,6 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 

@@ -1,4 +1,4 @@
-import requests
+import os,prequests
 import streamlit as st
 import pandas as pd
 import streamlit.components.v1 as components
@@ -153,12 +153,17 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
 def login():
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
-  secrets_auth = st.secrets["google_sheets_api_credentials"]
-  secrets_auth = secrets_auth
-  smtp_gmail_ = st.secrets.smtp_gmail
-  smtp_password_ = st.secrets.smtp_password
-  
-  
+  try:
+    secrets_auth = st.secrets["google_sheets_api_credentials"]
+    secrets_auth = secrets_auth
+    smtp_gmail_ = st.secrets.smtp_gmail
+    smtp_password_ = st.secrets.smtp_password
+  except:
+    secrets_auth = os.getenv("google_sheets_api_credentials")
+    secrets_auth = secrets_auth
+    smtp_gmail_ = os.getenv("smtp_gmail")
+    smtp_password_ = os.getenv("smtp_password")
+    
   __login__obj = __login__(credentials=secrets_auth,
                       smtp_username = smtp_gmail_,
                       smtp_password = smtp_password_,
@@ -289,6 +294,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

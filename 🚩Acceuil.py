@@ -153,18 +153,16 @@ def login():
   smtp_password_ = ""
   title_placeholder = st.empty()
   title_placeholder.subheader("S'enregistrer")
-  try:
+  """try:
     secrets_auth = st.secrets["google_sheets_api_credentials"]
     secrets_auth = secrets_auth
     smtp_gmail_ = st.secrets.smtp_gmail
-    smtp_password_ = st.secrets.smtp_password
-  except:
-    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
-    secrets_auth = json.loads(secrets_auth)
-    secrets_auth = secrets_auth
-    
-    smtp_gmail_ = os.getenv("smtp_gmail","")
-    smtp_password_ = os.getenv("smtp_password","")
+    smtp_password_ = st.secrets.smtp_password"""
+  secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+  secrets_auth = json.loads(secrets_auth)
+  secrets_auth = secrets_auth
+  smtp_gmail_ = os.getenv("smtp_gmail","")
+  smtp_password_ = os.getenv("smtp_password","")
     
   __login__obj = __login__(credentials=secrets_auth,
                       smtp_username = smtp_gmail_,
@@ -208,13 +206,8 @@ def worksheet(_auth):
     client = gspread.authorize(Worksheet)
     db = client.open("mydb").worksheets()[1]
     return db
-try:
-  _auth = st.secrets["google_sheets_api_credentials"]
-except:
-  _auth = os.getenv("google_sheets_api_credentials","{}")
-  _auth = json.loads(_auth)
 
-comm_db = worksheet(_auth)
+comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}"))
 comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0]).drop(index=0)
 
 
@@ -301,6 +294,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

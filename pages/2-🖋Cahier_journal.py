@@ -462,7 +462,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
           lecture_rituel2,math_manuel1, math_manuel2,
           maths_course_lang,evsc_course_lang,
           math_rituel1, math_rituel2, es_manuel1, 
-          es_manuel2, C1, C2, séance_de_lundi, u):#,in_t,ou_t,rec_t,switch_t):
+          es_manuel2, C1, C2, séance_de_lundi, u):
     
     global buffer
     buffer = BytesIO()
@@ -503,22 +503,23 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     
 
     # """------------------Dates-----------------"""
-    all_time = np.arange(dt.date(2024, 9, 3), dt.date(2025, 6, 20)).astype(datetime)
+    all_time = np.arange(dt.date(2025, 9, 1), dt.date(2026, 6, 20)).astype(datetime)
     holiday_list = pd.Series({
-        "Mawlid_nabawi": [dt.date(2024, 10, 16), dt.date(2024, 10, 17)],
-        "V1S1": np.arange(dt.date(2024, 10, 20), dt.date(2024, 10, 27)),
-        "March_vert": [dt.date(2024, 11, 6)],
-        "Aid_isstiklal": [dt.date(2024, 11, 18)],
-        "V2S1": np.arange(dt.date(2024, 12, 8), dt.date(2024, 12, 15)),
-        "Bonne_annee": [dt.date(2025, 1, 1)],
-        "Watika_Isstiklala": [dt.date(2025, 1, 11)],
-        "Amazigh_Day": [dt.date(2025, 1, 14)],
-        "Middle_V": np.arange(dt.date(2025, 1, 26), dt.date(2025, 2, 2)),
-        "V1S2": np.arange(dt.date(2025, 3, 16), dt.date(2025, 3, 23)),
-        "Aid_Fiter": np.arange(dt.date(2025, 3, 31), dt.date(2025, 4, 2)),
-        "fete_de_travail": [dt.date(2025, 5, 1)],
-        "V2S2": np.arange(dt.date(2025, 5, 4), dt.date(2024, 5, 12)),
-        "Aid_Adha": [dt.date(2025, 6, 6), dt.date(2025, 6, 7)]
+        "Mawlid_nabawi": [dt.date(2025, 9, 4), dt.date(2025, 9, 5)],
+        "V1S1": np.arange(dt.date(2025, 10, 19), dt.date(2025, 10, 27)),
+        "March_vert": [dt.date(2025, 11, 6)],
+        "Aid_isstiklal": [dt.date(2025, 11, 18)],
+        "V2S1": np.arange(dt.date(2025, 12, 7), dt.date(2025, 12, 15)),
+        "Bonne_annee": [dt.date(2026, 1, 1)],
+        "Watika_Isstiklala": [dt.date(2026, 1, 11)],
+        "Amazigh_Day": [dt.date(2026, 1, 14)],
+        "Middle_V": np.arange(dt.date(2026, 1, 25), dt.date(2026, 2, 2)),
+        "V1S2": np.arange(dt.date(2026, 3, 15), dt.date(2026, 3, 23)),
+        "Aid_Fiter": np.arange(dt.date(2026, 3, 18), dt.date(2026, 3, 22)),
+        "fete_de_travail": [dt.date(2026, 5, 1)],
+        "V2S2": np.arange(dt.date(2026, 5, 3), dt.date(2026, 5, 11)),
+        "Aid_Adha": [dt.date(2026, 5, 26), dt.date(2026, 5, 27),dt.date(2026, 5, 28)],
+        "Mouharam": [dt.date(2026, 6, 16)]
     })
 
     for i in range(len(holiday_list.values)):
@@ -889,18 +890,13 @@ smtp_gmail_ = ""
 smtp_password_ = ""
 title_placeholder = st.empty()
 title_placeholder.subheader("S'enregistrer")
-try:
-    secrets_auth = st.secrets["google_sheets_api_credentials"]
-    secrets_auth = secrets_auth
-    smtp_gmail_ = st.secrets.smtp_gmail
-    smtp_password_ = st.secrets.smtp_password
-except:
-    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
-    secrets_auth = json.loads(secrets_auth)
-    secrets_auth = secrets_auth
-    
-    smtp_gmail_ = os.getenv("smtp_gmail","")
-    smtp_password_ = os.getenv("smtp_password","")
+
+secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+secrets_auth = json.loads(secrets_auth)
+secrets_auth = secrets_auth
+
+smtp_gmail_ = os.getenv("smtp_gmail","")
+smtp_password_ = os.getenv("smtp_password","")
 
 def login():
     title_placeholder = st.empty()
@@ -1292,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

@@ -74,7 +74,7 @@ def inject_ga():
         html = html.replace(ga_script, "")
         new_html = html.replace('<head>', '<head>\n' + ga_script)
         index_path.write_text(new_html)
-#inject_ga()
+inject_ga()
 
 
 docs_link = "https://docs.google.com/spreadsheets/d/"
@@ -1288,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

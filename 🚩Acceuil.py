@@ -24,7 +24,7 @@ add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
 
 st.image('app-images/banner-moudakira-no-logo.png')
 
-# Inject google ads and analytics
+# Inject Google Analytics
 GA_ID = "google_analytics"
 ga_script = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TE23YZQ28"></script>
@@ -36,7 +36,7 @@ ga_script = """<!-- Google tag (gtag.js) -->
   gtag('config', 'G-2TE23YZQ28');
 </script> """
 
-false_ga_script = """<!-- Google tag (gtag.js) -->
+false_ga_script ="""<!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2TE23YZQ28"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -46,7 +46,10 @@ false_ga_script = """<!-- Google tag (gtag.js) -->
   gtag('config', 'G-2TE23YZQ28');
 </script>"""
 
-
+g_adsense = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4265574502229447"
+     crossorigin="anonymous"></script>
+     """
 def inject_ga():
     index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
     soup = BeautifulSoup(index_path.read_text(), features="html.parser")
@@ -58,23 +61,23 @@ def inject_ga():
         else:
             shutil.copy(index_path, bck_index)
         html = str(soup)
-        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
-    else:
+    else :
+
         bck_index = index_path.with_suffix('.bck')
         if bck_index.exists():
             shutil.copy(bck_index, index_path)
         else:
             shutil.copy(index_path, bck_index)
         html = str(soup)
-        html = html.replace(false_ga_script, "")
+        html = html.replace(false_ga_script,"")
         html = html.replace(ga_script, "")
-        new_html = html.replace('<head>', '<head>\n' + ga_script)
+        html = html.replace(g_adsense,"")
+        new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
-
-
-
 inject_ga()
+
 
 
 # Scroll to the top
@@ -290,6 +293,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

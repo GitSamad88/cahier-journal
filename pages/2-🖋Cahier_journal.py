@@ -900,7 +900,7 @@ smtp_password_ = os.getenv("smtp_password","")
 
 def login():
     title_placeholder = st.empty()
-    title_placeholder.subheader("S'enregistrer")
+    #title_placeholder.subheader("S'enregistrer")
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
                         smtp_password = smtp_password_,
@@ -1288,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

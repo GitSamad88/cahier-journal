@@ -16,7 +16,7 @@ st.title("Politique de confidentialité")
 st.image("app-images/data_privacy.jpg")
 #width=700)#,use_column_width=True)
 privacy_policy_html="""
-<p>Dernière mise à jour : 4 Avril 2024</p>
+<p>Dernière mise à jour : 1 Septembre 2025 </p>
 <p>Cette politique de confidentialité décrit nos politiques et procédures concernant la collecte, l'utilisation et la divulgation de vos informations lorsque vous utilisez le service et vous informe de vos droits en matière de confidentialité et de la manière dont la loi vous protège.</p>
 <p>Nous utilisons vos données personnelles pour fournir et améliorer le service. En utilisant le service, vous acceptez la collecte et l'utilisation des informations conformément à cette politique de confidentialité. Cette politique de confidentialité a été créée avec l'aide du <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank">générateur de politique de confidentialité</a>.</p>
 <h2>Interprétation et définitions</h2>
@@ -59,7 +59,7 @@ privacy_policy_html="""
 <p><strong>Données d'utilisation</strong> fait référence aux données collectées automatiquement, générées soit par l'utilisation du service, soit par l'infrastructure du service elle-même (par exemple, la durée d'une visite de page).</p>
 </li>
 <li>
-<p><strong>Site web</strong> fait référence à Moudakira.ma, accessible depuis <a href="https://moudakira.onrender.com/" rel="external nofollow noopener" target="_blank">https://moudakira.onrender.com/</a></p>
+<p><strong>Site web</strong> fait référence à Moudakira.ma, accessible depuis <a href="https://moudakira.onrender.com/" rel="external nofollow noopener" target="_blank">https://moudakira.ma/</a></p>
 </li>
 <li>
 <p><strong>Vous</strong> désigne la personne accédant ou utilisant le service, ou la société ou autre entité juridique au nom de laquelle cette personne accède ou utilise le service, le cas échéant.</p>
@@ -255,6 +255,7 @@ footer = """
 current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

@@ -64,7 +64,8 @@ st.write("- Assurez-vous de disposer des informations correctes concernant les m
 st.write("- Le cahier journal est un outil précieux pour suivre vos leçons, noter les progrès des élèves et organiser vos ressources pédagogiques.")
 
 st.write("***N'hésitez pas à nous contacter si vous avez besoin d'aide supplémentaire pour créer votre cahier journal sur Moudakira.ma.***")
-<a href="mailto:moudakira.ma@gmail.com"> nous contacter</a>
+st.markdown("""<a href="mailto:moudakira.ma@gmail.com"> nous contacter</a>""",unsafe_allow_html=True)
+
 
 
 
@@ -108,6 +109,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

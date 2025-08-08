@@ -906,7 +906,7 @@ def login():
                         smtp_password = smtp_password_,
                         company_name = "Moudakira.ma",
                         width = 200, height = 300,
-                        logout_button_name = 'Sortir', hide_menu_bool = False,
+                        logout_button_name = 'Se déconnecter', hide_menu_bool = False,
                         hide_footer_bool = False,
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
     LOGGED_IN = __login__obj.build_login_ui()
@@ -1288,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

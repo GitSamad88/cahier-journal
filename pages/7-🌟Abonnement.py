@@ -75,8 +75,10 @@ inject_ga()
 
 
     
-# load  google sheets api credentials from secrets
-secrets_auth_ = os.getenv("google_sheets_api_credentials","{}")
+# load  google sheets api credentials from environment
+secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+secrets_auth = json.loads(secrets_auth)
+
 #open prospect sheet
 @st.cache_resource(show_spinner=False)
 def worksheet(_credentials):
@@ -87,7 +89,7 @@ def worksheet(_credentials):
   sheet = client.open("mydb").worksheets()[2]
   return sheet
 
-sheet = worksheet(_credentials = secrets_auth_)
+sheet = worksheet(_credentials = secrets_auth)
 
 # Session state initialization
 if "verification_code" not in st.session_state:
@@ -393,6 +395,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

@@ -1,10 +1,11 @@
-import sys,os,shutil, pathlib,BeautifulSoup
+import sys,os,shutil, pathlib
 import streamlit as st
 import pandas as pd 
 import numpy as np
 import gspread,smtplib,toml,re,sys
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+from bs4 import BeautifulSoup
 from email.mime.text import MIMEText
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
@@ -392,6 +393,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

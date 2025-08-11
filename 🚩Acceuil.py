@@ -14,7 +14,7 @@ import urllib.request
 
 
 st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
-                   page_title="Page D'acceuil")
+                   page_title="Page D'accueil")
 
 
 
@@ -211,7 +211,7 @@ def worksheet(_auth):
     db = client.open("mydb").worksheets()[1]
     return db
 try:
-    comm_db = worksheet(st.secrets["google_sheets_api_credentials"]))
+    comm_db = worksheet(st.secrets["google_sheets_api_credentials"])
 except:
     comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}")))
   
@@ -301,6 +301,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

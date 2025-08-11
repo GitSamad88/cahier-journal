@@ -165,6 +165,8 @@ def login():
     st.write(secrets_auth)
   except:
     secrets_auth = st.secrets["google_sheets_api_credentials"]
+    st.write(secrets_auth)
+
 
   smtp_gmail_ = os.getenv("smtp_gmail","")
   smtp_password_ = os.getenv("smtp_password","")
@@ -302,6 +304,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

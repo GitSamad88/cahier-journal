@@ -205,7 +205,7 @@ def worksheet(_auth):
     client = gspread.authorize(Worksheet)
     db = client.open("mydb").worksheets()[1]
     return db
-
+st.write(json.loads(os.getenv("google_sheets_api_credentials","{}")))
 comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}")))
 comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0]).drop(index=0)
 
@@ -293,6 +293,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

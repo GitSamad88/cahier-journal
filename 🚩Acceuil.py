@@ -76,7 +76,7 @@ def inject_ga():
         html = html.replace(g_adsense,"")
         new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
-inject_ga()
+#inject_ga()
 
 
 
@@ -301,6 +301,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

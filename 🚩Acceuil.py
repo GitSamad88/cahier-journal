@@ -148,7 +148,10 @@ st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
            "libérant ainsi du temps précieux pour se concentrer sur"
            "l'enseignement et l'épanouissement de leurs élèves.")
 
-# Add  a login form
+
+st.write(os.getenv("google_sheets_api_credentials","{}"))
+
+# Login form
 def login():
   #Initialize variables
   secrets_auth = {}
@@ -205,7 +208,6 @@ def worksheet(_auth):
     client = gspread.authorize(Worksheet)
     db = client.open("mydb").worksheets()[1]
     return db
-st.write(json.loads(os.getenv("google_sheets_api_credentials","{}")))
 comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}")))
 comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0]).drop(index=0)
 
@@ -293,6 +295,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

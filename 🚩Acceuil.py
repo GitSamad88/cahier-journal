@@ -267,7 +267,7 @@ with st.expander("**💬 Avis:**",expanded=True):
 
 current_year = datetime.now().year
 
-st.write(st.session_state())
+st.write(st.session_state)
 
 # Custom Footer and Hide right Menu
 hid_menu = """
@@ -302,6 +302,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

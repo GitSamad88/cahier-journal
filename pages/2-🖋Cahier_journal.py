@@ -890,10 +890,11 @@ smtp_gmail_ = ""
 smtp_password_ = ""
 title_placeholder = st.empty()
 title_placeholder.subheader("S'enregistrer")
-
-secrets_auth = os.getenv("google_sheets_api_credentials","{}")
-secrets_auth = json.loads(secrets_auth)
-secrets_auth = secrets_auth
+try:
+    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+    secrets_auth = json.loads(secrets_auth)
+except:
+    secrets_auth = st.secrets["google_sheets_api_credentials"]
 
 smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
@@ -1288,6 +1289,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

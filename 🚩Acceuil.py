@@ -161,11 +161,9 @@ def login():
 
   try:
     secrets_auth = st.secrets["google_sheets_api_credentials"]
-    st.write(secrets_auth)
   except:
     secrets_auth = os.getenv("google_sheets_api_credentials","{}")
     secrets_auth = json.loads(secrets_auth)
-    st.write(secrets_auth)
 
 
   smtp_gmail_ = os.getenv("smtp_gmail","")
@@ -269,7 +267,7 @@ with st.expander("**💬 Avis:**",expanded=True):
 
 current_year = datetime.now().year
 
-
+st.write(st.session_state())
 
 # Custom Footer and Hide right Menu
 hid_menu = """
@@ -304,6 +302,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

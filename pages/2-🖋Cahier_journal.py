@@ -916,11 +916,10 @@ def do_login():
     LOGGED_IN = __login__obj.build_login_ui()
     return LOGGED_IN, username
 
-
+LOGGED_IN, username = do_login()
 # Initialize session state if not set
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
-    st.session_state["username"] = None
 
 # Only try login if not logged in
 if not st.session_state["LOGGED_IN"]:
@@ -932,15 +931,13 @@ if not st.session_state["LOGGED_IN"]:
     title_placeholder = st.empty()
     title_placeholder.subheader("Se connecter")
 
-    LOGGED_IN, username = do_login()
     if LOGGED_IN:
         st.session_state["LOGGED_IN"] = True
-        st.session_state["username"] = username
         st.experimental_rerun()
 
 else:
     title_placeholder = st.empty()
-    title_placeholder.subheader(f"Bienvenue👋{username}")
+    title_placeholder.subheader(f"Bienvenue👋 {username}")
     time.sleep(3)
     title_placeholder.subheader("Cahier des Leçons Journalières")
 
@@ -1318,6 +1315,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

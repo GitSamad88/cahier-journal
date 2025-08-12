@@ -1226,8 +1226,8 @@ else :
                                             on_click = update_downlaod_count)
                                 
 
-                            else:
-                                st.warning("Vous étes dépasser la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter l'administrateur")
+                        else:
+                            st.warning("Vous étes dépasser la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter l'administrateur")
                              
                 else:
                     modal_title = "Pas d'emplois du temps!"
@@ -1309,6 +1309,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

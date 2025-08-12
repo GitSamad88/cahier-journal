@@ -172,9 +172,9 @@ def login():
   __login__obj = __login__(credentials=secrets_auth,
                       smtp_username = smtp_gmail_,
                       smtp_password = smtp_password_,
-                      company_name = "Teslato",
+                      company_name = "moudakira.ma",
                       width = 200, height = 300,
-                      logout_button_name = 'Sortir', hide_menu_bool = False,
+                      logout_button_name = 'Déconnecter', hide_menu_bool = False,
                       hide_footer_bool = False,
                       lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
@@ -188,14 +188,13 @@ def login():
 
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
-
+    st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                icon="ℹ️")
 if not st.session_state["LOGGED_IN"]:
     with st.container(border = True):
         if __name__ == "__main__":
             login()
-            st.info(
-                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
-                icon="ℹ️")
+            
 elif __name__ == "__main__":
     login()
 
@@ -267,7 +266,6 @@ with st.expander("**💬 Avis:**",expanded=True):
 
 current_year = datetime.now().year
 
-st.write(st.session_state)
 
 # Custom Footer and Hide right Menu
 hid_menu = """
@@ -302,6 +300,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

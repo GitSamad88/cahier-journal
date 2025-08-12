@@ -909,6 +909,8 @@ def login():
                         logout_button_name = 'Se déconnecter', hide_menu_bool = False,
                         hide_footer_bool = False,
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
+    username = __login__obj.get_username()
+
     LOGGED_IN = __login__obj.build_login_ui()
     if  LOGGED_IN:
         title_placeholder.empty()
@@ -927,7 +929,7 @@ if not st.session_state["LOGGED_IN"]:
 
 else :
     login()
-    st.write( __login__obj.cookies)
+    st.write(username)
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
@@ -1288,6 +1290,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

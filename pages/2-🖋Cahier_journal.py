@@ -1227,7 +1227,7 @@ else :
                                 
 
                         else:
-                            st.warning("Vous étes dépasser la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter l'administrateur")
+                            st.warning("Vous avez dépassé la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter le support technique")
                              
                 else:
                     modal_title = "Pas d'emplois du temps!"
@@ -1309,6 +1309,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

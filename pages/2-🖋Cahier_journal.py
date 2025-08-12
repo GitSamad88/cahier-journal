@@ -898,7 +898,7 @@ smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
 if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
-st.write(st.session_state)
+    
 def login():
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
@@ -1307,6 +1307,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

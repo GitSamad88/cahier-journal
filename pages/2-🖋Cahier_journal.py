@@ -901,8 +901,6 @@ smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
 
 def login():
-    title_placeholder = st.empty()
-    title_placeholder.subheader("Se connecter")
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
                         smtp_password = smtp_password_,
@@ -925,7 +923,7 @@ if "LOGGED_IN" not in st.session_state:
 if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
-            title_placeholder = st.empty()
+            title_placeholder.subheader("Se connecter")
             login
 
 else :
@@ -1194,36 +1192,39 @@ else :
                     modal_title = "Veuillez patienter!"
                     modal = Modal(key="modal001",title=modal_title)
                     with modal.container():
-                        with st.spinner("La création de votre cahier journal est en cours...    استغفر الله"):
-                            
-    
-                            journal = U_W_D(
-                                  fr_manuel1 = french_manual_name1[0],
-                                  fr_manuel2 = french_manual_name2[0],
-                                  lecture_rituel1 = fr_rituel_manual_name1[0],
-                                  lecture_rituel2 = fr_rituel_manual_name2[0],
-                                  math_rituel1 = math_rituel_manual_name1[0],
-                                  math_rituel2 = math_rituel_manual_name2[0],
-                                  math_manuel1 = maths_manual_name1[0],
-                                  math_manuel2 = maths_manual_name2[0],
-                                  maths_course_lang = maths_cours_language[0],
-                                  es_manuel1 = act_sc_manual_name1[0],
-                                  es_manuel2 = act_sc_manual_name2[0],
-                                  evsc_course_lang = evsc_cours_language[0],
-                                  C1 = level1[0],
-                                  C2 = level2[0],
-                                  séance_de_lundi = period,
-                                  u = unit[0],
-                                  )
-                            st.success("Votre cahier journal a été crèer avec succès! ")
-                            if current_count < 10:
+                        if current_count < 10:
+                            with st.spinner("La création de votre cahier journal est en cours...    استغفر الله"):
+                                
+        
+                                journal = U_W_D(
+                                      fr_manuel1 = french_manual_name1[0],
+                                      fr_manuel2 = french_manual_name2[0],
+                                      lecture_rituel1 = fr_rituel_manual_name1[0],
+                                      lecture_rituel2 = fr_rituel_manual_name2[0],
+                                      math_rituel1 = math_rituel_manual_name1[0],
+                                      math_rituel2 = math_rituel_manual_name2[0],
+                                      math_manuel1 = maths_manual_name1[0],
+                                      math_manuel2 = maths_manual_name2[0],
+                                      maths_course_lang = maths_cours_language[0],
+                                      es_manuel1 = act_sc_manual_name1[0],
+                                      es_manuel2 = act_sc_manual_name2[0],
+                                      evsc_course_lang = evsc_cours_language[0],
+                                      C1 = level1[0],
+                                      C2 = level2[0],
+                                      séance_de_lundi = period,
+                                      u = unit[0],
+                                      )
+                                st.success("Votre cahier journal a été crèer avec succès! ")
+                                def update_downlaod_count():
+                                    sheet.update_cell(row_number if cell else sheet.row_count + 1, 5, current_count + 1)
+
                                 download = st.download_button(
-                                       label="Téléchargez votre cahier journal",
-                                       data=journal,
-                                       key="workbook.xlsm",
-                                       file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
-                                        )
-                                sheet.update_cell(row_number if cell else sheet.row_count + 1, 5, current_count + 1)
+                                           label="Téléchargez votre cahier journal",
+                                           data=journal,
+                                           key="workbook.xlsm",
+                                           file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
+                                            on_click = update_downlaod_count)
+                                
 
                             else:
                                 st.warning("Vous étes dépasser la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter l'administrateur")
@@ -1308,6 +1309,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

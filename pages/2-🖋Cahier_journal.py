@@ -920,11 +920,11 @@ if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
             title_placeholder.subheader("Se connecter")
-            login
+            #login
 
 else :
     title_placeholder = st.empty()
-    login
+    #login
  
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
@@ -1305,6 +1305,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

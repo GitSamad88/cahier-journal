@@ -76,7 +76,7 @@ def inject_ga():
         html = html.replace(g_adsense,"")
         new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
-#inject_ga()
+inject_ga()
 
 
 
@@ -157,13 +157,11 @@ def login():
   smtp_gmail_ = ""
   smtp_password_ = ""
   title_placeholder = st.empty()
-  title_placeholder.subheader("S'enregistrer")
+  title_placeholder.subheader("Se connecter")
 
-  try:
-    secrets_auth = st.secrets["google_sheets_api_credentials"]
-  except:
-    secrets_auth = os.getenv("google_sheets_api_credentials","{}")
-    secrets_auth = json.loads(secrets_auth)
+
+  secrets_auth = os.getenv("google_sheets_api_credentials","{}")
+  secrets_auth = json.loads(secrets_auth)
 
 
   smtp_gmail_ = os.getenv("smtp_gmail","")
@@ -210,11 +208,8 @@ def worksheet(_auth):
     client = gspread.authorize(Worksheet)
     db = client.open("mydb").worksheets()[1]
     return db
-try:
-    comm_db = worksheet(st.secrets["google_sheets_api_credentials"])
-except:
-    comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}")))
-  
+
+comm_db = worksheet(json.loads(os.getenv("google_sheets_api_credentials","{}")))  
 comments = pd.DataFrame(comm_db.get_values(), columns = comm_db.get_values()[0]).drop(index=0)
 
 
@@ -300,6 +295,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

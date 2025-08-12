@@ -911,12 +911,10 @@ def login():
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
     username = __login__obj.get_username()
 
-    LOGGED_IN = __login__obj.build_login_ui()
-    if  LOGGED_IN:
-        title_placeholder.empty()
-        
-    return LOGGED_IN
+    LOGGED_IN = __login__obj.build_login_ui()        
+    return LOGGED_IN,username
     
+login, username = login()
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
     st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
@@ -925,10 +923,10 @@ if "LOGGED_IN" not in st.session_state:
 if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
-            login()
+            login
 
 else :
-    login()
+    login
     st.write(username)
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
@@ -1290,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

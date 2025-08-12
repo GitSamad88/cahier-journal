@@ -928,6 +928,15 @@ if not st.session_state["LOGGED_IN"]:
 else :
     login
     st.write(username)
+  # Find user's row
+sheet = worksheet(_credentials = secrets_auth)
+cell = sheet.find(username)
+if cell:
+    row_number = cell.row
+    current_count = int(sheet.cell(row_number, 4).value)  # col 2 = count
+else:
+    current_count = 0
+st.write(current_count)
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
@@ -1156,6 +1165,8 @@ else :
             rec_t = dt.timedelta(minutes=rec_t.minute)
 
             enregistre = form.form_submit_button("Enregistrez!")
+            
+          
 
             options = [french_manual_name1, french_manual_name2,
                        maths_manual_name1, maths_manual_name2,
@@ -1168,8 +1179,8 @@ else :
                                          maths_manual_name1, maths_manual_name2, 
                                          maths_manual_name1, maths_manual_name2,
                                          act_sc_manual_name1, act_sc_manual_name2])
+            
 
-            #if all(str(value[0]) in dispo_manuels for value in selected_manuels):
                 # """"-------------Emplois Du Temps-----------""""
                 if "emplois" in st.session_state:
                     emplois = st.session_state["emplois"]
@@ -1288,6 +1299,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

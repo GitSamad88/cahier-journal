@@ -889,7 +889,6 @@ secrets_auth = {}
 smtp_gmail_ = ""
 smtp_password_ = ""
 title_placeholder = st.empty()
-title_placeholder.subheader("S'enregistrer")
 try:
     secrets_auth = os.getenv("google_sheets_api_credentials","{}")
     secrets_auth = json.loads(secrets_auth)
@@ -918,17 +917,17 @@ def login():
     
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
+    st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
+                icon="ℹ️")
 
 if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
             login()
-            st.info(
-                "Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
-                icon="ℹ️")
+
 else :
     login()
-        
+   st.write( __login__obj.cookies)
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
@@ -1289,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

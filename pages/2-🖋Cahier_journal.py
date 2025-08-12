@@ -896,7 +896,7 @@ secrets_auth = json.loads(secrets_auth)
     
 smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
-
+st.write(st.session_state)
 def login():
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
@@ -907,7 +907,6 @@ def login():
                         hide_footer_bool = False,
                         lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
     username = __login__obj.get_username()
-
     LOGGED_IN = __login__obj.build_login_ui()        
     return LOGGED_IN,username
     
@@ -1306,6 +1305,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

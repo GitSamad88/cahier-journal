@@ -916,7 +916,6 @@ def do_login():
     LOGGED_IN = __login__obj.build_login_ui()
     return LOGGED_IN, username
 
-LOGGED_IN, username = do_login()
 # Initialize session state if not set
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
@@ -930,6 +929,8 @@ if not st.session_state["LOGGED_IN"]:
     )
     title_placeholder = st.empty()
     title_placeholder.subheader("Se connecter")
+    LOGGED_IN, username = do_login()
+
 
     if LOGGED_IN:
         st.session_state["LOGGED_IN"] = True
@@ -1315,6 +1316,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

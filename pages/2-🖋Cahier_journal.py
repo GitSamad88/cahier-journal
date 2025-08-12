@@ -897,7 +897,7 @@ secrets_auth = json.loads(secrets_auth)
 smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
 if "LOGOUT_BUTTON_HIT" not in session_state:
-    st.session_state[""LOGOUT_BUTTON_HIT"] = False
+    st.session_state["LOGOUT_BUTTON_HIT"] = False
 st.write(st.session_state)
 def login():
     __login__obj = __login__(credentials = secrets_auth,
@@ -922,11 +922,11 @@ if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
             title_placeholder.subheader("Se connecter")
-            #login
+            login
 
 else :
     title_placeholder = st.empty()
-    #login
+    login
  
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
@@ -1307,6 +1307,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

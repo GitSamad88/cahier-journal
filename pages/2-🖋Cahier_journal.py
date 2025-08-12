@@ -902,7 +902,7 @@ smtp_password_ = os.getenv("smtp_password","")
 
 def login():
     title_placeholder = st.empty()
-    #title_placeholder.subheader("S'enregistrer")
+    title_placeholder.subheader("Se connecter")
     __login__obj = __login__(credentials = secrets_auth,
                         smtp_username = smtp_gmail_,
                         smtp_password = smtp_password_,
@@ -925,9 +925,11 @@ if "LOGGED_IN" not in st.session_state:
 if not st.session_state["LOGGED_IN"]:
     with st.container(border=True):
         if __name__ == "__main__":
+            title_placeholder = st.empty()
             login
 
 else :
+    title_placeholder = st.empty()
     login
  
     # """"----------------Streamlit App-----------------"""
@@ -1131,7 +1133,7 @@ else :
                 current_count = int(sheet.cell(row_number, 5).value)  # col 2 = count
             else:
                 current_count = 0
-            st.write("current_count: ",current_count)
+        
             
             code = form.text_input("Si vous voulez choisir d'autre unité, entrez votre code ici :",
                                  placeholder="Entrez votre code")
@@ -1214,12 +1216,18 @@ else :
                                   u = unit[0],
                                   )
                             st.success("Votre cahier journal a été crèer avec succès! ")
-                            download = st.download_button(
-                                   label="Téléchargez votre cahier journal",
-                                   data=journal,
-                                   key="workbook.xlsm",
-                                   file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
-                                    )
+                            if current_count < 10:
+                                download = st.download_button(
+                                       label="Téléchargez votre cahier journal",
+                                       data=journal,
+                                       key="workbook.xlsm",
+                                       file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
+                                        )
+                                sheet.update_cell(row_number if cell else sheet.row_count + 1, 5, current_count + 1)
+
+                            else:
+                                st.warning("Vous étes dépasser la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter l'administrateur")
+                             
                 else:
                     modal_title = "Pas d'emplois du temps!"
                     modal = Modal(key="modal002", title=modal_title, padding=10, max_width=400)
@@ -1300,6 +1308,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

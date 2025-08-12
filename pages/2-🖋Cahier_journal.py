@@ -891,12 +891,10 @@ smtp_password_ = ""
 title_placeholder = st.empty()
 try:
     secrets_auth = st.secrets["google_sheets_api_credentials"]
-    st.write("secrets_auth from secrets: ",secrets_auth)
 
 except:
     secrets_auth = os.getenv("google_sheets_api_credentials","{}")
     secrets_auth = json.loads(secrets_auth)
-    st.write("secrets_auth from env: ",secrets_auth)
 
     
 smtp_gmail_ = os.getenv("smtp_gmail","")
@@ -1130,7 +1128,7 @@ else :
             cell = sheet.find(username)
             if cell:
                 row_number = cell.row
-                current_count = int(sheet.cell(row_number, 4).value)  # col 2 = count
+                current_count = int(sheet.cell(row_number, 5).value)  # col 2 = count
             else:
                 current_count = 0
             st.write("current_count: ",current_count)
@@ -1302,6 +1300,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

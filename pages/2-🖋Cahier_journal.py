@@ -1123,7 +1123,6 @@ else :
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']
             # Find user's row
-            sheet = worksheet(_credentials = secrets_auth)
             cell = sheet.find(username)
             if cell:
                 row_number = cell.row
@@ -1299,6 +1298,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

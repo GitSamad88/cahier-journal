@@ -927,16 +927,7 @@ if not st.session_state["LOGGED_IN"]:
 
 else :
     login
-    st.write(username)
-    # Find user's row
-    sheet = worksheet(_credentials = secrets_auth)
-    cell = sheet.find(username)
-    if cell:
-        row_number = cell.row
-        current_count = int(sheet.cell(row_number, 4).value)  # col 2 = count
-    else:
-        current_count = 0
-    st.write("current_count: ",current_count)
+ 
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
@@ -1131,7 +1122,16 @@ else :
             users = pd.DataFrame(sheet.get_values(), columns=sheet.get_values()[0]).drop(index=0)
             codes = users.code.to_list()
             codes = [code for code in codes if code != '']
-
+            # Find user's row
+            sheet = worksheet(_credentials = secrets_auth)
+            cell = sheet.find(username)
+            if cell:
+                row_number = cell.row
+                current_count = int(sheet.cell(row_number, 4).value)  # col 2 = count
+            else:
+                current_count = 0
+            st.write("current_count: ",current_count)
+            
             code = form.text_input("Si vous voulez choisir d'autre unité, entrez votre code ici :",
                                  placeholder="Entrez votre code")
             if code in codes:
@@ -1299,6 +1299,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

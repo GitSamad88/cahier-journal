@@ -927,7 +927,7 @@ if not st.session_state["LOGGED_IN"]:
 
 else :
     login()
-   st.write( __login__obj.cookies)
+    st.write( __login__obj.cookies)
     # """"----------------Streamlit App-----------------"""
     st.title("Le Cahier des Leçons Journalières ")
     st.empty()
@@ -1288,6 +1288,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

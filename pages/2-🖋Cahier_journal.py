@@ -896,7 +896,7 @@ secrets_auth = json.loads(secrets_auth)
     
 smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
-if "LOGOUT_BUTTON_HIT" not in session_state:
+if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
 st.write(st.session_state)
 def login():
@@ -1307,6 +1307,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

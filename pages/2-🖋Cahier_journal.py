@@ -898,39 +898,50 @@ smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
 if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
-    
-def login():
-    __login__obj = __login__(credentials = secrets_auth,
-                        smtp_username = smtp_gmail_,
-                        smtp_password = smtp_password_,
-                        company_name = "Moudakira.ma",
-                        width = 200, height = 300,
-                        logout_button_name = 'Se déconnecter', hide_menu_bool = False,
-                        hide_footer_bool = False,
-                        lottie_url = 'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
+def do_login():
+    __login__obj = __login__(
+        credentials=secrets_auth,
+        smtp_username=smtp_gmail_,
+        smtp_password=smtp_password_,
+        company_name="Moudakira.ma",
+        width=200,
+        height=300,
+        logout_button_name='Se déconnecter',
+        hide_menu_bool=False,
+        hide_footer_bool=False,
+        lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json'
+    )
+
     username = __login__obj.get_username()
-    LOGGED_IN = __login__obj.build_login_ui()        
-    return LOGGED_IN,username
-    
-login, username = login()
+    LOGGED_IN = __login__obj.build_login_ui()
+    return LOGGED_IN, username
+
+
+# Initialize session state if not set
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
-    st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
-                icon="ℹ️")
+    st.session_state["username"] = None
 
+# Only try login if not logged in
 if not st.session_state["LOGGED_IN"]:
-    with st.container(border=True):
-        if __name__ == "__main__":
-            title_placeholder.subheader("Se connecter")
-            login
-
-else :
+    st.info(
+        "Si vous n'avez pas un compte, veuillez cliquer sur ***Créer un compte*** "
+        "dans la barre de navigation pour créer un.",
+        icon="ℹ️"
+    )
     title_placeholder = st.empty()
-    login
- 
-    # """"----------------Streamlit App-----------------"""
-    st.title("Le Cahier des Leçons Journalières ")
-    st.empty()
+    title_placeholder.subheader("Se connecter")
+
+    LOGGED_IN, username = do_login()
+    if LOGGED_IN:
+        st.session_state["LOGGED_IN"] = True
+        st.session_state["username"] = username
+        st.experimental_rerun()
+
+else:
+    title_placeholder = st.empty()
+    title_placeholder.subheader(f"Bienvenue, {st.session_state['username']} 👋")
+
 
 
     french_dispo_manuels1 = ["Faire Dire","","",""]
@@ -1307,6 +1318,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

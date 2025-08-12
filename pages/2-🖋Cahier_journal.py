@@ -940,9 +940,9 @@ if not st.session_state["LOGGED_IN"]:
 
 else:
     title_placeholder = st.empty()
-    title_placeholder.subheader(f"Bienvenue, {st.session_state['username']} 👋")
-
-
+    title_placeholder.subheader(f"Bienvenue👋{username}")
+    time.sleep(3)
+    title_placeholder.subheader("Cahier des Leçons Journalières")
 
     french_dispo_manuels1 = ["Faire Dire","","",""]
     french_dispo_manuels2 = ["Mes apprentissages", "Espace de l'école", "L'oasis des mots", "Nouvel espace"]
@@ -1318,6 +1318,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

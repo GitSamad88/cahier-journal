@@ -929,7 +929,7 @@ if not st.session_state["LOGGED_IN"]:
     )
     title_placeholder = st.empty()
     title_placeholder.subheader("Se connecter")
-    LOGGED_IN, username = do_login()
+    LOGGED_IN, _ = do_login()
 
 
     if LOGGED_IN:
@@ -938,6 +938,7 @@ if not st.session_state["LOGGED_IN"]:
 
 else:
     title_placeholder = st.empty()
+    _ , username = do_login()
     title_placeholder.subheader(f"Bienvenue👋 {username}")
     time.sleep(3)
     title_placeholder.subheader("Cahier des Leçons Journalières")
@@ -1316,6 +1317,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

@@ -70,7 +70,7 @@ def inject_ga():
         html = html.replace(g_adsense,"")
         new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
-#inject_ga()
+inject_ga()
 
 
 
@@ -232,7 +232,7 @@ if (not st.session_state["submitted1"] and not st.session_state["submitted2"]):
        
     for i in range (10):
         form1.write("  ")
-    form1.info("Seulement à 99 DH!")
+    form1.info("***Seulement à 99 DH!***")
     submit1 = form1.form_submit_button("Continue")
     
     form2 = col2.form(key="delivery")
@@ -242,7 +242,7 @@ if (not st.session_state["submitted1"] and not st.session_state["submitted2"]):
             "Nous recueillons ensuite vos retours pour apporter les modifications nécessaires. Enfin, vous procédez au paiement par virement et recevez votre cahier journalier par e-mail ou via WhatsApp.")
     form2.write(text)
     form2.image(r"app-images/satisfaid_then_pay.png")
-    form2.info("Tout ça coûte 149 DH")
+    form2.info("***Tout ça coûte 149 DH!***")
     submit2 = form2.form_submit_button("Continue")
     
     # If either form is submitted, update session state and rerun
@@ -395,6 +395,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

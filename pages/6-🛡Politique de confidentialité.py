@@ -3,17 +3,17 @@ import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from datetime import datetime
 # page configue
-st.set_page_config(page_icon="app-images/Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="static/oudkira_dark_v_100_100.png",
     page_title="Politique De Confidentialité")
 
-add_logo("app-images/Moudkira_dark_v_100_100.png",height=80)
+add_logo("static/moudkira_dark_v_100_100.png",height=80)
 #"https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg" alt="Banner Image">
 
 # Display the custom HTML
 #components.html(custom_html)
 st.title("Politique de confidentialité")
 #<h1>Politique de confidentialité</h1>
-st.image("app-images/data_privacy.jpg")
+st.image("static/data_privacy.jpg")
 #width=700)#,use_column_width=True)
 privacy_policy_html="""
 <p>Dernière mise à jour : 1 Septembre 2025 </p>
@@ -255,6 +255,7 @@ footer = """
 current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

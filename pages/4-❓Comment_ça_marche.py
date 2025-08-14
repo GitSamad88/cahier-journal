@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.app_logo import add_logo
 import streamlit.components.v1 as components
 from datetime import datetime
+from PIL import Image
 
 # page configue
 st.set_page_config(page_icon = r"static/moudkira_dark_v_100_100.png",
@@ -9,8 +10,10 @@ st.set_page_config(page_icon = r"static/moudkira_dark_v_100_100.png",
 
 add_logo(r"static/moudkira_dark_v_100_100.png",height=80)
 
+all_images = st.session_state["all_images"]
+
 st.title("Comment ça marche?")
-st.image(r"static/question.jpg")#,width=500)#,use_column_width="auto")
+st.image(all_images["question.jpg"])#,width=500)#,use_column_width="auto")
 
 
 st.subheader("Comment créer un emplois de temps? ")
@@ -109,6 +112,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

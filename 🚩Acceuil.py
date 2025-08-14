@@ -13,16 +13,16 @@ from bs4 import BeautifulSoup
 import urllib.request
 
 
-st.set_page_config(page_icon="app-images/moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
                    page_title="Page D'accueil")
 
 
 
 
 #add a logo
-add_logo("app-images/moudkira_dark_v_100_100.png",height=80)
+add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
-st.image('app-images/banner-moudakira-no-logo.png')
+st.image('static/banner-moudakira-no-logo.png')
 
 # Inject Google Analytics
 GA_ID = "google_analytics"
@@ -115,7 +115,7 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 
 
-col2.image("app-images/capture_cahier_journal.png")
+col2.image("static/capture_cahier_journal.png")
 
 col3, col4 = st.columns([0.6,0.4])
 
@@ -295,6 +295,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

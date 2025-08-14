@@ -4,13 +4,13 @@ import streamlit.components.v1 as components
 from datetime import datetime
 
 # page configue
-st.set_page_config(page_icon = r"app-images/Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon = r"static/Moudkira_dark_v_100_100.png",
                    page_title = "Comment ça marche?")
 
-add_logo(r"app-images/Moudkira_dark_v_100_100.png",height=80)
+add_logo(r"static/Moudkira_dark_v_100_100.png",height=80)
 
 st.title("Comment ça marche?")
-st.image(r"app-images/question.jpg")#,width=500)#,use_column_width="auto")
+st.image(r"static/question.jpg")#,width=500)#,use_column_width="auto")
 
 
 st.subheader("Comment créer un emplois de temps? ")
@@ -109,6 +109,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

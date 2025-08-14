@@ -23,6 +23,10 @@ add_logo("static/moudkira_dark_v_100_100.png",height=80)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGES_DIR = os.path.join(BASE_DIR, "static")
 
+
+if not "all_images" not in st.session_state:
+  st.session_state["all_images"] = None
+  
 @st.cache_resource
 def preload_images():
     """Load all images from the 'images' folder into memory once."""
@@ -35,6 +39,10 @@ def preload_images():
 
 # Load all images into memory before rendering anything
 all_images = preload_images()
+
+
+  
+ st.session_state["all_images"] = all_images
 
 st.image(all_images['banner-moudakira-no-logo.png'])
 
@@ -129,11 +137,11 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 
 
-col2.image("static/capture_cahier_journal.png")
+col2.image(all_images["capture_cahier_journal.png"])
 
 col3, col4 = st.columns([0.6,0.4])
 
-col3.image("app-images/emplois_presen_d3.png")
+col3.image(all_images["emplois_presen_d3.png"])
 col4.write("2. ***Comment ça marche? :*** "
            "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
            "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "
@@ -309,6 +317,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

@@ -21,7 +21,7 @@ add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
 # Get absolute path of the current file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGES_DIR = os.path.join(BASE_DIR, "images")
+IMAGES_DIR = os.path.join(BASE_DIR, "static")
 
 @st.cache_resource
 def preload_images():
@@ -309,6 +309,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

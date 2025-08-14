@@ -22,10 +22,10 @@ from io import BytesIO
 warnings.filterwarnings("ignore")
 
 # page configue
-st.set_page_config(page_icon=r"app-images/Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon=r"static/moudkira_dark_v_100_100.png",
     page_title="Cahier Journal")
 
-add_logo(r"app-images/Moudkira_dark_v_100_100.png",height=80)
+add_logo(r"static/moudkira_dark_v_100_100.png",height=80)
 
 
 GA_ID = "google_analytics"
@@ -1317,6 +1317,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

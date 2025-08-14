@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
 from streamlit_signin_auth_ui.widgets import __login__
 import streamlit_star_rating as st_rating
-
+from PIL import Image
 import re,secrets, gspread, pathlib,shutil,time, warnings,json, toml
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
@@ -15,14 +15,28 @@ import urllib.request
 
 st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
                    page_title="Page D'accueil")
-
-
-
-
 #add a logo
 add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
-st.image('static/banner-moudakira-no-logo.png')
+
+# Get absolute path of the current file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGES_DIR = os.path.join(BASE_DIR, "images")
+
+@st.cache_resource
+def preload_images():
+    """Load all images from the 'images' folder into memory once."""
+    image_dict = {}
+    for file in os.listdir(IMAGES_DIR):
+        if file.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
+            path = os.path.join(IMAGES_DIR, file)
+            image_dict[file] = Image.open(path)
+    return image_dict
+
+# Load all images into memory before rendering anything
+all_images = preload_images()
+
+st.image(all_images['banner-moudakira-no-logo.png'])
 
 # Inject Google Analytics
 GA_ID = "google_analytics"
@@ -295,6 +309,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

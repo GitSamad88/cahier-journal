@@ -186,15 +186,15 @@ def login():
 
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
-    st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.",
-                icon="ℹ️")
-if not st.session_state["LOGGED_IN"]:
-    with st.container(border = True):
-        if __name__ == "__main__":
-            login()
+    #st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.", icon="ℹ️")
+#if not st.session_state["LOGGED_IN"]:
+    #with st.container(border = False):
+        #if __name__ == "__main__":
+            #login()
             
 elif __name__ == "__main__":
-    login()
+  st.wriet("")
+    #login()
 
 
 
@@ -295,6 +295,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

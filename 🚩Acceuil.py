@@ -193,7 +193,7 @@ if "LOGGED_IN" not in st.session_state:
             #login()
             
 elif __name__ == "__main__":
-  st.wriet("")
+  st.write("")
     #login()
 
 
@@ -295,6 +295,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

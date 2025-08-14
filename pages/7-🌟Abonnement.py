@@ -18,6 +18,34 @@ st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
 add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
 
+
+
+# Get absolute path of the current file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGES_DIR = os.path.join(BASE_DIR, "static")
+
+
+if "all_images" not in st.session_state:
+  st.session_state["all_images"] = None
+  
+@st.cache_resource
+def preload_images():
+    """Load all images from the 'images' folder into memory once."""
+    image_dict = {}
+    for file in os.listdir(IMAGES_DIR):
+        if file.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
+            path = os.path.join(IMAGES_DIR, file)
+            image_dict[file] = Image.open(path)
+    return image_dict
+
+# Load all images into memory before rendering anything
+all_images = preload_images()
+
+
+  
+st.session_state["all_images"] = all_images
+
+
 # Inject Google Analytics
 GA_ID = "google_analytics"
 ga_script = """<!-- Google tag (gtag.js) -->
@@ -228,7 +256,7 @@ if (not st.session_state["submitted1"] and not st.session_state["submitted2"]):
     form1.write("Une fois le paiement effectué par un virement, un code vous sera envoyé à saisir pour débloquer l'accès à toutes les unités.")
     for i in range (9):
         form1.write("  ")
-    form1.image(r"static/pay_for_code.png")
+    form1.image(all_images["pay_for_code.png"])
        
     for i in range (10):
         form1.write("  ")
@@ -241,7 +269,7 @@ if (not st.session_state["submitted1"] and not st.session_state["submitted2"]):
     text = ("Une fois que vous avez saisi les informations requises, nous créons votre cahier journalier et vous permettons de le visualiser en avant-première. "
             "Nous recueillons ensuite vos retours pour apporter les modifications nécessaires. Enfin, vous procédez au paiement par virement et recevez votre cahier journalier par e-mail ou via WhatsApp.")
     form2.write(text)
-    form2.image(r"static/satisfaid_then_pay.png")
+    form2.image(all_images["satisfaid_then_pay.png"])
     form2.info("***Tout ça coûte 149 DH!***")
     submit2 = form2.form_submit_button("Continue")
     
@@ -259,7 +287,7 @@ if st.session_state["submitted1"]:
     st.info("**Banque**: Attijariwafa Bank \n\n"
             "**Numéro de compte : 007194000702200030726337**")
     col1,col2 = st.columns(2)
-    col1.image("static/attijari_logo_resized.png")#,use_container_width="auto")
+    col1.image(all_images["attijari_logo_resized.png"])#,use_container_width="auto")
     col2.image("static/account_qrcode.jpeg")
     st.write("Veuillez envoyez un justificatif de votre payment sur l'e-mail suivant: **moudakira.ma@gmail.com** "
              "ou sur le Whatsapp suivant: **https://wa.me/+212667313488**,"
@@ -395,6 +423,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

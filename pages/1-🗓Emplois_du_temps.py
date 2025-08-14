@@ -11,10 +11,10 @@ from datetime import datetime
 import shutil
 
 # page configue
-st.set_page_config(page_icon="static/Moudkira_dark_v_100_100.png",
+st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
     page_title="Emplois Du Temps")
 
-add_logo("static/Moudkira_dark_v_100_100.png",height=80)
+add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
 
 # google ads and analytics
@@ -251,6 +251,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

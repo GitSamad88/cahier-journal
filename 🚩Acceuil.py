@@ -42,7 +42,7 @@ all_images = preload_images()
 
 
   
- st.session_state["all_images"] = all_images
+st.session_state["all_images"] = all_images
 
 st.image(all_images['banner-moudakira-no-logo.png'])
 
@@ -317,6 +317,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

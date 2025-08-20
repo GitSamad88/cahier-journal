@@ -117,7 +117,8 @@ st.markdown(js_code, unsafe_allow_html=True)
 
 # write title, subheaders and paragraphes
 # add video and images 
-st.title("Moudakira.ma: Cahier des Leçons Journalières ")
+st.title("Moudakira.ma: Préparez votre cahier des leçons journalières en quelques minutes, pas en heures!")
+st.subheader("Une solution simple et rapide pour les enseignants du primaire.")
 st.write("Bienvenue, "
          "Moudakira.ma est une application novatrice conçue spécialement pour simplifier la vie des enseignants du "
          "cycle primaire. "
@@ -126,7 +127,7 @@ st.write("Bienvenue, "
          " offrant ainsi aux enseignants plus de temps pour se concentrer sur l'essentiel : l'éducation de leurs élèves")
 
 col1, col2 = st.columns([0.4, 0.6])
-col1.header("Fonctionnalités Clés :")
+col1.subheader("Fonctionnalités Clés :")
 
 col1.write("1. ***Création Facile de Cahier Journal :*** "
            "Avec Moudakira.ma, la création de cahier journal n'a jamais été aussi simple. "
@@ -317,6 +318,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

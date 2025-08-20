@@ -38,11 +38,11 @@ def preload_images():
     return image_dict
 
 # Load all images into memory before rendering anything
-all_images = preload_images()
+#all_images = preload_images()
 
 
   
-st.session_state["all_images"] = all_images
+#st.session_state["all_images"] = all_images
 
 
 # Inject Google Analytics
@@ -291,8 +291,9 @@ else:
                 "Téléchargez votre cahier journalier en quelques minutes, prêts à être modifiés et imprimés."
             )
         
-        form1.image(all_images["pay_for_code.png"])
-                   
+        #form1.image(all_images["pay_for_code.png"])
+        form1.image("static/pay_for_code.png")
+
         for i in range (10):
             form1.write("  ")
             
@@ -311,6 +312,8 @@ else:
         form2.write(text)
         
         form2.image(all_images["satisfaid_then_pay.png"])
+        form2.image("static/satisfaid_then_pay.png")
+
         
         form2.success("💡 Garantie de satisfaction – Seulement **99 DH** !")
         
@@ -330,8 +333,10 @@ else:
         st.info("**Banque**: Attijariwafa Bank \n\n"
                 "**Numéro de compte : 007194000702200030726337**")
         col1,col2 = st.columns(2)
-        col1.image(all_images["attijari_logo_resized.png"])#,use_container_width="auto")
-        col2.image(all_images["account_qrcode.jpeg"])
+        #col1.image(all_images["attijari_logo_resized.png"])#,use_container_width="auto")
+        col1.image("static/attijari_logo_resized.png")
+        col2.image("static/account_qrcode.jpeg")
+        #col2.image(all_images["account_qrcode.jpeg"])
         st.write("Veuillez envoyez un justificatif de votre payment sur l'e-mail suivant: **moudakira.ma@gmail.com** "
                  "ou sur le Whatsapp suivant: **https://wa.me/+212667313488**,"
                  " Après une vérification, vous recevrez ***un code*** pour débloquer toutes les unités.")
@@ -485,6 +490,7 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 
 

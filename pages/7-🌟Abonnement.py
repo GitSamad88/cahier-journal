@@ -100,6 +100,7 @@ def inject_ga():
 inject_ga()
     
 # load  google sheets api credentials from environment
+title_placeholder = st.empty()
 secrets_auth = os.getenv("google_sheets_api_credentials","{}")
 secrets_auth = json.loads(secrets_auth)
 smtp_gmail = os.getenv("smtp_gmail","")
@@ -490,6 +491,7 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 
 

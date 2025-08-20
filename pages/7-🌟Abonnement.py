@@ -311,7 +311,7 @@ else:
             "Après validation, vous recevez votre cahier complet par e-mail ou WhatsApp.")
         form2.write(text)
         
-        form2.image(all_images["satisfaid_then_pay.png"])
+        #form2.image(all_images["satisfaid_then_pay.png"])
         form2.image("static/satisfaid_then_pay.png")
 
         
@@ -490,6 +490,7 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 
 

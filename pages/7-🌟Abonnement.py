@@ -283,7 +283,7 @@ else:
         form1 = col1.form(key="transfer")
 
 
-       form1.header("🔑 Code Clé Pédagogique")
+        form1.header("🔑 Code Clé Pédagogique")
 
         form1.write(
                 "Obtenez un code unique qui débloque l’accès à **toutes les unités pédagogiques de l’année** "
@@ -485,5 +485,6 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 

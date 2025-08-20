@@ -1132,7 +1132,7 @@ else:
             cell = sheet.find(username)
             if cell:
                 row_number = cell.row
-                current_count = int(sheet.cell(row_number, 5).value)  # col 2 = count
+                current_count = int(sheet.cell(row_number, 5).value or 0)  # col 2 = count
             else:
                 current_count = 0
         
@@ -1313,6 +1313,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

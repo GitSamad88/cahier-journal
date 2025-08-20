@@ -151,7 +151,7 @@ if not st.session_state["LOGGED_IN"]:
     title_placeholder.subheader("Se connecter")
     LOGGED_IN, _ = do_login()
 else:
-    title_placeholder = st.empty()
+    title_placeholder.subheader("Choisissez votre plan et simplifiez votre année scolaire.")
     _ , username = do_login()
 
 
@@ -490,6 +490,7 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 
 

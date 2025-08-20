@@ -209,18 +209,10 @@ def login():
 
 if "LOGGED_IN" not in st.session_state:
     st.session_state["LOGGED_IN"] = False
-    #st.info("Si vous n'avez pas un compte, Veuillez cliquer sur ***Créer un compte*** dans la barre de navigation pour créer un.", icon="ℹ️")
-#if not st.session_state["LOGGED_IN"]:
-    #with st.container(border = False):
-        #if __name__ == "__main__":
-            #login()
             
 elif __name__ == "__main__":
   st.write("")
-    #login()
-
-
-
+    
 # Add a comment section
 @st.cache_resource(show_spinner=False)
 def worksheet(_auth):
@@ -241,14 +233,13 @@ COMMENT_TEMPLATE_MD = """{} - {}
 >> {}
 """
 
-
 def space(num_lines=1):
     """Adds empty lines to the Streamlit app."""
     for _ in range(num_lines):
         st.write("")
 
 # Comments part
-
+st.subheader("Ils ont testé Moudakira.ma… voici ce qu’en pensent les enseignants:")
 with st.expander("**💬 Avis:**",expanded=True):
 
     # Show comments
@@ -318,6 +309,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

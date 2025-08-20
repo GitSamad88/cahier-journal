@@ -936,7 +936,8 @@ else:
     title_placeholder.subheader(f"Bienvenue👋 {username}")
     time.sleep(3)
     title_placeholder.subheader("Votre cahier journal généré automatiquement")
-    st.text("Choisissez votre niveau, vos références (manuels scolaires), et laissez l’outil générer votre cahier journal complet. Téléchargez-le immédiatement, modifiez-le à votre convenance, et gagnez un temps précieux.")
+    st.write("Choisissez votre niveau, vos références (manuels scolaires), et laissez l’outil générer votre cahier journal complet. "
+    "Téléchargez-le immédiatement, modifiez-le à votre convenance, et gagnez un temps précieux.")
 
     french_dispo_manuels1 = ["Faire Dire","","",""]
     french_dispo_manuels2 = ["Mes apprentissages", "Espace de l'école", "L'oasis des mots", "Nouvel espace"]
@@ -1312,6 +1313,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

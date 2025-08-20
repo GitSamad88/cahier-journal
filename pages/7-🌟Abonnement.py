@@ -1,8 +1,7 @@
-import sys,os,shutil, pathlib,json
+import sys,os,shutil, pathlib,json,gspread,smtplib,toml,re,sys
 import streamlit as st
 import pandas as pd 
 import numpy as np
-import gspread,smtplib,toml,re,sys
 from oauth2client.service_account import ServiceAccountCredentials
 from streamlit_signin_auth_ui.widgets import __login__
 from datetime import datetime
@@ -10,7 +9,6 @@ from bs4 import BeautifulSoup
 from email.mime.text import MIMEText
 import streamlit.components.v1 as components
 from streamlit_extras.app_logo import add_logo
-from datetime import datetime
 
 
 # page configue
@@ -100,13 +98,12 @@ def inject_ga():
         new_html = html.replace('<head>', '<head>\n'+ g_adsense + '\n' + ga_script)
         index_path.write_text(new_html)
 inject_ga()
-
-
-
     
 # load  google sheets api credentials from environment
 secrets_auth = os.getenv("google_sheets_api_credentials","{}")
 secrets_auth = json.loads(secrets_auth)
+smtp_gmail = os.getenv("smtp_gmail","")
+smtp_password = os.getenv("smtp_password","")  
 
 #open prospect sheet
 @st.cache_resource(show_spinner=False)
@@ -120,16 +117,13 @@ def worksheet(_credentials):
 
 sheet = worksheet(_credentials = secrets_auth)
 
-
-
-
 if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
 def do_login():
     __login__obj = __login__(
         credentials=secrets_auth,
-        smtp_username=smtp_gmail_,
-        smtp_password=smtp_password_,
+        smtp_username=smtp_gmail,
+        smtp_password=smtp_password,
         company_name="Moudakira.ma",
         width=200,
         height=300,
@@ -171,12 +165,7 @@ else:
     if ("submitted1" and "submitted2" not in st.session_state):
         st.session_state["submitted1"] = False
         st.session_state["submitted2"] = False
-    
-    
-    
-    
-    smtp_gmail = os.getenv("smtp_gmail","")
-    smtp_password = os.getenv("smtp_password","")  
+
     
     def body_message(verification_code):
         body_html = """ <!DOCTYPE html>
@@ -292,29 +281,41 @@ else:
         col1, col2 = st.columns([0.5, 0.5])
         
         form1 = col1.form(key="transfer")
-        form1.header("Code Clé Pédagogique")
+
+
+       form1.header("🔑 Code Clé Pédagogique")
+
+        form1.write(
+                "Obtenez un code unique qui débloque l’accès à **toutes les unités pédagogiques de l’année** "
+                "(Français, Mathématiques, Activités Scientifiques). "
+                "Téléchargez votre cahier journalier en quelques minutes, prêts à être modifiés et imprimés."
+            )
         
-        form1.write("Une fois le paiement effectué par un virement, un code vous sera envoyé à saisir pour débloquer l'accès à toutes les unités.")
-        for i in range (9):
-            form1.write("  ")
-    
         form1.image(all_images["pay_for_code.png"])
-           
+                   
         for i in range (10):
             form1.write("  ")
-        form1.info("***Seulement à 99 DH!***")
-        submit1 = form1.form_submit_button("Continue")
+            
+        form1.success("✅ Accès immédiat – Seulement **49 DH** pour toute l’année !")
+        submit1 = form1.form_submit_button("👉 Je choisis ce plan")
         
         form2 = col2.form(key="delivery")
         
-        form2.header("Satisfait ou rien à payer!")
-        text = ("Une fois que vous avez saisi les informations requises, nous créons votre cahier journalier et vous permettons de le visualiser en avant-première. "
-                "Nous recueillons ensuite vos retours pour apporter les modifications nécessaires. Enfin, vous procédez au paiement par virement et recevez votre cahier journalier par e-mail ou via WhatsApp.")
+        form2.header("🎯 Satisfait ou rien à payer !")
+
+        text = (
+            "Nous préparons votre cahier journal personnalisé selon vos besoins. "
+            "Vous le visualisez d’abord gratuitement, nous ajustons selon vos retours, "
+            "et **vous ne payez que si vous êtes satisfait**. "
+            "Après validation, vous recevez votre cahier complet par e-mail ou WhatsApp.")
         form2.write(text)
-        form2.image(all_images["satisfaid_then_pay.png"])
-        form2.info("***Tout ça coûte 149 DH!***")
-        submit2 = form2.form_submit_button("Continue")
         
+        form2.image(all_images["satisfaid_then_pay.png"])
+        
+        form2.success("💡 Garantie de satisfaction – Seulement **99 DH** !")
+        
+        submit2 = form2.form_submit_button("👉 Je choisis ce plan")
+
         # If either form is submitted, update session state and rerun
         if submit1 :
             st.session_state["submitted1"] = True
@@ -325,7 +326,7 @@ else:
     
     # Display new content after submission 1
     if st.session_state["submitted1"]:
-        st.write("### Veuillez effectuer un virement de **99 DH** sur le numéro de compte ou scanner le QR code.")
+        st.write("### Veuillez effectuer un virement de **49 DH** sur le numéro de compte ou scanner le QR code.")
         st.info("**Banque**: Attijariwafa Bank \n\n"
                 "**Numéro de compte : 007194000702200030726337**")
         col1,col2 = st.columns(2)
@@ -484,4 +485,5 @@ st.markdown(Hid_Menu,
     
     
     
+
 

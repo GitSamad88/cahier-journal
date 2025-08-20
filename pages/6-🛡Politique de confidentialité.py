@@ -7,14 +7,9 @@ st.set_page_config(page_icon="static/oudkira_dark_v_100_100.png",
     page_title="Politique De Confidentialité")
 
 add_logo("static/moudkira_dark_v_100_100.png",height=80)
-#"https://img.freepik.com/free-vector/flat-design-data-privacy-facebook-cover_23-2149496763.jpg" alt="Banner Image">
 
-# Display the custom HTML
-#components.html(custom_html)
 st.title("Politique de confidentialité")
-#<h1>Politique de confidentialité</h1>
 st.image("static/data_privacy.jpg")
-#width=700)#,use_column_width=True)
 privacy_policy_html="""
 <p>Dernière mise à jour : 1 Septembre 2025 </p>
 <p>Cette politique de confidentialité décrit nos politiques et procédures concernant la collecte, l'utilisation et la divulgation de vos informations lorsque vous utilisez le service et vous informe de vos droits en matière de confidentialité et de la manière dont la loi vous protège.</p>
@@ -59,7 +54,7 @@ privacy_policy_html="""
 <p><strong>Données d'utilisation</strong> fait référence aux données collectées automatiquement, générées soit par l'utilisation du service, soit par l'infrastructure du service elle-même (par exemple, la durée d'une visite de page).</p>
 </li>
 <li>
-<p><strong>Site web</strong> fait référence à Moudakira.ma, accessible depuis <a href="https://moudakira.onrender.com/" rel="external nofollow noopener" target="_blank">https://moudakira.ma/</a></p>
+<p><strong>Site web</strong> fait référence à Moudakira.ma, accessible depuis <a href="https://app.moudakira.com/" rel="external nofollow noopener" target="_blank">moudakira.ma/</a></p>
 </li>
 <li>
 <p><strong>Vous</strong> désigne la personne accédant ou utilisant le service, ou la société ou autre entité juridique au nom de laquelle cette personne accède ou utilise le service, le cas échéant.</p>
@@ -98,8 +93,6 @@ le système d'exploitation de votre appareil mobile, le type de navigateur Inter
 <p>La Société vous permet de créer un compte et de vous connecter pour utiliser le service via les services de médias sociaux tiers suivants :</p>
 <ul>
 <li>Google</li>
-
-
 <li>Facebook</li>
 <li>Instagram</li>
 <li>Twitter</li>
@@ -255,6 +248,7 @@ footer = """
 current_year = datetime.now().year
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

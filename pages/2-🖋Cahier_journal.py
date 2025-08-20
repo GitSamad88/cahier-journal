@@ -575,10 +575,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     font = Font(name="Lucida Handwriting",sz=12)
 
     weeks_days = []
-    #sheets = []
-    #wb = Workbook()
-    #ws = wb.active
-
     wb = openpyxl.load_workbook(r"wb_swap_macro/wb_swap_levels.xlsm",keep_vba = True)
     sheets = wb.sheetnames
 
@@ -587,8 +583,6 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
     random_list = random.sample(range(citations.shape[0]), citations.shape[0])
     citation = citations["Définition"] + "\n" + "source: " + citations["Source"]
 
-    #for k in range(len(unite)):
-    #    sheets.append(wb.create_sheet(f'feuille {k}'))
 
     for i, date, ws in zip(enumerate(unite), unite, sheets):
         sheet = wb[ws]
@@ -941,7 +935,8 @@ else:
     _ , username = do_login()
     title_placeholder.subheader(f"Bienvenue👋 {username}")
     time.sleep(3)
-    title_placeholder.subheader("Cahier des Leçons Journalières")
+    title_placeholder.subheader("Votre cahier journal généré automatiquement")
+    st.text("Choisissez votre niveau, vos références (manuels scolaires), et laissez l’outil générer votre cahier journal complet. Téléchargez-le immédiatement, modifiez-le à votre convenance, et gagnez un temps précieux.")
 
     french_dispo_manuels1 = ["Faire Dire","","",""]
     french_dispo_manuels2 = ["Mes apprentissages", "Espace de l'école", "L'oasis des mots", "Nouvel espace"]
@@ -1317,6 +1312,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

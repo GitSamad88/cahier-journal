@@ -256,7 +256,15 @@ if (not st.session_state["submitted1"] and not st.session_state["submitted2"]):
     form1.write("Une fois le paiement effectué par un virement, un code vous sera envoyé à saisir pour débloquer l'accès à toutes les unités.")
     for i in range (9):
         form1.write("  ")
-    form1.image(all_images["pay_for_code.png"])
+    with form1:    
+        # Using HTML <img>
+        st.markdown(
+            """
+            <img src="static/pay_for_code.png" width="200">
+            """,
+            unsafe_allow_html=True
+        )
+    #form1.image(all_images["pay_for_code.png"])
        
     for i in range (10):
         form1.write("  ")
@@ -423,6 +431,7 @@ st.markdown(footer,
 st.markdown(Hid_Menu,
             unsafe_allow_html=True)
  
+
 
 
 

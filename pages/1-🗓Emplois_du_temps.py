@@ -5,10 +5,8 @@ import numpy as np
 from io import BytesIO
 from bs4 import BeautifulSoup
 from streamlit_extras.app_logo import add_logo
-import pathlib
-import time
+import pathlib,time,shutil
 from datetime import datetime
-import shutil
 
 # page configue
 st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
@@ -92,18 +90,18 @@ def emplois_df(emplois):
     )
 
 
-#st.markdown("Your Streamlit Application Begins here!")
 if "emplois" not in st.session_state:
     st.session_state["emplois"] = pd.DataFrame(columns=["Jour", "Matière","Séance", "Durée","Niveau"])
 
 emplois = pd.DataFrame(columns=["Jour", "Matière","Séance", "Durée","Niveau"])
-st.title("Emplois Du Temps")
+
+st.title("Créez votre emploi du temps en quelques clics")
+st.write("Saisissez vos horaires (entrées, sorties, pauses) et vos matières. Votre emploi du temps sera enregistré et utilisable pour toutes vos unités pédagogiques.")
 form = st.form(key="key1")
 
 creat_or_import = form.selectbox("choisissez une option: ", ["Créer un nouveau emplois", "Importer votre emplois"],
-                                 # max_selections=1,
                                  index=None, key="crorimpo",
-                                 placeholder="Choisissez une option")  # default="Crèer un nouveau emplois")
+                                 placeholder="Choisissez une option") 
 confirmation = form.form_submit_button("Confirmez votre choix")
 if (creat_or_import == "Créer un nouveau emplois"):
 
@@ -251,6 +249,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

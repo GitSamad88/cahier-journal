@@ -933,10 +933,8 @@ if not st.session_state["LOGGED_IN"]:
 else:
     title_placeholder = st.empty()
     _ , username = do_login()
-    title_placeholder.subheader(f"Bienvenue👋 {username}")
-    time.sleep(3)
-    title_placeholder.subheader("Votre cahier journal généré automatiquement")
-    st.write("Choisissez votre niveau, vos références (manuels scolaires), et laissez l’outil générer votre cahier journal complet. "
+    title_placeholder.subheader("Bienvenue👋, votre cahier journal généré automatiquement")
+    st.write("Choisissez votre niveau, vos références (manuels scolaires) etc, et laissez l’outil générer votre cahier journal complet. "
     "Téléchargez-le immédiatement, modifiez-le à votre convenance, et gagnez un temps précieux.")
 
     french_dispo_manuels1 = ["Faire Dire","","",""]
@@ -1313,6 +1311,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

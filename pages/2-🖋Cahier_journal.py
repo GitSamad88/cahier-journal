@@ -928,7 +928,7 @@ if not st.session_state["LOGGED_IN"]:
 
     if LOGGED_IN:
         st.session_state["LOGGED_IN"] = True
-        st.experimental_rerun()
+        st.rerun()
 
 else:
     title_placeholder = st.empty()
@@ -1313,6 +1313,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

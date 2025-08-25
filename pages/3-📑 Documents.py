@@ -17,18 +17,17 @@ st.write("Retrouvez ici une sélection de pages utiles déjà prêtes à l’emp
 
 
 
-#sys.path.append(r'C:\Users\hp')
-col1, col2, col3= st.columns([1,2,3])
-
-col1.subheader("📄 Page de Garde ")
-col1.image("static/moudakira_cover_page.JPG", width=200)
-
-col2.subheader("📄 Pages Vides ")
-col1.image("static/page_vide_moudakira.JPG", width=200)
 
 
-col3.subheader("📝 Documents Pédagogiques ")
-col3.image("static/doc_peda.JPG", width=200)
+st.subheader("📘 Page de Garde ")
+st.image("static/moudakira_cover_page.JPG", width=200)
+
+st.subheader("📄 Pages Vides ")
+st.image("static/page_vide_moudakira.JPG", width=200)
+
+
+st.subheader("📝 Documents Pédagogiques ")
+st.image("static/doc_peda.JPG", width=200)
 
 
 

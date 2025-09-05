@@ -10,7 +10,7 @@ from datetime import datetime
 
 # page configue
 st.set_page_config(page_icon="static/moudkira_dark_v_100_100.png",
-    page_title="Emplois Du Temps")
+    page_title="Emploi Du Temps")
 
 add_logo("static/moudkira_dark_v_100_100.png",height=80)
 
@@ -70,7 +70,8 @@ inject_ga()
 
 buffer = BytesIO()
 
-
+st.cache_data
+st.cache_resource
 def emplois_df(emplois):
     emplois["Jour"] = jours
     emplois["Matière"] = matieres
@@ -99,11 +100,11 @@ st.title("Créez votre emploi du temps en quelques clics")
 st.write("Saisissez vos horaires (entrées, sorties, pauses) et vos matières. Votre emploi du temps sera enregistré et utilisable pour toutes vos unités pédagogiques.")
 form = st.form(key="key1")
 
-creat_or_import = form.selectbox("choisissez une option: ", ["Créer un nouveau emplois", "Importer votre emplois"],
+creat_or_import = form.selectbox("choisissez une option: ", ["Créer un nouveau emploi", "Importer votre emploi"],
                                  index=None, key="crorimpo",
                                  placeholder="Choisissez une option") 
 confirmation = form.form_submit_button("Confirmez votre choix")
-if (creat_or_import == "Créer un nouveau emplois"):
+if (creat_or_import == "Créer un nouveau emploi"):
 
     jours, matieres, dures, niveaux,seances = [],[],[],[],[]
 
@@ -137,7 +138,7 @@ if (creat_or_import == "Créer un nouveau emplois"):
 
         form.form_submit_button(f"Confirmez le {m} niveau")
 
-        form.header(f"Emplois Du Niveau: {niveau if niveau != None else ''}")
+        form.header(f"Emploi Du Niveau: {niveau if niveau != None else ''}")
         for jour in range(1, 7):
             form.info(f"Jour : {jour}")
             for i in range(1, 7):
@@ -171,13 +172,13 @@ if (creat_or_import == "Créer un nouveau emplois"):
     if enregistrer:
         try:
             emplois_df(emplois=emplois)
-            st.success("votre emplois a été bien enregistré!")
+            st.success("votre emploi a été bien enregistré!")
         except Exception as ex:
             st.warning("Il faut au moins sélectionner une matière avec sa durée "
                       "et le numèro de sa séance!")
 
 
-elif creat_or_import == "Importer votre emplois":
+elif creat_or_import == "Importer votre emploi":
     # """warnings: you have to add instructions!"""
     st.info(
         'Remarque: Votre fichier doit être en format CSV. '
@@ -186,7 +187,7 @@ elif creat_or_import == "Importer votre emplois":
     if st.button("Cliquez pour voir un exemple! "):
         example = pd.read_csv(
             "https://docs.google.com/spreadsheets/d/17Od8aGyqZPRXSyIIMLDklIhOLg1vApSrj5DXjs31nnI/gviz/tq?tqx=out:csv&sheet=emplois_3_4_LV")
-        st.info("Emplois du temps de 3aep et 4aep:")
+        st.info("Emploi du temps de 3aep et 4aep:")
         st.table(example)
     # Upload a CSV file
     file = st.file_uploader("Importez votre emplois", type=["csv"])
@@ -249,6 +250,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

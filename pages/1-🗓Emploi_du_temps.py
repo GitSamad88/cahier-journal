@@ -70,8 +70,7 @@ inject_ga()
 
 buffer = BytesIO()
 
-st.cache_data
-st.cache_resource
+
 def emplois_df(emplois):
     emplois["Jour"] = jours
     emplois["Matière"] = matieres
@@ -190,7 +189,7 @@ elif creat_or_import == "Importer votre emploi":
         st.info("Emploi du temps de 3aep et 4aep:")
         st.table(example)
     # Upload a CSV file
-    file = st.file_uploader("Importez votre emplois", type=["csv"])
+    file = st.file_uploader("Importez votre emploi", type=["csv"])
 
     if file is not None:
         # Read the CSV file into a DataFrame
@@ -250,6 +249,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

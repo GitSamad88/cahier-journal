@@ -932,10 +932,7 @@ if not st.session_state["LOGGED_IN"]:
 
 else:
     if "emplois" not in st.session_state:
-        modal_title = "Pas d'emploi du temps!"
-        modal = Modal(key="modal006", title=modal_title, padding=10, max_width=400)
-        with modal.container():
-            st.warning("Veuillez d'abord importer ou créer votre emploi du temps!")
+        st.warning("Veuillez d'abord importer ou créer votre emploi du temps!")
 
     title_placeholder = st.empty()
     _ , username = do_login()
@@ -1316,6 +1313,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

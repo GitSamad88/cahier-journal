@@ -931,6 +931,12 @@ if not st.session_state["LOGGED_IN"]:
         st.rerun()
 
 else:
+    if "emplois" not in st.session_state:
+        modal_title = "Pas d'emploi du temps!"
+        modal = Modal(key="modal006", title=modal_title, padding=10, max_width=400)
+        with modal.container():
+            st.warning("Veuillez d'abord importer ou créer votre emploi du temps!")
+
     title_placeholder = st.empty()
     _ , username = do_login()
     title_placeholder.subheader("Bienvenue👋, votre cahier journal généré automatiquement")
@@ -1232,11 +1238,10 @@ else:
                             st.warning("Vous avez dépassé la limite de télèchargement (10), vous devez obtenir un nouveau code ou contacter le support technique")
                              
                 else:
-                    modal_title = "Pas d'emplois du temps!"
+                    modal_title = "Pas d'emploi du temps!"
                     modal = Modal(key="modal002", title=modal_title, padding=10, max_width=400)
                     with modal.container():
-                        st.warning("Veuillez d'abord importer ou créer votre emplois du temps!")
-                    #st.warning("Veuillez importez ou créer votre emplois d'abord!")
+                        st.warning("Veuillez d'abord importer ou créer votre emploi du temps!")
             elif all(len(val) == 0 for val in options) and (enregistre == False):
                 st.warning("Veuillez sélectionner toutes les options!")
 
@@ -1311,6 +1316,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

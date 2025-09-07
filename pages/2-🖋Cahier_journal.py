@@ -641,7 +641,7 @@ def U_W_D(fr_manuel1, fr_manuel2,lecture_rituel1,
         sheet.merge_cells('G8:H8')
         sheet["G8"] = f'Unité: {1 + list(Unites.values()).index(unite)}'
 
-        sheet["F2"] = '...............................................'#f'Date: {str_date}'
+        sheet["F2"] = 'Date: ...............................................'#f'Date: {str_date}'
 
         #----------------in and out time---------------------
 
@@ -1315,6 +1315,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

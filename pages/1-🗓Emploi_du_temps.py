@@ -211,7 +211,7 @@ elif (creat_or_import == None and confirmation == True) :
     # creat_or_import == None:
 
 
-st.table(emplois)
+st.write(emplois)
 st.session_state["emplois"] = emplois
 
 # Custom Footer and Hide right Menu
@@ -250,6 +250,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

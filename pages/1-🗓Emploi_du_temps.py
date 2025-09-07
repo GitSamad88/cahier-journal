@@ -188,31 +188,51 @@ elif creat_or_import == "Importer votre emploi":
             "https://docs.google.com/spreadsheets/d/17Od8aGyqZPRXSyIIMLDklIhOLg1vApSrj5DXjs31nnI/gviz/tq?tqx=out:csv&sheet=emplois_3_4_LV")
         st.info("Emploi du temps de 3aep et 4aep:")
         st.table(example)
-    # Upload a CSV file
+
+    # File uploader (CSV only)
     file = st.file_uploader("Importez votre emploi", type=["csv"])
-
+    
     if file is not None:
-        file.seek(0)
-        # Read the CSV file into a DataFrame
+        try:
+            # Try reading with utf-8, fallback to latin-1
+            try:
+                emplois = pd.read_csv(file, encoding="utf-8")
+            except UnicodeDecodeError:
+                emplois = pd.read_csv(file, encoding="latin-1")
+    
+            # Required columns
+            required_cols = ["Jour", "Matière", "Séance", "Durée", "Niveau"]
+    
+            if all(col in emplois.columns for col in required_cols):
+                # Clean DataFrame
+                emplois.dropna(inplace=True)
+                emplois.reset_index(drop=True, inplace=True)
+    
+                # Convert numeric columns safely
+                for col in ["Séance", "Durée"]:
+                    emplois[col] = pd.to_numeric(emplois[col], errors="coerce")
+    
+                # Show warnings if numeric conversion failed
+                if emplois[["Séance", "Durée"]].isnull().any().any():
+                    st.warning("⚠ Certaines valeurs de 'Séance' ou 'Durée' ne sont pas numériques.")
+                else:
+                    st.success("✅ Votre emploi a été bien importé!")
+    
+                # Store in session state
+                st.session_state["emplois"] = emplois
+    
+                # Display table
+                st.table(emplois)
+            else:
+                st.warning(
+                    "⚠ Attention! Les colonnes de votre fichier doivent être : "
+                    "Jour, Matière, Séance, Durée et Niveau!"
+                )
+    
+        except Exception as e:
+            st.error(f"❌ Erreur lors de l'importation du fichier : {e}")
+    
 
-        emplois = pd.read_csv(file, encoding="utf-8")
-        if all(item in list(emplois.columns) for item in ["Jour", "Matière", "Séance", "Durée", "Niveau"]):
-            emplois.dropna(inplace=True)
-            emplois.index = range(emplois.shape[0])
-            emplois[["Séance", "Durée"]] = emplois[["Séance", "Durée"]].astype("int")
-            st.success("votre emplois a été bien importé!")
-        else:
-            #warnings
-            st.warning("Attention! Les colonnes de votre fichier doivent "
-                       "être :  Jour, Matière, Séance, Durée et Niveau!")
-
-elif (creat_or_import == None and confirmation == True) :
-    st.warning("svp, choisissez une option!")
-    # creat_or_import == None:
-
-
-st.write(emplois)
-st.session_state["emplois"] = emplois
 
 # Custom Footer and Hide right Menu
 Hid_Menu = """
@@ -250,6 +270,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

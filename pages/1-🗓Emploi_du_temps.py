@@ -192,6 +192,7 @@ elif creat_or_import == "Importer votre emploi":
     file = st.file_uploader("Importez votre emploi", type=["csv"])
 
     if file is not None:
+        file.seek(0)
         # Read the CSV file into a DataFrame
 
         emplois = pd.read_csv(file, encoding="utf-8")
@@ -249,6 +250,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

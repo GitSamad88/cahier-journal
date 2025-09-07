@@ -150,6 +150,68 @@ col4.write("2. ***Comment ça marche? :*** "
            "l'unité et les horaires, vous enregistrez votre sélectionnes."
            "Enfin, vous télécharger votre cahier journal en format Excel.")
 
+# Downlaod a demo 
+col4.markdown(
+      f"""
+      <style>
+      .download-button {{
+          background-color: #1E90FF;
+          border: none;
+          color: white;
+          padding: 14px 28px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }}
+      .download-button:hover {{
+          background-color: #0d6efd;
+          transform: scale(1.05);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }}
+      </style>
+  
+      <a href="https://drive.google.com/file/d/1rW3OufVTeZaRsrh_pRzPmyzCxqc5vtmC/view?usp=sharing" target="_blank">
+          <button class="download-button">📂 Téléchargez un exemple (Excel)</button>
+      </a>
+      """,unsafe_allow_html=True
+       )
+# Call to action button
+col5.markdown(
+    f"""
+    <style>
+    .cta-button {{
+        background-color: #0d6efd;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }}
+    .cta-button:hover {{
+        background-color:  #084298;
+        transform: scale(1.08);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }}
+    </style>
+
+    <a href="https://app.moudakira.ma/Cahier_journal" target="_blank">
+        <button class="cta-button">✨ Essayez maintenant !</button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
 
 col5,col6 =st.columns([0.4,0.6])
 col5.subheader("Pourquoi Moudakira.ma ?")
@@ -309,6 +371,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

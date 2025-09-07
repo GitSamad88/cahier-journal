@@ -44,7 +44,7 @@ all_images = preload_images()
   
 st.session_state["all_images"] = all_images
 
-st.image(all_images['banner-moudakira-no-logo.png'])
+st.image(all_images['banner-moudakira-no-logo.webp'])
 
 # Inject Google Analytics
 GA_ID = "google_analytics"
@@ -138,7 +138,7 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 
 
-col2.image(all_images["capture_cahier_journal.png"])
+col2.image(all_images["capture_cahier_journal.webp"])
 # Downlaod a demo 
 col2.markdown(
       f"""
@@ -173,7 +173,7 @@ col2.markdown(
 
 col3, col4 = st.columns([0.6,0.4])
 
-col3.image(all_images["emplois_presen_d3.png"])
+col3.image(all_images["emplois_presen_d3.webp"])
 col4.write("2. ***Comment ça marche? :*** "
            "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
            "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "
@@ -372,6 +372,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

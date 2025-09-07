@@ -11,7 +11,7 @@ st.set_page_config(page_icon = r"static/moudkira_dark_v_100_100.png",
 add_logo(r"static/moudkira_dark_v_100_100.png",height=80)
 
 st.title("Comment ça marche?")
-st.image(r"static/question.jpg")#,width=500)#,use_column_width="auto")
+st.image(r"static/question.webp")#,width=500)#,use_column_width="auto")
 
 
 st.subheader("Comment créer un emplois de temps? ")
@@ -104,6 +104,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

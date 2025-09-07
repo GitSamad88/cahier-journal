@@ -140,7 +140,7 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 col2.image(all_images["capture_cahier_journal.png"])
 # Downlaod a demo 
-col4.markdown(
+col2.markdown(
       f"""
       <style>
       .download-button {{
@@ -372,6 +372,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

@@ -139,17 +139,6 @@ col1.write("1. ***Création Facile de Cahier Journal :*** "
 
 
 col2.image(all_images["capture_cahier_journal.png"])
-
-col3, col4 = st.columns([0.6,0.4])
-
-col3.image(all_images["emplois_presen_d3.png"])
-col4.write("2. ***Comment ça marche? :*** "
-           "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
-           "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "
-           "groupes, les manuels utilisés, "
-           "l'unité et les horaires, vous enregistrez votre sélectionnes."
-           "Enfin, vous télécharger votre cahier journal en format Excel.")
-
 # Downlaod a demo 
 col4.markdown(
       f"""
@@ -181,8 +170,41 @@ col4.markdown(
       </a>
       """,unsafe_allow_html=True
        )
+
+col3, col4 = st.columns([0.6,0.4])
+
+col3.image(all_images["emplois_presen_d3.png"])
+col4.write("2. ***Comment ça marche? :*** "
+           "Vous créez d'abord un emploi du temps ou vous importez le votre si vous avez déjà créer "
+           "un (en format CSV), puis vous créez votre cahier journal en choisissant: les niveaux scolaires ou les "
+           "groupes, les manuels utilisés, "
+           "l'unité et les horaires, vous enregistrez votre sélectionnes."
+           "Enfin, vous télécharger votre cahier journal en format Excel.")
+
+
+
+
+col5,col6 =st.columns([0.4,0.6])
+col5.subheader("Pourquoi Moudakira.ma ?")
+col5.write("Moudakira.ma a été créé avec la conviction que la gestion du suivi des élèves "
+           "devrait être aussi enrichissante que l'enseignement lui-même."
+           " Notre application vise à simplifier le processus de création de cahier journal tout en offrant"
+           " des outils puissants pour améliorer la communication et l'efficacité pédagogique.")
+
+embed_video="""
+<iframe src="https://drive.google.com/file/d/1Z6n3-Uyvu3UyZJkNHf864B0_Z2uLRTao/preview"
+ width="420" height="280" allow="autoplay"></iframe> 
+"""
+col6.markdown(embed_video,unsafe_allow_html=True)
+
+
+st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
+           "comment notre application peut transformer "
+           "la façon dont les enseignants du cycle primaire gèrent leurs cahiers de journal, "
+           "libérant ainsi du temps précieux pour se concentrer sur"
+           "l'enseignement et l'épanouissement de leurs élèves.")
 # Call to action button
-col5.markdown(
+st.markdown(
     f"""
     <style>
     .cta-button {{
@@ -212,27 +234,6 @@ col5.markdown(
     """,
     unsafe_allow_html=True
 )
-
-col5,col6 =st.columns([0.4,0.6])
-col5.subheader("Pourquoi Moudakira.ma ?")
-col5.write("Moudakira.ma a été créé avec la conviction que la gestion du suivi des élèves "
-           "devrait être aussi enrichissante que l'enseignement lui-même."
-           " Notre application vise à simplifier le processus de création de cahier journal tout en offrant"
-           " des outils puissants pour améliorer la communication et l'efficacité pédagogique.")
-
-embed_video="""
-<iframe src="https://drive.google.com/file/d/1Z6n3-Uyvu3UyZJkNHf864B0_Z2uLRTao/preview"
- width="420" height="280" allow="autoplay"></iframe> 
-"""
-col6.markdown(embed_video,unsafe_allow_html=True)
-
-
-st.write("Téléchargez votre cahier journal dès aujourd'hui et découvrez "
-           "comment notre application peut transformer "
-           "la façon dont les enseignants du cycle primaire gèrent leurs cahiers de journal, "
-           "libérant ainsi du temps précieux pour se concentrer sur"
-           "l'enseignement et l'épanouissement de leurs élèves.")
-
 
 
 # Login form
@@ -371,6 +372,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

@@ -228,7 +228,7 @@ st.markdown(
     }}
     </style>
 
-    <a href="https://app.moudakira.ma/Cahier_journal" target="_blank">
+    <a href="pages/Cahier_journal.py" target="_blank">
         <button class="cta-button">✨ Essayez maintenant !</button>
     </a>
     """,
@@ -372,6 +372,7 @@ footer = """
 
 st.markdown(footer, unsafe_allow_html=True)
 st.markdown(hid_menu, unsafe_allow_html=True)
+
 
 
 

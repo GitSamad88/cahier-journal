@@ -1226,9 +1226,11 @@ else:
 
                                 download = st.download_button(
                                            label="Téléchargez votre cahier journal",
-                                           data=journal,
+                                           data=journal.getvalue(),
                                            key="workbook_xlsm",
                                            file_name=f"Cahier_Journalier_{unit[0]}_niveaux {level1[0]}-{level2[0]}_{period}.xlsm",
+                                           mime="application/vnd.ms-excel.sheet.macroEnabled.12",
+
                                             on_click = update_downlaod_count)
                                 
 
@@ -1314,6 +1316,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

@@ -397,7 +397,7 @@ def EvSc_manuel_level(level, manuel):
         print("Ce manuel n'est pas disponible pour ce niveau, choisissez un autre manuel!")
         print("Remarque: le niveau doit être entre 1 et 6!")
 
-@st.cache_resource()
+@st.cache_resource
 # Ritual of lecture 
 def rituel_lecture(manuel, level):
     
@@ -1317,6 +1317,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

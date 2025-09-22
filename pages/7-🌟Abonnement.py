@@ -120,7 +120,7 @@ sheet = worksheet(_credentials = secrets_auth)
 
 if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
-@st.cache_resource
+
 def do_login():
     __login__obj = __login__(
         credentials=secrets_auth,
@@ -492,6 +492,7 @@ st.markdown(Hid_Menu,
     
     
     
+
 
 
 

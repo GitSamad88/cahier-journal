@@ -892,6 +892,7 @@ smtp_gmail_ = os.getenv("smtp_gmail","")
 smtp_password_ = os.getenv("smtp_password","")
 if "LOGOUT_BUTTON_HIT" not in st.session_state:
     st.session_state["LOGOUT_BUTTON_HIT"] = False
+st.cashe_resource()
 def do_login():
     __login__obj = __login__(
         credentials=secrets_auth,
@@ -903,7 +904,7 @@ def do_login():
         logout_button_name='Se déconnecter',
         hide_menu_bool=False,
         hide_footer_bool=False,
-        lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json'
+        #lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json'
     )
 
     username = __login__obj.get_username()
@@ -1316,6 +1317,7 @@ footer = """
 
 st.markdown(footer,unsafe_allow_html=True)
 st.markdown(Hid_Menu,unsafe_allow_html=True)
+
 
 
 

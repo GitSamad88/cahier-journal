@@ -1,7 +1,7 @@
 streamlit==1.30.0
 streamlit-modal==0.1.2
 pandas==2.0.3
-numpy=>=1.27.5
+numpy==1.27.5
 pathlib==1.0.1
 bs4==0.0.1
 streamlit_signin_auth_ui

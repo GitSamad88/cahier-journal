@@ -1,6 +1,6 @@
 streamlit==1.32.2
 streamlit-modal==0.1.2
-pandas==2.2.1
+pandas==3.0.6
 numpy==1.26.0
 pathlib==1.0.1
 bs4==0.0.1
